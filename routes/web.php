@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Authenticate;
+use App\Http\Controllers\Clciknext_page;
+use App\Http\Middleware\Authenticate as MiddlewareAuthenticate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +16,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::controller(Authenticate::class)->group(function () {
+    Route::get('/', 'login')->name('login');
+    Route::post('login', 'login_save')->name('login.save');
+    Route::get('logout', 'logout')->middleware('auth.hr')->name('logout');
+});
+Route::middleware('auth.hr')->group(function () {
+
+    Route::controller(Clicknext_page::class)->prefix('pages')->group(function () {
+        Route::get('index', 'index')->name('index');
+    });
 });
 
 
