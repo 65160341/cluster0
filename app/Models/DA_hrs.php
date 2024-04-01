@@ -30,7 +30,7 @@ class DA_hrs extends Model
      */
     public function getAuthIdentifier()
     {
-        return $this->getAttribute('hr_username'); // Assuming 'hr_id' is the primary key
+        return $this->getAttribute('hr_username');
     }
 
     /**
