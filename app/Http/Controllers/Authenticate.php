@@ -8,7 +8,7 @@ class Authenticate extends Controller
 {
     public function login()
     {
-        return view('auth.login');
+        return view('auth.v_login');
     }
 
     protected $authenticated_username;
