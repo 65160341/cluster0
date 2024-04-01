@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::controller(Authenticate::class)->group(function () {
-    Route::get('/', 'login')->name('login');
+    Route::get('login', 'login')->name('login');
     Route::post('login', 'login_save')->name('login.save');
     Route::get('logout', 'logout')->middleware('auth.hr')->name('logout');
 });

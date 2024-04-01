@@ -13,7 +13,7 @@ return new class extends Migration
     {
         //
           Schema::create('hrs', function (Blueprint $table) {
-            $table->unsignedBigInteger('hr_id')->length(11);
+             $table->unsignedBigInteger('hr_id')->length(10);
             $table->string('hr_username', 50);
             $table->string('hr_firstname', 50);
             $table->string('hr_lastname', 50);
@@ -28,5 +28,6 @@ return new class extends Migration
     public function down(): void
     {
         //
+         Schema::dropIfExists('hrs');
     }
 };

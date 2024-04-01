@@ -42,14 +42,14 @@
                 </div>
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
-                    <input type="text" id="form3Example2" class="form-control" name="hr_password"/>
+                    <input type="password" id="form3Example2" class="form-control" name="hr_password"/>
                     <label class="form-label" for="form3Example2">Password</label>
                   </div>
                 </div>
               </div>
               <!-- Submit button -->
               <button type="submit" class="btn btn-primary btn-block mb-4">
-                Sign up
+                Log in
               </button>
             </form>
           </div>
