@@ -32,6 +32,7 @@
           <div class="card-body p-5 shadow-5 text-center">
             <h2 class="fw-bold mb-5">Login</h2>
             <form action="{{ route('login.save')}}" method="POST">
+            @csrf
               <!-- 2 column grid layout with text inputs for the first and last names -->
               <div class="row">
                 <div class="col-md-6 mb-4">
