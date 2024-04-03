@@ -72,7 +72,7 @@ return [
         ],
         'hrs' => [
             'driver' => 'eloquent',
-            'model' =>  App\Models\DA_hrs::class, 
+            'model' =>  App\Models\Hrs::class,
             'provider' => App\Auth\HR_provider::class,
         ],
 

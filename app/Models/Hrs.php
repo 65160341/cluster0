@@ -8,19 +8,20 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 
-class DA_hrs extends Model
+class Hrs extends Model
 {
     use HasFactory;
+    use Notifiable;
+    // protected $primaryKey = 'id';
         protected $fillable = [
-        'hr_id',
         'hr_username',
         'hr_firstname',
         'hr_lastname',
-        'hr_password'
+        'password'
     ];
      public function getAuthIdentifierName()
     {
-        return 'hr_username'; // Assuming 'hr_id' is the primary key
+        return 'hr_username';
     }
 
     /**
@@ -40,6 +41,6 @@ class DA_hrs extends Model
      */
     public function getAuthPassword()
     {
-        return $this->getAttribute('hr_password');
+        return $this->getAttribute('password');
     }
 }

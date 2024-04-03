@@ -2,16 +2,22 @@
 
 namespace App\Auth;
 
-use App\Models\DA_hrs;
+
+use App\Models\Hrs;
 use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Contracts\Auth\Authenticatable;
-
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class HR_provider implements UserProvider
 {
+       public function retrieveById($identifier)
+    {
+        return Hrs::find($identifier);
+    }
     public function retrieveByUsername($identifier)
     {
-        return DA_hrs::where('hr_username', $identifier)->first();
+        return Hrs::where('hr_username', $identifier)->first();
     }
 
     public function retrieveByToken($identifier, $token)
@@ -34,11 +40,18 @@ class HR_provider implements UserProvider
 
     public function retrieveByCredentials(array $credentials)
     {
-        return DA_hrs::where('hr_username', $credentials['hr_username'])->first();
+        return Hrs::where('hr_username', $credentials['hr_username'])->first();
     }
 
     public function validateCredentials(Authenticatable $user, array $credentials)
     {
-        return $user->hr_password === $credentials['hr_password'];
+
+        $passwordMatch = Hash::check($credentials['password'], $user->getAuthPassword());
+        Log::info('Password check result: ' . ($passwordMatch ? 'Matched' : 'Not matched'));
+        return $passwordMatch;
     }
+    public function rehashPasswordIfRequired(Authenticatable $user, array $credentials, bool $force = false)
+     {
+
+     }
 }

@@ -13,11 +13,11 @@ return new class extends Migration
     {
         //
         Schema::create('hrs', function (Blueprint $table) {
-            $table->bigIncrements('hr_id');
+            $table->id();
             $table->string('hr_username', 50);
             $table->string('hr_firstname', 50);
             $table->string('hr_lastname', 50);
-            $table->string('hr_password', 50);
+            $table->string('password', 255);
             $table->timestamps();
         });
     }
