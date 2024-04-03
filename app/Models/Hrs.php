@@ -4,22 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-
 
 class Hrs extends Model
 {
     use HasFactory;
-    use Notifiable;
-    // protected $primaryKey = 'id';
         protected $fillable = [
+        'id',
         'hr_username',
         'hr_firstname',
         'hr_lastname',
         'password'
     ];
-     public function getAuthIdentifierName()
+    public function getAuthIdentifierName()
     {
         return 'hr_username';
     }

@@ -1,22 +1,32 @@
 <?php
+
 namespace App\Console\Commands;
 
 use App\Models\Hrs;
 use Illuminate\Console\Command;
-
 use Illuminate\Support\Facades\Hash;
 
 class RehashPasswords extends Command
 {
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
     protected $signature = 'passwords:rehash';
 
-    protected $description = 'Rehash all existing passwords using bcrypt';
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Rehash passwords in the database';
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
     public function handle()
     {
         $hrs = Hrs::all();
@@ -26,7 +36,6 @@ class RehashPasswords extends Command
             $hr->save();
         }
 
-        $this->info('Passwords rehashed successfully.');
+        $this->info('Passwords rehashed successfully!');
     }
 }
-?>

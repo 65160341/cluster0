@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'hr',
-        'passwords' => 'hr',
+        'guard' => 'web',
+        'passwords' => 'users',
     ],
 
     /*
@@ -40,13 +40,7 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'hr' => [
-            'driver' => 'session',
-            'provider' => 'hrs',
-        ],
-
     ],
-
 
     /*
     |--------------------------------------------------------------------------
@@ -70,12 +64,6 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        'hrs' => [
-            'driver' => 'eloquent',
-            'model' =>  App\Models\Hrs::class,
-            'provider' => App\Auth\HR_provider::class,
-        ],
-
 
         // 'users' => [
         //     'driver' => 'database',
@@ -103,8 +91,8 @@ return [
     */
 
     'passwords' => [
-        'hr' => [
-            'provider' => 'hrs',
+        'users' => [
+            'provider' => 'users',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,
