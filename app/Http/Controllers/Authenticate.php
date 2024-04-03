@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hrs;
-use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
