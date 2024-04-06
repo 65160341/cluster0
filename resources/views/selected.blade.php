@@ -209,23 +209,6 @@
             border-left: 3px solid #3b7ddd;
         }
 
-        .button-group {
-            display: flex;
-        }
-
-        .button {
-            margin: 5px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .button:hover {
-            background-color: #ddd;
-        }
-
-
-
 
         @media (min-width: 768px) {}
     </style>
@@ -275,7 +258,7 @@
                     </div>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="/information" class="sidebar-link">
                         <i class='bx bxs-info-circle'></i>
                         <span>ข้อมูล</span>
                     </a>
@@ -313,11 +296,11 @@
             <main class="content px-3 py-4">
                 <div class="container-fluid">
                     <div class="mb-3 d-flex align-items-center">
-                        <h4 class="me-3">ปีที่รับสมัคร</h4>
+                        <h4 class="me-3">สถานะการคัดเลือก : </h4>
                         <div class="dropdown shadow-sm">
                             <a class="btn btn-light btn-sm dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                เลือกปีที่รับสมัคร
+                                ยังไม่ได้คัดเลือก
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">2567</a></li>
@@ -337,90 +320,16 @@
                                 <tr class="text-center">
                                     <th scope="col">รอบการรับสมัคร</th>
                                     <th scope="col">รายละเอียด</th>
-                                    <th scope="col">
-                                        <div class="dropdown">
-                                            <button class="btn btn-white dropdown-toggle" type="button"
-                                                id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                                สถานะการรับสมัคร
-                                            </button>
-                                            <ul class="dropdown-menu" aria-labelledby="statusDropdown">
-                                                <li><a class="dropdown-item" href="#">ปิดรับสมัคร</a></li>
-                                                <li><a class="dropdown-item" href="#">เปิดรับสมัคร</a></li>
-                                            </ul>
-                                        </div>
-                                    </th>
-                                    <th scope="col">
-                                        <div class="dropdown">
-                                            <button class="btn btn-white dropdown-toggle" type="button"
-                                                id="selectionStatusDropdown" data-bs-toggle="dropdown"
-                                                aria-expanded="false">
-                                                สถานะการคัดเลือก
-                                            </button>
-                                            <ul class="dropdown-menu" aria-labelledby="selectionStatusDropdown">
-                                                <li><a class="dropdown-item" href="/selected">ยังไม่ได้คัดเลือก</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">อยู่ระหว่างดำเนินการ</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">คัดเลือกเสร็จสิ้น</a></li>
-                                            </ul>
-                                        </div>
-                                    </th>
+                                    <th scope="col"></th>
                                     <th scope="col"></th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="text-center">
-                                    <th scope="row">1 / 2567</th>
-                                    <td>รับสมัครที่ ม.บูรพา</td>
-                                    <td>ปิดรับสมัคร</td>
-                                    <td>คัดเลือกเสร็จสิ้น</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary" role="button"
-                                            data-bs-toggle="button">ตรวจสอบ</a>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-secondary"
-                                            onclick="changeColor(this)">เสร็จสิ้น</button>
-                                    </td>
-                                </tr>
-                                <tr class="text-center">
-                                    <th scope="row">1 / 2567</th>
-                                    <td>รับสมัครที่ ม.บูรพา</td>
-                                    <td>ปิดรับสมัคร</td>
-                                    <td>คัดเลือกเสร็จสิ้น</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary" role="button"
-                                            data-bs-toggle="button">ตรวจสอบ</a>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-secondary"
-                                            onclick="changeColor(this)">เสร็จสิ้น</button>
-                                    </td>
-                                </tr>
-                                <tr class="text-center">
-                                    <th scope="row">1 / 2567</th>
-                                    <td>รับสมัครที่ ม.บูรพา</td>
-                                    <td>ปิดรับสมัคร</td>
-                                    <td>คัดเลือกเสร็จสิ้น</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary" role="button"
-                                            data-bs-toggle="button">ตรวจสอบ</a>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-secondary"
-                                            onclick="changeColor(this)">เสร็จสิ้น</button>
-                                    </td>
-                                </tr>
                             </tbody>
                         </table>
-                        <div class="button-group">
-                            <button class="button">2</button>
-                            <button class="button">B</button>
-                            <button class="button">10</button>
-                        </div>
+
                     </div>
-                </div>
             </main>
         </div>
     </div>
@@ -439,13 +348,6 @@
                 _this.style.backgroundColor = "green";
             }
         }
-        const buttons = document.querySelectorAll(".button");
-
-        buttons.forEach((button) => {
-            button.addEventListener("click", () => {
-                console.log(button.textContent);
-            });
-        });
     </script>
 </body>
 

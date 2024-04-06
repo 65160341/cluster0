@@ -45,3 +45,7 @@ Route::get('/myform', function () {
 Route::get('/information', function () {
     return view('information');
 });
+
+Route::get('/selected', function () {
+    return view('selected');
+});
