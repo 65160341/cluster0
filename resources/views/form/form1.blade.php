@@ -15,10 +15,11 @@
         <div> 
             <hr width="90%" color="Black" />
         </div>
-        <form action="#" method="POST">
+        <form action="/form" method="POST">
+            @csrf
             <div class="form-group">
                 <label for="province">ตำแหน่งงาน <span class="required-asterisk">*</span> </label>
-                <select name="worktest" id="worktest" placeholder="เลือกตำแหน่งงาน" > <!-- link ข้อมูล database -->
+                <select name="job" id="worktest" placeholder="เลือกตำแหน่งงาน" > <!-- link ข้อมูล database -->
                     <option value="jobname">Devlopment</option>
                     <option value="jobname">jobname</option>
                     
