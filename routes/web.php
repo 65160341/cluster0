@@ -16,16 +16,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::controller(Authenticate::class)->group(function () {
-    Route::get('login', 'login')->name('login');
-    Route::post('login', 'login_save')->name('login.save');
+// Route::controller(Authenticate::class)->group(function () {
+//     Route::get('login', 'login')->name('login');
+//     Route::post('login', 'login_save')->name('login.save');
+// });
+
+// Route::controller(Clicknext_page::class)->prefix('pages')->group(function () {
+//     Route::get('index', 'index')->name('index');
+// });
+
+
+// Route::get('/test', function () {
+//     echo "<h1>test</h1><a href='" . url('/') . "'>HOME " . url('/') . "</a>";
+// });
+
+Route::get('/main', function () {
+    return view('main');
 });
 
-Route::controller(Clicknext_page::class)->prefix('pages')->group(function () {
-        Route::get('index', 'index')->name('index');
-});
-
-
-Route::get('/test', function () {
-    echo "<h1>test</h1><a href='".url('/')."'>HOME ".url('/')."</a>";
+Route::get('/dashboard', function () {
+    return view('dashboard');
 });
