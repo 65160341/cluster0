@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Authenticate;
 use App\Http\Controllers\Clicknext_page;
+use App\Http\Controllers\position_form_Controller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,3 +38,8 @@ Route::get('/main', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
+Route::get('/', function () {
+    return view('creatform');
+});
+
+
