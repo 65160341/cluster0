@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบรับสมัครพนักงงาน</title>
+    <title>myform</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     {{-- <link rel="stylesheet" href="styleTest.css"> --}}
@@ -290,16 +290,23 @@
                     </ul>
                 </div>
             </nav>
-            <!-- <main class="content px-3 py-4">
+            <main class="content px-3 py-4">
                 <div class="container-fluid">
                     <div class="mb-3">
                         <h4><label for="ปีที่เปิดรับสมัคร">ปีที่เปิดรับสมัคร</label></h4>
+                        <select class="form-control" id="ปีที่เปิดรับสมัคร" name="ปีที่เปิดรับสมัคร">
+                            <option value="คุณ">คุณ</option>
+                            <option value="เด็กชาย">เด็กชาย</option>
+                            <option value="เด็กหญิง">เด็กหญิง</option>
+                            <option value="นาย">นาย</option>
+                            <option value="นางสาว">นางสาว</option>
+                        </select>
                         <div class="row">
                             <div class="col-12">
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th scope="col">รอบการคัดเลือก</th>
+                                            <th scope="col">รอบการรับสมัคร</th>
                                             <th scope="col">รายละเอียด</th>
                                             <th scope="col">วันที่เปิดรับ</th>
                                             <th scope="col">วันที่สิ้นสุด</th>
@@ -340,7 +347,7 @@
                         </div>
                     </div>
                 </div>
-            </main> -->
+            </main>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

@@ -37,3 +37,11 @@ Route::get('/main', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
+
+Route::get('/myform', function () {
+    return view('myform');
+});
+
+Route::get('/information', function () {
+    return view('information');
+});

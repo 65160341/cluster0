@@ -8,6 +8,7 @@
     <title>ระบบรับสมัครพนักงงาน</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     {{-- <link rel="stylesheet" href="styleTest.css"> --}}
     <style>
         @import url('https://fonts.googleapis.com/css?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -256,7 +257,7 @@
                     </div>
                 </li>
                 <li class="sidebar-item">
-                    <a href="/information" class="sidebar-link">
+                    <a href="#" class="sidebar-link">
                         <i class='bx bxs-info-circle'></i>
                         <span>ข้อมูล</span>
                     </a>
@@ -290,57 +291,74 @@
                     </ul>
                 </div>
             </nav>
-            <!-- <main class="content px-3 py-4">
+            <main class="content px-3 py-4">
                 <div class="container-fluid">
                     <div class="mb-3">
-                        <h4><label for="ปีที่เปิดรับสมัคร">ปีที่เปิดรับสมัคร</label></h4>
+                        <div class="dropdown">
+                            <a class="btn btn-white dropdown-toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                ปีที่รับสมัคร
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">2567</a></li>
+                                <li><a class="dropdown-item" href="#">2566</a></li>
+                                <li><a class="dropdown-item" href="#">2565</a></li>
+                                <li><a class="dropdown-item" href="#">2564</a></li>
+                                <li><a class="dropdown-item" href="#">2563</a></li>
+                                <li><a class="dropdown-item" href="#">2562</a></li>
+                                <li><a class="dropdown-item" href="#">2561</a></li>
+                                <li><a class="dropdown-item" href="#">2560</a></li>
+                            </ul>
+                        </div>
                         <div class="row">
                             <div class="col-12">
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th scope="col">รอบการคัดเลือก</th>
+                                            <th scope="col">รอบการรับสมัคร</th>
                                             <th scope="col">รายละเอียด</th>
-                                            <th scope="col">วันที่เปิดรับ</th>
-                                            <th scope="col">วันที่สิ้นสุด</th>
-                                            <th scope="col">สถานะ</th>
+                                            <th scope="col">
+                                                <div class="dropdown">
+                                                    <a class="btn btn-white dropdown-toggle" href="#"
+                                                        role="button" data-bs-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                        สถานะการรับสมัคร
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item" href="#">ปิดรับสมัคร</a>
+                                                        </li>
+                                                        <li><a class="dropdown-item" href="#">2566</a></li>
+
+                                                    </ul>
+                                                </div>
+                                            </th>
+                                            <th scope="col">สถานะการคัดเลือก</th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <th scope="row">1 / 2567</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>เปิดรับสมัคร</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td>เปิดรับสมัคร</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td colspan="2">Larry the Bird</td>
-                                            <td>@twitter</td>
+                                            <td>รับสมัครที่ ม.บูรพา</td>
                                             <td>ปิดรับสมัคร</td>
+                                            <td>คัดเลือกเสร็จสิ้น</td>
+                                            <td>
+                                                <button class="btn btn-primary">ตรวจสอบ</button>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-success"
+                                                    onclick="changeColor(this)">Success</button>
+                                            </td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">4</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td>ปิดรับสมัคร</td>
-                                        </tr>
+
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-            </main> -->
+            </main>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -350,6 +368,11 @@
         hamBurger.addEventListener("click", function() {
             document.querySelector("#sidebar").classList.toggle("expand");
         });
+
+        // function changeColor(_this) {
+        //     _this.style.backgroundColor = "green";
+        //     if (click again) = 'black'
+        // }
     </script>
 </body>
 
