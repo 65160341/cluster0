@@ -369,19 +369,22 @@ th {
                 </div>
             </nav>
             <main class="content px-3 py-4">
+         <form onsubmit="return confirmForm()">
                 <div class="select_round">
                     <label for="applicationRound">รอบการรับสมัคร:</label>
-                    <input type="text" id="pf_roundcount" value="" name="applicationRound" placeholder="ระบุรอบ/ปี เช่น รอบที่ 1/2566">
+                    <input type="text" id="form_roundcount" value="" name="form_roundcount" placeholder="ระบุรอบ/ปี เช่น รอบที่ 1/2566">
                 </div>
                 <div class="select_date">
                     <label for="applicationPeriod">ระยะเวลาการรับสมัคร:</label>
-                    <input type="date" id="pf_date_end" value="" name="applicationPeriod" class="form-control" placeholder="เลือกวันที่">
+                    <input type="date" id="form_date_end" value="" name="form_date_end" class="form-control" placeholder="เลือกวันที่">
             </div>
         <div class="table-form">
         <label for="additionalInfo">รายละเอียดเพิ่มเติม:</label>
-        <input type="text" id="pf_Info" value="" name="additionalInfo" placeholder="กรอกรายละเอียดเพิ่มเติม">
-        <button class="add-form" onclick="togglePopup()" >+ เพิ่มรายการรับสมัคร</button>
+        <input type="text" id="pf_Info" value="" name="pf_Info" placeholder="กรอกรายละเอียดเพิ่มเติม">
+        <button class="add-form" onclick="toggleConfirmationPopup()" >+ เพิ่มรายการรับสมัคร</button>
     </div>
+</form>
+
 
 <div>
 <table>
@@ -395,85 +398,79 @@ th {
         </tr>
     </thead>
     <tbody>
-
+        @foreach ($positionForms as $key => $positionForm)
         <tr>
-
-            <td>1</td>
-            <td>สหกิจ</td>
-            <td>Developer</td>
-            <td>5</td>
+            <td>{{ $key+1}}</td>
+            <td>{{ $positionForm->pf_type_jobs }}</td>
+            <td>{{ $positionForm->Positions->pos_name }}</td>
+            <td>{{ $positionForm->pf_amount_of_position }}</td>
             <td>
                 <button style="background-color: green; color: white;">แก้ไข</button>
                 <button style="background-color: red; color: white;">ลบ</button>
             </td>
         </tr>
+        @endforeach
         <!-- เพิ่มแถวตามความเหมาะสม -->
     </tbody>
 </table>
 </div><div class="popup" id="popup">
     <h2>เพิ่มรายการรับสมัคร</h2>
     <form onsubmit="return confirmForm()">
+
         <label for="jobType" >ลักษณะงาน:</label>
-        <select id="jobType" name="jobType" id="pf_type_jobs">
+        <select id="pf_type_jobs" name="pf_type_jobs" >
             <option value="พนักงาน">พนักงาน</option>
             <option value="สหกิจ">สหกิจ</option>
         </select>
         <label for="position">ตำแหน่งงาน:</label>
-        <select id="position" name="position" id="pf_id">
-            <option value="1">-</option>
-            <option value="2">Tester</option>
-            <option value="3">UX/UI</option>
-            <option value="4">Project Manageer</option>
+        <select id="pf_name" name="pf_name" >
+            <option value="ไม่ระบุตำแหน่งงาน">-</option>
+            <option value="Tester">Tester</option>
+            <option value="UX/UI">UX/UI</option>
+            <option value="Project Manageer">Project Manageer</option>
         </select>
         <label for="numOfApplicants">จำนวนการรับสมัคร:</label>
-        <input type="text" value="" id="pf_amount_of_position" name="numOfApplicants">
+        <input type="text" value="" id="pf_amount_of_position" name="pf_amount_of_position">
         <button type="button" class="cancel-button" onclick="togglePopup()">ยกเลิก</button>
         <button type="submit" class="confirm-button">ยืนยัน</button>
     </form>
 </div>
 
-
-
             </main>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        const hamBurger = document.querySelector(".toggle-btn");
+<script>
+    const hamBurger = document.querySelector(".toggle-btn");
 
-        hamBurger.addEventListener("click", function() {
-            document.querySelector("#sidebar").classList.toggle("expand");
-        });
-        function togglePopup() {
+    hamBurger.addEventListener("click", function() {
+        document.querySelector("#sidebar").classList.toggle("expand");
+    });
+
+    function togglePopup() {
         var popup = document.getElementById("popup");
         if (popup.style.display === "block") {
             popup.style.display = "none";
         } else {
             popup.style.display = "block";
         }
-
     }
+
     function confirmForm() {
         togglePopup(); // ปิด popup เมื่อยืนยัน
         toggleConfirmationPopup(); // เปิด popup
     }
 
     function toggleConfirmationPopup() {
-    var confirmationPopup = document.getElementById("confirmationPopup");
-    if (confirmationPopup.style.display === "block") {
-        confirmationPopup.style.display = "none";
-    } else {
-        confirmationPopup.style.display = "block";
+        var confirmationPopup = document.getElementById("confirmationPopup");
+        if (confirmationPopup.style.display === "none") {
+            confirmationPopup.style.display = "block";
+        } else {
+            confirmationPopup.style.display = "none";
+        }
     }
-}
-function togglePopup() {
-    var popup = document.getElementById("popup");
-    if (popup.style.display === "block") {
-        popup.style.display = "none";
-    } else {
-        popup.style.display = "block";
-    }
-}
+
+</script>
 
     </script>
 </body>

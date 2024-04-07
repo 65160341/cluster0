@@ -38,8 +38,6 @@ Route::get('/main', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
-Route::get('/', function () {
-    return view('creatform');
-});
-
+Route::get('/', [position_form_Controller::class, 'index']);
+Route::post('/store', [position_form_Controller::class, 'index']);
 

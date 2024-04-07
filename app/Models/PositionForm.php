@@ -11,15 +11,24 @@ class PositionForm extends Model
     use HasFactory;
 
     protected $table = 'position_form';
+    protected $primaryKey = 'id'; // ระบุ primary key เป็น 'id'
+    public $timestamps = false; // ไม่ใช้ timestamps
 
     protected $fillable = [
-        'pf_roundcount',
-        'pf_date_end',
-        'pf_info',
         'pf_type_jobs',
         'pf_amount_of_position',
+        'pos_name',
     ];
-    public $timestamps = false;
-    protected $primaryKey = 'id';
-    public $incrementing = true;
+    public function positionForm()
+{
+    return $this->belongsTo(PositionForm::class, 'form_id');
+}
+public function positions()
+{
+    return $this->belongsTo(Positions::class, 'pos_id');
+}
+public function form()
+{
+    return $this->belongsTo(Form::class, 'form_id');
+}
 }
