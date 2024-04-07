@@ -9,10 +9,9 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     {{-- <link rel="stylesheet" href="styleTest.css"> --}}
-    <link rel="stylesheet" href="{{asset("asset\dist\css\page.css")}}">
-    <style>
-
-    </style>
+    <link rel="stylesheet" href="{{ asset('asset\dist\css\page.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css">
 </head>
 
 <body>
@@ -116,36 +115,110 @@
                             </div>
                         </div>
                         <div class="col-12 columnset">
-                            <table class="table table-striped">
+
+                            <table id="example" class="table table-striped" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th width="150px">รอบการรับสมัคร</th>
                                         <th width="200px">รายละเอียด</th>
                                         <th width="200px">วันที่เปิดรับ</th>
                                         <th width="200px">วันที่สิ้นสุด</th>
-                                        <th width="200px"><li class="nav-item dropdown">
-                                            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                <class= alt="">สถานะ
-                                            </a>
-                                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                                <li><a class="dropdown-item" href="#">เปิดรับสมัคร</a></li>
-                                                <li><a class="dropdown-item" href="#">ปิดรับสมัคร</a></li>
-                                            </ul>
-                                        </li></th>
-                                        <td width="200px"></td>
+                                        <th width="200px">สถานะ</th>
+                                        <th width="200px" data-orderable="false"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th scope="row">2 / 2567</th>
-                                        <td>รับสมัครที่มหาวิทยาลัยบูรพา วันที่ 6 เดือนเมษายน พ.ศ. 2567 คณะวิทยาการสารสนเทศ</td>
-                                        <td>11/03/2567</td>
-                                        <td>25/03/2567</td>
+                                        <td>1/2024</td>
+                                        <td>ฟดฟดฟดหห</td>
+                                        <td>01/08/2024</td>
+                                        <td>07/08/2024</td>
+                                        <td><font style="color:#E8042C">ปิดรับสมัคร</font></td>
+                                        <td><button class="btn btn-primary">ตรวจสอบ</button>
+                                            <button class="btn btn-danger">ลบ</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2/2024</td>
+                                        <td>รับสมัครที่</td>
+                                        <td>01/11/2024</td>
+                                        <td>01/18/2024</td>
                                         <td>ปิดรับสมัคร</td>
                                         <td><button class="btn btn-primary">ตรวจสอบ</button>
-                                            <button class="btn btn-danger">ลบ</button></td>
+                                            <button class="btn btn-danger">ลบ</button>
+                                        </td>
                                     </tr>
+                                    <tr>
+                                        <td>3/2024</td>
+                                        <td>ฟกดฟกดฟดฟ</td>
+                                        <td>01/19/2024</td>
+                                        <td>01/22/2024</td>
+                                        <td>เปิดรับสมัคร</td>
+                                        <td><button class="btn btn-primary">ตรวจสอบ</button>
+                                            <button class="btn btn-danger">ลบ</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>4/2024</td>
+                                        <td>รับสมัครที่มฟหกฟฟเฟเฟหเ</td>
+                                        <td>01/24/2024</td>
+                                        <td>01/31/2024</td>
+                                        <td>ปิดรับสมัคร</td>
+                                        <td><button class="btn btn-primary">ตรวจสอบ</button>
+                                            <button class="btn btn-danger">ลบ</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>5/2024</td>
+                                        <td>รับสมัครที่ม.หัวเฉียว</td>
+                                        <td>02/01/2024</td>
+                                        <td>02/08/2024</td>
+                                        <td>เปิดรับสมัคร</td>
+                                        <td><button class="btn btn-primary">ตรวจสอบ</button>
+                                            <button class="btn btn-danger">ลบ</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>6/2024</td>
+                                        <td>รับสมัครที่ม.ธรรมศาสตร์</td>
+                                        <td>02/01/2024</td>
+                                        <td>02/08/2024</td>
+                                        <td>เปิดรับสมัคร</td>
+                                        <td><button class="btn btn-primary">ตรวจสอบ</button>
+                                            <button class="btn btn-danger">ลบ</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>7/2024</td>
+                                        <td>รับสมัครที่ม.เกษตร</td>
+                                        <td>02/01/2024</td>
+                                        <td>02/08/2024</td>
+                                        <td>ปิดรับสมัคร</td>
+                                        <td><button class="btn btn-primary">ตรวจสอบ</button>
+                                            <button class="btn btn-danger">ลบ</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>8/2024</td>
+                                        <td>รับสมัครที่ม.บูรพา</td>
+                                        <td>02/01/2024</td>
+                                        <td>02/08/2024</td>
+                                        <td>เปิดรับสมัคร</td>
+                                        <td><button class="btn btn-primary">ตรวจสอบ</button>
+                                            <button class="btn btn-danger">ลบ</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>9/2024</td>
+                                        <td>-</td>
+                                        <td>02/01/2024</td>
+                                        <td>02/08/2024</td>
+                                        <td>เปิดรับสมัคร</td>
+                                        <td><button class="btn btn-primary">ตรวจสอบ</button>
+                                            <button class="btn btn-danger">ลบ</button>
+                                        </td>
+                                    </tr>
+
                                 </tbody>
                             </table>
                         </div>
@@ -163,6 +236,21 @@
             document.querySelector("#sidebar").classList.toggle("expand");
         });
     </script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
+    <script>
+        $(document).ready(function() {
+          var table = $('#example').DataTable({
+            columnDefs: [
+              { className: 'text-center', targets: [0, 1, 2, 3, 4] }
+            ],
+            stateSave: true
+          });
+        });
+        </script>
 </body>
 
 </html>
