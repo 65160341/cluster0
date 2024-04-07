@@ -371,12 +371,12 @@
                             </thead>
 
                             <tbody>
-                                @foreach ($students as $item)
+                                @foreach ($forms as $item)
                                     <tr>
-                                        <td>{{ $item->app_id }}</td>
-                                        <td>{{ $item->app_firstname . ' ' . $item->app_lastname }}</td>
-                                        <td>{{ $item->app_age }}</td>
-                                        <td>{{ $item->app_email }}</td>
+                                        <td>{{ $item->form_id }}</td>
+                                        <td>{{ $item->form_round }}</td>
+                                        <td>{{ $item->form_date_start }}</td>
+                                        <td>{{ $item->form_date_end }}</td>
                                         <td>
                                             <a href="/selected" class="btn btn-primary">ตรวจสอบ</a>
                                         </td>

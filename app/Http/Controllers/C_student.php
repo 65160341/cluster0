@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\F_Student;
 use App\Models\M_Student;
 
 class C_student extends Controller
 {
     public function selected()
     {
-        $students = M_Student::all();
-        return view('selected', compact('students')); //
+        $user = M_Student::all();
+        return view('selected', compact('user')); //
     }
 
     public function information()
     {
-        $students = M_Student::all();
-        return view('information', compact('students')); //
+        $forms = F_Student::all();
+        return view('information', compact('forms')); //
     }
 }

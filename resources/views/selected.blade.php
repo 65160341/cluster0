@@ -394,7 +394,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($students as $item)
+                                @foreach ($user as $item)
                                     <tr>
                                         <td>{{ $item->app_id }}</td>
                                         <td>{{ $item->app_firstname . ' ' . $item->app_lastname }}</td>
@@ -453,6 +453,7 @@
             const selectButtons = document.querySelectorAll('.btn-success');
             const modal = document.querySelector('.modal');
             const closeModalButtons = document.querySelectorAll('.btn-close, [data-bs-dismiss="modal"]');
+            const confirmButton = document.getElementById('confirmButton'); // ดำเนินการเปลี่ยนนี้
 
             selectButtons.forEach(button => {
                 button.addEventListener('click', function() {
@@ -468,6 +469,14 @@
                 closeButton.addEventListener('click', function() {
                     modal.style.display = 'none';
                 });
+            });
+
+            // เพิ่มการแสดงข้อความ "คัดเลือกเสร็จสิ้น" เมื่อกดปุ่มยืนยัน
+            confirmButton.addEventListener('click', function() {
+                // ทำสิ่งที่คุณต้องการเมื่อกดปุ่มยืนยันที่นี่
+                alert('คัดเลือกเสร็จสิ้น');
+                // ปิด Modal หลังจากที่ทำการยืนยัน
+                modal.style.display = 'none';
             });
         });
     </script>
@@ -486,7 +495,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
-                    <button type="button" class="btn btn-success">ยืนยัน</button>
+                    <button type="button" class="btn btn-success" id="confirmButton"
+                        data-bs-dismiss="modal">ยืนยัน</button>
                 </div>
             </div>
         </div>
