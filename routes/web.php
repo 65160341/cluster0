@@ -30,7 +30,7 @@ use Illuminate\Support\Facades\Route;
 //     echo "<h1>test</h1><a href='" . url('/') . "'>HOME " . url('/') . "</a>";
 // });
 
-Route::get('/main', function () {
+Route::get('/', function () {
     return view('main');
 });
 
