@@ -101,17 +101,12 @@
                                 <span>ปีที่เปิดรับสมัคร</span>
                             </div>
                             <div class="col-auto">
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button"
-                                        id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        ปีที่รับสมัคร
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="#">2567</a></li>
-                                        <li><a class="dropdown-item" href="#">2566</a></li>
-                                        <li><a class="dropdown-item" href="#">2565</a></li>
-                                    </ul>
-                                </div>
+                                <select class="form-select shadow sm-1 mb-1 bg-body rounded" aria-label="Default select example">
+                                    <option selected>ปีที่รับสมัคร</option>
+                                    <option value="1">2024</option>
+                                    <option value="2">2023</option>
+                                    <option value="3">2022</option>
+                                  </select>
                             </div>
                         </div>
                         <div class="col-12 columnset">
