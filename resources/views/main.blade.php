@@ -63,7 +63,7 @@
             width: 100%;
             overflow: hidden;
             transition: all 0.35s ease-in-out;
-            background-color: #d5d5d5;
+            background-color: #F3F5F6;
             min-width: 0;
         }
 
@@ -145,7 +145,7 @@
         }
 
         a.sidebar-link:hover {
-            background-color: red;
+            background-color: #E8042C;
             border-left: 3px solid #3b7ddd;
         }
 
@@ -189,7 +189,7 @@
         }
 
         .navbar {
-            background-color: #ff0000;
+            background-color: #E8042C;
             box-shadow: 0 0 2rem 0 rgba(33, 37, 41, .1);
         }
 
