@@ -229,7 +229,7 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="/dashboard" class="sidebar-link">
+                    <a href="#/dashboard" class="sidebar-link">
                         <i class='bx bxs-dashboard'></i>
                         <span>แดชบอร์ด</span>
                     </a>
@@ -246,7 +246,9 @@
 
                                 <a href="#" class="sidebar-link"><i
                                         class='bx bx-chevron-right'></i>สร้างฟอร์มรับสมัคร</a>
+                              
                             </li>
+    
                             <li class="sidebar-item">
 
                                 <a href="#" class="sidebar-link"><i
@@ -293,51 +295,134 @@
             <main class="content px-3 py-4">
                 <div class="container-fluid">
                     <div class="mb-3">
-                        <h4><label for="ปีที่เปิดรับสมัคร">ปีที่เปิดรับสมัคร</label></h4>
+                        
+                        <h4>
+                            <label for="รอบการรับสมัคร">รอบการรับสมัคร</label>
+                            <input type="month">ระยะเวลาการรับสมัคร
+                            <label for="รายละเอียดเพิ่มเติม">รายละเอียดเพิ่มเติม</label>
+                            <input type="text" id="fname" name="fname"><br><br>
+                        </h4>
+                        <body>
+                            <!-- Button trigger modal -->
+                            <style>
+                                .btn-primary {
+                                    background-color: #FF0000; /* สีส้ม */
+                                    color: white; /* สีของตัวอักษร */
+                                }
+                            </style>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+                           + เพิ่มรายการรับสมัคร
+                          </button>
+                          
+                          <!-- Modal -->
+                          <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                <!-- <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div> -->
+                                <div class="modal-body">
+                                  <div class="container">
+                                    <h2 class="text-center">เพิ่มรายการรับสมัคร</h2>
+                                    <div class="row mt-5" style="display: flex">
+                                        <div class="col">
+                                            ลักษณะงาน
+                                        </div>
+                                        <div class="col">
+                                            <div class="dropdown float-left">
+                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    ลักษณะงาน
+                                                </a>
+                                              
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                  <li><a class="dropdown-item" href="#">สมัครงาน</a></li>
+                                                  <li><a class="dropdown-item" href="#">สหกิจศึกษา</a></li>
+                                                  
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col">
+                                            ตำแหน่ง
+                                        </div>
+                                        <div class="col">
+                                            <div class="dropdown">
+                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" >
+                                                    ตำแหน่งงาน
+                                                </a>
+                                              
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                  <li><a class="dropdown-item" href="#">Developper</a></li>
+                                                  <li><a class="dropdown-item" href="#">Programmer</a></li>
+                                                  <li><a class="dropdown-item" href="#">Tester</a></li>
+                                                  <li><a class="dropdown-item" href="#">System Analyst</a></li>
+                                                  <li><a class="dropdown-item" href="#">UI Design</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col">
+                                            จำนวนที่รับสมัคร
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" class="form-control" style="font-size: 12px; width: 125px;">
+
+                                        </div>
+                                    </div>
+                        
+                                    <div class="d-flex justify-content-between mt-2">
+                                        <div>
+                                            <button class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-success" data-bs-dismiss="modal">ยืนยัน</button>
+                                            
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                  <button type="button" class="btn btn-primary">Save changes</button>
+                                </div> -->
+                              </div>
+                            </div>
+                          </div>
+                        </body>
+    
+                        
                         <div class="row">
                             <div class="col-12">
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th scope="col">รอบการคัดเลือก</th>
-                                            <th scope="col">รายละเอียด</th>
-                                            <th scope="col">วันที่เปิดรับ</th>
-                                            <th scope="col">วันที่สิ้นสุด</th>
-                                            <th scope="col">สถานะ</th>
+                                            <th scope="col">ลำดับ</th>
+                                            <th scope="col">ลักษณะงาน</th>
+                                            <th scope="col">ตำแหน่ง</th>
+                                            <th scope="col">จำนวนการรับสมัคร</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <th scope="row">1 / 2567</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>เปิดรับสมัคร</td>
+                                            <th scope="row">1</th>
+                                            <td>สหกิจศึกษา</td>
+                                            <td>Developper</td>
+                                            <td>10</td>
+                                            
+                                            <td ><a href="#แก้ไข" style="color:rgb(56, 255, 1);">แก้ไข</a></td>
+
+                                            <td ><a href="#ลบ" style="color:rgb(212, 6, 6);">ลบ</a></td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td>เปิดรับสมัคร</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td colspan="2">Larry the Bird</td>
-                                            <td>@twitter</td>
-                                            <td>ปิดรับสมัคร</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">4</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td>ปิดรับสมัคร</td>
-                                        </tr>
+                                        
                                     </tbody>
+                                    
                                 </table>
                             </div>
                         </div>
+                        <button type="button" class="btn btn-primary" >สร้างฟอร์มและคิวอาร์โค้ด</button>
                     </div>
                 </div>
             </main> 
