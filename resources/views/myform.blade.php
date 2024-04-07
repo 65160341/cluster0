@@ -8,8 +8,12 @@
     <title>ระบบรับสมัครพนักงงาน</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset("asset\dist\css\sidebar.css") }}">
+    {{-- <link rel="stylesheet" href="styleTest.css"> --}}
+    <link rel="stylesheet" href="{{ asset('asset\dist\css\page.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css">
 </head>
+
 <body>
     <div class="wrapper">
         <aside id="sidebar">
@@ -88,58 +92,67 @@
                     </ul>
                 </div>
             </nav>
-            <!-- <main class="content px-3 py-4">
+            <main class="content px-3 py-4">
                 <div class="container-fluid">
                     <div class="mb-3">
-                        <h4><label for="ปีที่เปิดรับสมัคร">ปีที่เปิดรับสมัคร</label></h4>
-                        <div class="row">
-                            <div class="col-12">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">รอบการคัดเลือก</th>
-                                            <th scope="col">รายละเอียด</th>
-                                            <th scope="col">วันที่เปิดรับ</th>
-                                            <th scope="col">วันที่สิ้นสุด</th>
-                                            <th scope="col">สถานะ</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1 / 2567</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>เปิดรับสมัคร</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td>เปิดรับสมัคร</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td colspan="2">Larry the Bird</td>
-                                            <td>@twitter</td>
-                                            <td>ปิดรับสมัคร</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">4</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td>ปิดรับสมัคร</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+
+                        <div class="row align-items-center mb-3">
+                            <div class="col-auto">
+                                <span>ปีที่เปิดรับสมัคร</span>
                             </div>
+                            <div class="col-auto">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button"
+                                        id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        ปีที่รับสมัคร
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item" href="#">2567</a></li>
+                                        <li><a class="dropdown-item" href="#">2566</a></li>
+                                        <li><a class="dropdown-item" href="#">2565</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 columnset">
+
+                            <table id="example" class="table table-striped" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th width="150px">รอบการรับสมัคร</th>
+                                        <th width="200px">รายละเอียด</th>
+                                        <th width="200px">วันที่เปิดรับ</th>
+                                        <th width="200px">วันที่สิ้นสุด</th>
+                                        <th width="200px">สถานะ</th>
+                                        <th width="200px" data-orderable="false"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($forms as $item)
+                                        <tr>
+                                            <td>{{$item->item_round}}</td>
+                                            <td>{{$item->item_date_start}}</td>
+                                            <td>{{$item->item_date_end}}</td>
+                                            <td>{{$item->item_detail}}</td>
+                                            @if ($item->status == 'ปิดรับสมัคร')
+                                                <td style="color:#E8042C">{{$item->status}}</td>
+                                            @else
+                                                <td style="color:#00B187">{{$item->status}}</td>
+                                            @endif
+                                            <td>
+                                                <button class="btn btn-primary">ตรวจสอบ</button>
+                                                <button class="btn btn-danger">ลบ</button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-            </main> -->
         </div>
+        </main>
+    </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -148,8 +161,23 @@
         hamBurger.addEventListener("click", function() {
             document.querySelector("#sidebar").classList.toggle("expand");
         });
-
     </script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
+    <script>
+        $(document).ready(function() {
+          var table = $('#example').DataTable({
+            columnDefs: [
+              { className: 'text-center', targets: [0, 1, 2, 3, 4] }
+            ],
+            stateSave: true
+          });
+        });
+        </script>
 </body>
 
 </html>

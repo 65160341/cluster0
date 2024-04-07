@@ -3,6 +3,7 @@
 use App\Http\Controllers\Authenticate;
 use App\Http\Controllers\Clicknext_page;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FormsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,10 +31,16 @@ use Illuminate\Support\Facades\Route;
 //     echo "<h1>test</h1><a href='" . url('/') . "'>HOME " . url('/') . "</a>";
 // });
 
-Route::get('/', function () {
+Route::get('/main', function () {
     return view('main');
+});
+
+Route::get('/', function () {
+    return view('/myform');
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
+
+Route::get('/myform', [FormsController::class, 'myform']);
