@@ -10,12 +10,20 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     {{-- <link rel="stylesheet" href="styleTest.css"> --}}
     <link rel="stylesheet" href="{{ asset('asset\dist\css\page.css') }}">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" />
+    <link
+        rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" />
+    {{-- date range picker --}}
+
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+    {{-- data table --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css">
+
+    <script>var $j = jQuery.noConflict(true);</script>
 </head>
 
 <body>
@@ -106,7 +114,7 @@
                             </div>
                             <div class="col-auto">
                                 <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button"
+                                    <button class="btn btn-secondary dropdown-toggle" style="color: #000000 " type="button"
                                         id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                         ปีที่รับสมัคร
                                     </button>
@@ -121,64 +129,76 @@
                                 <span>ระยะเวลารับสมัคร</span>
                             </div>
                             <div class="col-auto">
-                                <button class='btn col-auto bx bxs-calendar' style="font-size: 30px"></button>
+                                <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
                             </div>
-                            <div class="col-auto">
-                                <div class="input-group" id="dateRangePicker">
-                                    <button class="btn btn-outline-secondary" type="button" id="dateRange">
-                                        <i class='bx bxs-calendar' style="font-size: 30px"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <div data-coreui-locale="en-US" data-coreui-toggle="date-range-picker"></div>
-                                </div>
-                                <div class="col-lg-5">
-                                    <div data-coreui-start-date="2022/08/03" data-coreui-end-date="2022/08/17"
-                                        data-coreui-locale="en-US" data-coreui-toggle="date-range-picker">
-                                    </div>
-                                </div>
-                            </div>
-                            <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
                         </div>
+
                         <div class="col-12 columnset">
-                            <table class="table table-striped">
+                            <table id="example" class="table table-striped" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th width="150px">รอบการรับสมัคร</th>
                                         <th width="200px">รายละเอียด</th>
                                         <th width="200px">วันที่เปิดรับ</th>
                                         <th width="200px">วันที่สิ้นสุด</th>
-                                        <th width="200px">
-                                            <li class="nav-item dropdown">
-                                                <a href="#" class="nav-link dropdown-toggle"
-                                                    id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                                                    aria-expanded="false">
-                                                    <class= alt="">สถานะ
-                                                </a>
-                                                <ul class="dropdown-menu dropdown-menu-end"
-                                                    aria-labelledby="navbarDropdown">
-                                                    <li><a class="dropdown-item" href="#">เปิดรับสมัคร</a></li>
-                                                    <li><a class="dropdown-item" href="#">ปิดรับสมัคร</a></li>
-                                                </ul>
-                                            </li>
-                                        </th>
-                                        <td width="200px"></td>
+                                        <th width="200px">สถานะ</th>
+                                        <th width="200px" data-orderable="false"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th scope="row">2 / 2567</th>
-                                        <td>รับสมัครที่มหาวิทยาลัยบูรพา วันที่ 6 เดือนเมษายน พ.ศ. 2567
-                                            คณะวิทยาการสารสนเทศ</td>
-                                        <td>11/03/2567</td>
-                                        <td>25/03/2567</td>
+                                        <td>1/2024</td>
+                                        <td>ฟดฟดฟดหห</td>
+                                        <td>01/08/2024</td>
+                                        <td>07/08/2024</td>
+                                        <td>
+                                            <font style="color:#E8042C">ปิดรับสมัคร</font>
+                                        </td>
+                                        <td><button class="btn btn-primary">ตรวจสอบ</button>
+                                            <button class="btn btn-danger">ลบ</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2/2024</td>
+                                        <td>รับสมัครที่</td>
+                                        <td>01/11/2024</td>
+                                        <td>01/18/2024</td>
                                         <td>ปิดรับสมัคร</td>
                                         <td><button class="btn btn-primary">ตรวจสอบ</button>
                                             <button class="btn btn-danger">ลบ</button>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td>3/2024</td>
+                                        <td>ฟกดฟกดฟดฟ</td>
+                                        <td>01/19/2024</td>
+                                        <td>01/22/2024</td>
+                                        <td>เปิดรับสมัคร</td>
+                                        <td><button class="btn btn-primary">ตรวจสอบ</button>
+                                            <button class="btn btn-danger">ลบ</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>4/2024</td>
+                                        <td>รับสมัครที่มฟหกฟฟเฟเฟหเ</td>
+                                        <td>01/24/2024</td>
+                                        <td>01/31/2024</td>
+                                        <td>ปิดรับสมัคร</td>
+                                        <td><button class="btn btn-primary">ตรวจสอบ</button>
+                                            <button class="btn btn-danger">ลบ</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>5/2024</td>
+                                        <td>รับสมัครที่ม.หัวเฉียว</td>
+                                        <td>02/01/2024</td>
+                                        <td>02/08/2024</td>
+                                        <td>เปิดรับสมัคร</td>
+                                        <td><button class="btn btn-primary">ตรวจสอบ</button>
+                                            <button class="btn btn-danger">ลบ</button>
+                                        </td>
+                                    </tr>
+
                                 </tbody>
                             </table>
                         </div>
@@ -188,6 +208,13 @@
         </main>
     </div>
     </div>
+    <script>var $j = jQuery.noConflict(true);</script>
+<script>
+    $(document).ready(function(){
+        console.log($().jquery); // This prints v1.9.1
+        console.log($j().jquery); // This prints v1.9.1
+    });
+</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         const hamBurger = document.querySelector(".toggle-btn");
@@ -195,14 +222,40 @@
         hamBurger.addEventListener("click", function() {
             document.querySelector("#sidebar").classList.toggle("expand");
         });
-        $(function() {
-  $('input[name="daterange"]').daterangepicker({
-    opens: 'left'
-  }, function(start, end, label) {
-    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-  });
+    </script>
+    <script>
+        $j(function() {
+    $j('input[name="daterange"]').daterangepicker({
+        opens: 'left'
+    }, function(start, end, label) {
+        // Filter the data table based on the selected date range
+        table.column(2).search(start.format('YYYY-MM-DD')).column(3).search(end.format('YYYY-MM-DD')).draw();
+    });
 });
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
+    <script>
+        $(document).ready(function() {
+    var table = $('#example').DataTable({
+        columnDefs: [{
+                className: 'text-center',
+                targets: [0, 1, 2, 3, 4]
+            },
+            {
+                type: 'date',
+                targets: [2, 3]
+            }
+        ],
+        stateSave: true
+    });
+});
+    </script>
+
 </body>
 
 </html>
