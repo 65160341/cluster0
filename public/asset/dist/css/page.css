@@ -57,7 +57,7 @@ body {
     width: 100%;
     overflow: hidden;
     transition: all 0.35s ease-in-out;
-    background-color: #d5d5d5;
+    background-color: #F3F5F6;
     min-width: 0;
 }
 
@@ -205,5 +205,9 @@ a.sidebar-link:hover {
 .columnset {
     text-align: center;
 }
+
+.table th {
+    text-align: center;
+  }
 
 @media (min-width: 768px) {}
