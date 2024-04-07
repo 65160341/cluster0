@@ -5,11 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>information</title>
+    <title>สถานะการคัดเลือก</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    {{-- <link rel="stylesheet" href="styleTest.css"> --}}
     <style>
         @import url('https://fonts.googleapis.com/css?family=Poppins:wght@300;400;500;600;700&display=swap');
 
@@ -303,37 +302,102 @@
                                 ยังไม่ได้คัดเลือก
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">2567</a></li>
-                                <li><a class="dropdown-item" href="#">2566</a></li>
-                                <li><a class="dropdown-item" href="#">2565</a></li>
-                                <li><a class="dropdown-item" href="#">2564</a></li>
-                                <li><a class="dropdown-item" href="#">2563</a></li>
-                                <li><a class="dropdown-item" href="#">2562</a></li>
-                                <li><a class="dropdown-item" href="#">2561</a></li>
-                                <li><a class="dropdown-item" href="#">2560</a></li>
+                                <li><a class="dropdown-item" href="/information">คัดเลือกแล้ว</a></li>
                             </ul>
+                        </div>
+                        <div class="mb-3 d-flex align-items-center ms-auto"> <!-- เพิ่ม class ms-auto -->
+                            <div class="dropdown shadow-sm">
+                                <button class="btn btn-light btn-sm dropdown-toggle" type="button"
+                                    id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    ข้อมูลทั้งหมด
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                                    <!-- เปลี่ยนตำแหน่งของ dropdown-menu ไปอยู่ท้ายสุด -->
+                                    <li><a class="dropdown-item" href="#">ข้อมูลที่เปิดเผย</a></li>
+                                    <li><a class="dropdown-item" href="#">ข้อมูลที่ซ่อนไว้</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div class="col-12 table-responsive">
                         <table class="table table-striped">
                             <thead>
                                 <tr class="text-center">
-                                    <th scope="col">รอบการรับสมัคร</th>
-                                    <th scope="col">รายละเอียด</th>
-                                    <th scope="col"></th>
-                                    <th scope="col"></th>
-                                    <th scope="col"></th>
+                                    <th scope="col">ชื่อ-นามสกุล</th>
+                                    <th scope="col">
+                                        <div class="dropdown">
+                                            <button class="btn btn-white dropdown-toggle" type="button"
+                                                id="selectionStatusDropdown" data-bs-toggle="dropdown"
+                                                aria-expanded="false">
+                                                ลักษณะงาน
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="selectionStatusDropdown">
+                                                <li><a class="dropdown-item" href="#">สหกิจศึกษา</a>
+                                                </li>
+                                                <li><a class="dropdown-item" href="#">สมัครงาน</a></li>
+                                            </ul>
+                                        </div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="dropdown">
+                                            <button class="btn btn-white dropdown-toggle" type="button"
+                                                id="selectionStatusDropdown" data-bs-toggle="dropdown"
+                                                aria-expanded="false">
+                                                ตำแหน่งงาน
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="selectionStatusDropdown">
+                                                <li><a class="dropdown-item" href="#">Developer</a>
+                                                </li>
+                                                <li><a class="dropdown-item" href="#">Programmer</a></li>
+                                                <li><a class="dropdown-item" href="#">Tester</a>
+                                                </li>
+                                                <li><a class="dropdown-item" href="#">System Analyst</a></li>
+                                                <li><a class="dropdown-item" href="#">Fullstack Developer</a>
+                                                </li>
+                                                <li><a class="dropdown-item" href="#">Fronted Developer</a></li>
+                                                <li><a class="dropdown-item" href="#">Backend Developer</a>
+                                                </li>
+                                                <li><a class="dropdown-item" href="#">Ui Design</a></li>
+                                            </ul>
+                                        </div>
+                                    </th>
+                                    <th scope="col">วันที่สมัคร</th>
+                                    <th scope="col">ฟอร์ม</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($students as $item)
+                                    <tr>
+                                        <td>{{ $item->app_id }}</td>
+                                        <td>{{ $item->app_firstname . ' ' . $item->app_lastname }}</td>
+                                        <td>{{ $item->app_age }}</td>
+                                        <td>{{ $item->app_email }}</td>
+                                        <td>
+                                            <button data-id="{{ $item->app_id }}"
+                                                class="userinfo btn btn-primary">view</button>
+                                        </td>
+                                        <td>
+                                            <a href="{{ url('#' . $item->app_id) }}"
+                                                class="btn btn-success btn-sm">คัดเลือก</a>
+                                            <form method="POST" action = "{{ url('#' . $item->app_id) }} ">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit">ซ่อน</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
-
                     </div>
             </main>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         const hamBurger = document.querySelector(".toggle-btn");
 
@@ -341,13 +405,20 @@
             document.querySelector("#sidebar").classList.toggle("expand");
         });
 
-        function changeColor(_this) {
-            if (_this.style.backgroundColor === "green") {
-                _this.style.backgroundColor = "#6c757d";
-            } else {
-                _this.style.backgroundColor = "green";
-            }
-        }
+        const viewButtons = document.querySelectorAll(".userinfo");
+
+        viewButtons.forEach(button => {
+            button.addEventListener("click", function() {
+                // เมื่อคลิกปุ่ม "view" ดึงข้อมูล ID ของรายการที่เกี่ยวข้อง
+                const userId = this.getAttribute("data-id");
+
+                // แสดงข้อความ ID ของผู้ใช้
+                alert("ID ของผู้ใช้: " + userId);
+
+                // สามารถดำเนินการโหลดข้อมูลผู้ใช้และแสดงในโมดัลหรือหน้าใหม่ต่อไปได้
+                // showModalWithUserInfo(userId);  // หรืออื่น ๆ
+            });
+        });
     </script>
 </body>
 

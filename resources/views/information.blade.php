@@ -357,7 +357,7 @@
                                                 สถานะการคัดเลือก
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="selectionStatusDropdown">
-                                                <li><a class="dropdown-item" href="/selected">ยังไม่ได้คัดเลือก</a>
+                                                <li><a class="dropdown-item" href="#">ยังไม่ได้คัดเลือก</a>
                                                 </li>
                                                 <li><a class="dropdown-item" href="#">อยู่ระหว่างดำเนินการ</a>
                                                 </li>
@@ -369,56 +369,25 @@
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
+
                             <tbody>
-                                <tr class="text-center">
-                                    <th scope="row">1 / 2567</th>
-                                    <td>รับสมัครที่ ม.บูรพา</td>
-                                    <td>ปิดรับสมัคร</td>
-                                    <td>คัดเลือกเสร็จสิ้น</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary" role="button"
-                                            data-bs-toggle="button">ตรวจสอบ</a>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-secondary"
-                                            onclick="changeColor(this)">เสร็จสิ้น</button>
-                                    </td>
-                                </tr>
-                                <tr class="text-center">
-                                    <th scope="row">1 / 2567</th>
-                                    <td>รับสมัครที่ ม.บูรพา</td>
-                                    <td>ปิดรับสมัคร</td>
-                                    <td>คัดเลือกเสร็จสิ้น</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary" role="button"
-                                            data-bs-toggle="button">ตรวจสอบ</a>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-secondary"
-                                            onclick="changeColor(this)">เสร็จสิ้น</button>
-                                    </td>
-                                </tr>
-                                <tr class="text-center">
-                                    <th scope="row">1 / 2567</th>
-                                    <td>รับสมัครที่ ม.บูรพา</td>
-                                    <td>ปิดรับสมัคร</td>
-                                    <td>คัดเลือกเสร็จสิ้น</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary" role="button"
-                                            data-bs-toggle="button">ตรวจสอบ</a>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-secondary"
-                                            onclick="changeColor(this)">เสร็จสิ้น</button>
-                                    </td>
-                                </tr>
+                                @foreach ($students as $item)
+                                    <tr>
+                                        <td>{{ $item->app_id }}</td>
+                                        <td>{{ $item->app_firstname . ' ' . $item->app_lastname }}</td>
+                                        <td>{{ $item->app_age }}</td>
+                                        <td>{{ $item->app_email }}</td>
+                                        <td>
+                                            <a href="/selected" class="btn btn-primary">ตรวจสอบ</a>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-secondary"
+                                                onclick="changeColor(this)">เสร็จสิ้น</button>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
-                        <div class="button-group">
-                            <button class="button">2</button>
-                            <button class="button">B</button>
-                            <button class="button">10</button>
-                        </div>
                     </div>
                 </div>
             </main>
@@ -439,13 +408,6 @@
                 _this.style.backgroundColor = "green";
             }
         }
-        const buttons = document.querySelectorAll(".button");
-
-        buttons.forEach((button) => {
-            button.addEventListener("click", () => {
-                console.log(button.textContent);
-            });
-        });
     </script>
 </body>
 
