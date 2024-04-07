@@ -34,6 +34,14 @@ Route::get('/main', function () {
     return view('main');
 });
 
+Route::get('/myform', function () {
+    return view('myform');
+});
+
+Route::get('/formdetail', function () {
+    return view('formdetail');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
