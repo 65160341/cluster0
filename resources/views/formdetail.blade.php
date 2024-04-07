@@ -23,7 +23,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css">
 
-    <script>var $j = jQuery.noConflict(true);</script>
+    <script>
+        var $j = jQuery.noConflict(true);
+    </script>
 </head>
 
 <body>
@@ -110,27 +112,26 @@
 
                         <div class="row align-items-center mb-3">
                             <div class="col-auto">
-                                <span>ปีที่เปิดรับสมัคร</span>
+                                <span>รอบการสมัคร</span>
                             </div>
-                            <div class="col-auto">
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" style="color: #000000 " type="button"
-                                        id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        ปีที่รับสมัคร
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="#">2567</a></li>
-                                        <li><a class="dropdown-item" href="#">2566</a></li>
-                                        <li><a class="dropdown-item" href="#">2565</a></li>
-                                    </ul>
-                                </div>
+                            <div class="col-auto box rounded-3 shadow p-1 mb-1 bg-body rounded">
+                                รอ import จาก dtb
                             </div>
                             <div class="col-auto">
                                 <span>ระยะเวลารับสมัคร</span>
                             </div>
-                            <div class="col-auto">
-                                <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
+                            <div class="col-auto shadow p-0 mb-1 bg-body rounded">
+                                <input class="btn btn-light" type="text" name="daterange"
+                                    value="04/07/2024 - 04/07/2024" />
                             </div>
+                            <div class="col-auto">
+                                <span>รายละเอียดเพิ่มเติม</span>
+                            </div>
+                            <div class="col-auto shadow p-0 mb-1 bg-body rounded">
+                                <input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+
+
                         </div>
 
                         <div class="col-12 columnset">
@@ -208,13 +209,15 @@
         </main>
     </div>
     </div>
-    <script>var $j = jQuery.noConflict(true);</script>
-<script>
-    $(document).ready(function(){
-        console.log($().jquery); // This prints v1.9.1
-        console.log($j().jquery); // This prints v1.9.1
-    });
-</script>
+    <script>
+        var $j = jQuery.noConflict(true);
+    </script>
+    <script>
+        $(document).ready(function() {
+            console.log($().jquery); // This prints v1.9.1
+            console.log($j().jquery); // This prints v1.9.1
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         const hamBurger = document.querySelector(".toggle-btn");
@@ -225,13 +228,13 @@
     </script>
     <script>
         $j(function() {
-    $j('input[name="daterange"]').daterangepicker({
-        opens: 'left'
-    }, function(start, end, label) {
-        // Filter the data table based on the selected date range
-        table.column(2).search(start.format('YYYY-MM-DD')).column(3).search(end.format('YYYY-MM-DD')).draw();
-    });
-});
+            $j('input[name="daterange"]').daterangepicker({
+                opens: 'left'
+            }, function(start, end, label) {
+                console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end
+                    .format('YYYY-MM-DD'));
+            });
+        });
     </script>
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -241,21 +244,26 @@
     <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
     <script>
         $(document).ready(function() {
-    var table = $('#example').DataTable({
-        columnDefs: [{
-                className: 'text-center',
-                targets: [0, 1, 2, 3, 4]
-            },
-            {
-                type: 'date',
-                targets: [2, 3]
-            }
-        ],
-        stateSave: true
-    });
-});
+            var table = $('#example').DataTable({
+                columnDefs: [{
+                        className: 'text-center',
+                        targets: [0, 1, 2, 3, 4]
+                    },
+                    {
+                        type: 'date',
+                        targets: [2, 3]
+                    }
+                ],
+                stateSave: true
+            });
+        });
     </script>
-
+    <script>
+        $(".dropdown-menu li a").click(function() {
+            var selText = $(this).text();
+            $(this).parents('.btn-group').find('.dropdown-toggle').html(selText + ' <span class="caret"></span>');
+        });
+    </script>
 </body>
 
 </html>
