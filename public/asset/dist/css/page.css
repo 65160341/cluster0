@@ -4,7 +4,7 @@
     font-family: "Mitr", sans-serif;
     font-weight: 300;
     font-style: normal;
-  }
+}
 
 ::after,
 ::before {
@@ -208,6 +208,18 @@ a.sidebar-link:hover {
 
 .table th {
     text-align: center;
-  }
+}
+
+.box {
+    width: auto;
+    height: 40px;
+    padding: 6px;
+    text-align: center;
+
+}
+
+
+
+
 
 @media (min-width: 768px) {}
