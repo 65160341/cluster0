@@ -209,6 +209,33 @@
         }
 
 
+        /* หน้า Model Title  */
+        .modal-content {
+            text-align: center;
+        }
+
+        .modal-header img {
+            display: block;
+            margin: auto;
+        }
+
+        .modal-body p {
+            text-align: center;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .modal-footer .btn {
+            margin: 0;
+        }
+
+
+
+        /* ================  */
+
         @media (min-width: 768px) {}
     </style>
 </head>
@@ -302,7 +329,7 @@
                                 ยังไม่ได้คัดเลือก
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/information">คัดเลือกแล้ว</a></li>
+                                <li><a class="dropdown-item" href="#">คัดเลือกแล้ว</a></li>
                             </ul>
                         </div>
                         <div class="mb-3 d-flex align-items-center ms-auto"> <!-- เพิ่ม class ms-auto -->
@@ -377,21 +404,23 @@
                                             <button data-id="{{ $item->app_id }}"
                                                 class="userinfo btn btn-primary">view</button>
                                         </td>
-                                        <td>
-                                            <a href="{{ url('#' . $item->app_id) }}"
-                                                class="btn btn-success btn-sm">คัดเลือก</a>
-                                            <form method="POST" action = "{{ url('#' . $item->app_id) }} ">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit">ซ่อน</button>
-                                            </form>
+                                        <td style="display: flex ; height: 95px ">
+                                            <!-- ปุ่มกด Edit -->
+                                            <a href="{{ url('#' . $item->id) }}" class="btn btn-success"
+                                                style="height: 38px ; margin-right :5px ; width: 80px">คัดเลือก</a>
+                                            <!-- ปุ่มกด Delete -->
+                                            <button style="height: 38px ; margin-left: 10px"
+                                                class="btn btn-secondary hide-btn"
+                                                data-id="{{ $item->id }}">ซ่อน</button>
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
+                        <a class="btn btn-primary" href="/information" role="button">กลับไปหน้าแรก</a>
                     </div>
             </main>
+
         </div>
     </div>
 
@@ -419,7 +448,49 @@
                 // showModalWithUserInfo(userId);  // หรืออื่น ๆ
             });
         });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const selectButtons = document.querySelectorAll('.btn-success');
+            const modal = document.querySelector('.modal');
+            const closeModalButtons = document.querySelectorAll('.btn-close, [data-bs-dismiss="modal"]');
+
+            selectButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // แสดงหน้า Modal เมื่อคลิกปุ่ม "คัดเลือก"
+                    modal.style.display = 'block';
+                    // กำหนดข้อความใน Modal title ตามที่ต้องการ
+                    document.querySelector('.modal-title').innerText = 'Modal title';
+                });
+            });
+
+            // เพิ่มการปิด Modal เมื่อคลิกที่ปุ่มปิดหรือพื้นหลังภายนอก Modal
+            closeModalButtons.forEach(closeButton => {
+                closeButton.addEventListener('click', function() {
+                    modal.style.display = 'none';
+                });
+            });
+        });
     </script>
+    <div class="modal" tabindex="-1" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img src="https://blog.clicknext.com/wp-content/themes/clicknext_blog2/assets/images/clicknext-logo.png"
+                        alt="logo">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="margin: center">
+                    <h4>
+                        <p>ยืนยันการคัดเลือก</p>
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
+                    <button type="button" class="btn btn-success">ยืนยัน</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
