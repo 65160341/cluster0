@@ -207,6 +207,83 @@
             color: white;
             border-left: 3px solid #3b7ddd;
         }
+        #applicationPeriod {
+            margin-left: auto; /* ระยะห่างระหว่าง input text กับปฏิทิน */
+        }
+        .add-form {
+            color: rgb(255, 255, 255);
+            background-color: #870000;
+            background-size: 10px;
+        }
+        table {
+    border-collapse: collapse;
+    margin-right: 40px;
+    margin-bottom: 60px;
+    width: 100%; /* เพิ่มให้ตารางเต็มความกว้าง */
+}
+
+th, td {
+    padding: 10px; /* เพิ่มช่องว่างของเนื้อหาในเซลล์ */
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+    border-top: 1px solid #ddd; /* เพิ่มเส้นขอบด้านบนให้กับหัวคอลัมน์ */
+}
+.popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+
+        .popup h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .popup input[type="text"],
+        .popup select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .popup button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .cancel-button {
+            background-color: #860202;
+            color: white;
+        }
+
+        .confirm-button {
+            background-color: #00FF00;
+            color: white;
+        }
+
+        /* CSS สำหรับไอคอนเครื่องหมายถูก */
+        .icon {
+            color: #00FF00;
+            font-size: 24px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
 
         @media (min-width: 768px) {}
     </style>
@@ -229,7 +306,7 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="/dashboard" class="sidebar-link">
+                    <a href="#" class="sidebar-link">
                         <i class='bx bxs-dashboard'></i>
                         <span>แดชบอร์ด</span>
                     </a>
@@ -244,8 +321,9 @@
                         <ul class="list-unstyled">
                             <li class="sidebar-item">
 
-                                <a href="#" class="sidebar-link"><i
-                                        class='bx bx-chevron-right'></i>สร้างฟอร์มรับสมัคร</a>
+                                <a href="#" class="sidebar-link" style="color: #ff0000;">
+                                    <i class='bx bx-chevron-right'></i>สร้างฟอร์มรับสมัคร</a>
+
                             </li>
                             <li class="sidebar-item">
 
@@ -291,65 +369,108 @@
                 </div>
             </nav>
             <main class="content px-3 py-4">
-                <div class="container-fluid">
-                    <div class="mb-3">
-                        <h4><label for="ปีที่เปิดรับสมัคร">ปีที่เปิดรับสมัคร</label></h4>
-                        <div class="row">
-                            <div class="col-12">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">รอบการคัดเลือก</th>
-                                            <th scope="col">รายละเอียด</th>
-                                            <th scope="col">วันที่เปิดรับ</th>
-                                            <th scope="col">วันที่สิ้นสุด</th>
-                                            <th scope="col">สถานะ</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1 / 2567</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>เปิดรับสมัคร</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td>เปิดรับสมัคร</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td colspan="2">Larry the Bird</td>
-                                            <td>@twitter</td>
-                                            <td>ปิดรับสมัคร</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">4</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td>ปิดรับสมัคร</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+         <form onsubmit="return confirmForm()">
+                <div class="select_round">
+                    <label for="applicationRound">รอบการรับสมัคร:</label>
+                    <input type="text" id="form_roundcount" value="" name="form_roundcount" placeholder="ระบุรอบ/ปี เช่น รอบที่ 1/2566">
                 </div>
+                <div class="select_date">
+                    <label for="applicationPeriod">ระยะเวลาการรับสมัคร:</label>
+                    <input type="date" id="form_date_end" value="" name="form_date_end" class="form-control" placeholder="เลือกวันที่">
+            </div>
+        <div class="table-form">
+        <label for="additionalInfo">รายละเอียดเพิ่มเติม:</label>
+        <input type="text" id="pf_Info" value="" name="pf_Info" placeholder="กรอกรายละเอียดเพิ่มเติม">
+        <button class="add-form" onclick="toggleConfirmationPopup()" >+ เพิ่มรายการรับสมัคร</button>
+    </div>
+</form>
+
+
+<div>
+<table>
+    <thead>
+        <tr>
+            <th>ลำดับ</th>
+            <th>ลักษณะงาน</th>
+            <th>ตำแหน่งงาน</th>
+            <th>จำนวนการรับสมัคร</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($positionForms as $key => $positionForm)
+        <tr>
+            <td>{{ $key+1}}</td>
+            <td>{{ $positionForm->pf_type_jobs }}</td>
+            <td>{{ $positionForm->Positions->pos_name }}</td>
+            <td>{{ $positionForm->pf_amount_of_position }}</td>
+            <td>
+                <button style="background-color: green; color: white;">แก้ไข</button>
+                <button style="background-color: red; color: white;">ลบ</button>
+            </td>
+        </tr>
+        @endforeach
+        <!-- เพิ่มแถวตามความเหมาะสม -->
+    </tbody>
+</table>
+</div><div class="popup" id="popup">
+    <h2>เพิ่มรายการรับสมัคร</h2>
+    <form onsubmit="return confirmForm()">
+
+        <label for="jobType" >ลักษณะงาน:</label>
+        <select id="pf_type_jobs" name="pf_type_jobs" >
+            <option value="พนักงาน">พนักงาน</option>
+            <option value="สหกิจ">สหกิจ</option>
+        </select>
+        <label for="position">ตำแหน่งงาน:</label>
+        <select id="pf_name" name="pf_name" >
+            <option value="ไม่ระบุตำแหน่งงาน">-</option>
+            <option value="Tester">Tester</option>
+            <option value="UX/UI">UX/UI</option>
+            <option value="Project Manageer">Project Manageer</option>
+        </select>
+        <label for="numOfApplicants">จำนวนการรับสมัคร:</label>
+        <input type="text" value="" id="pf_amount_of_position" name="pf_amount_of_position">
+        <button type="button" class="cancel-button" onclick="togglePopup()">ยกเลิก</button>
+        <button type="submit" class="confirm-button">ยืนยัน</button>
+    </form>
+</div>
+
             </main>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        const hamBurger = document.querySelector(".toggle-btn");
+<script>
+    const hamBurger = document.querySelector(".toggle-btn");
 
-        hamBurger.addEventListener("click", function() {
-            document.querySelector("#sidebar").classList.toggle("expand");
-        });
+    hamBurger.addEventListener("click", function() {
+        document.querySelector("#sidebar").classList.toggle("expand");
+    });
+
+    function togglePopup() {
+        var popup = document.getElementById("popup");
+        if (popup.style.display === "block") {
+            popup.style.display = "none";
+        } else {
+            popup.style.display = "block";
+        }
+    }
+
+    function confirmForm() {
+        togglePopup(); // ปิด popup เมื่อยืนยัน
+        toggleConfirmationPopup(); // เปิด popup
+    }
+
+    function toggleConfirmationPopup() {
+        var confirmationPopup = document.getElementById("confirmationPopup");
+        if (confirmationPopup.style.display === "none") {
+            confirmationPopup.style.display = "block";
+        } else {
+            confirmationPopup.style.display = "none";
+        }
+    }
+
+</script>
 
     </script>
 </body>
