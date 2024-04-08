@@ -107,6 +107,36 @@
                 </div>
             </nav>
             <main class="content px-3 py-4">
+                <!-- Modal แสดง QR Code -->
+                {{-- <div class="modal fade" id="qrCodeModal" tabindex="-1" aria-labelledby="qrCodeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="qrCodeModalLabel">QR Code</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="qrCodeContainer"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div> --}}
+                <div class="modal fade" id="qrCodeModal" tabindex="-1" aria-labelledby="qrCodeModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="qrCodeModalLabel">QR Code สำหรับสหกิจศึกษา</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body d-flex justify-content-center">
+                                <div id="qrCodeContainer"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- หน้าจอ -->
                 <div class="container-fluid">
                     <div class="mb-3">
 
@@ -128,75 +158,129 @@
                                 <span>รายละเอียดเพิ่มเติม</span>
                             </div>
                             <div class="col-auto shadow p-0 mb-1 bg-body rounded">
-                                <input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" aria-label="Username"
+                                    aria-describedby="basic-addon1">
                             </div>
-
-
                         </div>
 
                         <div class="col-12 columnset">
                             <table id="example" class="table table-striped" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th width="150px">รอบการรับสมัคร</th>
-                                        <th width="200px">รายละเอียด</th>
-                                        <th width="200px">วันที่เปิดรับ</th>
-                                        <th width="200px">วันที่สิ้นสุด</th>
-                                        <th width="200px">สถานะ</th>
+                                        <th width="150px">ลำดับ</th>
+                                        <th width="200px" data-orderable="false">
+                                            <select class="table-filter">
+                                                <option selected value="all">ลักษณะงาน</option>
+                                                <option value="สหกิจศึกษา">สหกิจศึกษา</option>
+                                                <option value="สมัครงาน">สมัครงาน</option>
+
+                                            </select>
+                                        </th>
+                                        <th width="200px" data-orderable="false">
+                                            <select class="table-filter">
+                                                <option selected value="all">ตำแหน่งงาน</option>
+                                                <option value="DEV">DEV</option>
+                                                <option value="Soft En">Soft En</option>
+                                                <option value="Web Design">Web Design</option>
+                                                <option value="Back End Dev">Back End Dev</option>
+                                                <option value="Full Stack">Full Stack</option>
+                                                <option value="Admin">Admin</option>
+                                            </select>
+                                        </th>
+                                        <th width="200px">จำนวนการรับสมัคร</th>
+                                        <th width="200px" data-orderable="false">QR Code</th>
                                         <th width="200px" data-orderable="false"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>1/2024</td>
-                                        <td>ฟดฟดฟดหห</td>
-                                        <td>01/08/2024</td>
-                                        <td>07/08/2024</td>
-                                        <td>
-                                            <font style="color:#E8042C">ปิดรับสมัคร</font>
+                                        <td class="align-middle">1</td>
+                                        <td class="align-middle">สหกิจศึกษา</td>
+                                        <td class="align-middle">DEV</td>
+                                        <td class="align-middle">10</td>
+                                        <td class="align-middle">
+                                            <button type="button" class="btn btn-qr-code" style="font-size: 25px">
+                                                <i class='bx bx-qr-scan'></i>
+                                            </button>
                                         </td>
-                                        <td><button class="btn btn-primary">ตรวจสอบ</button>
-                                            <button class="btn btn-danger">ลบ</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2/2024</td>
-                                        <td>รับสมัครที่</td>
-                                        <td>01/11/2024</td>
-                                        <td>01/18/2024</td>
-                                        <td>ปิดรับสมัคร</td>
-                                        <td><button class="btn btn-primary">ตรวจสอบ</button>
-                                            <button class="btn btn-danger">ลบ</button>
+                                        <td class="align-middle">
+                                            <button class="btn btn-link" style="color: #00B187">แก้ไข</button>
+                                            <button class="btn btn-link" style="color: #E8042C">ลบ</button>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>3/2024</td>
-                                        <td>ฟกดฟกดฟดฟ</td>
-                                        <td>01/19/2024</td>
-                                        <td>01/22/2024</td>
-                                        <td>เปิดรับสมัคร</td>
-                                        <td><button class="btn btn-primary">ตรวจสอบ</button>
-                                            <button class="btn btn-danger">ลบ</button>
+                                        <td class="align-middle">2</td>
+                                        <td class="align-middle">สมัครงาน</td>
+                                        <td class="align-middle">Soft En</td>
+                                        <td class="align-middle">30</td>
+                                        <td class="align-middle">
+                                            <button type="button" class="btn btn-qr-code" style="font-size: 25px">
+                                                <i class='bx bx-qr-scan'></i>
+                                            </button>
+                                        </td>
+                                        <td class="align-middle">
+                                            <button class="btn btn-link" style="color: #00B187">แก้ไข</button>
+                                            <button class="btn btn-link" style="color: #E8042C">ลบ</button>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>4/2024</td>
-                                        <td>รับสมัครที่มฟหกฟฟเฟเฟหเ</td>
-                                        <td>01/24/2024</td>
-                                        <td>01/31/2024</td>
-                                        <td>ปิดรับสมัคร</td>
-                                        <td><button class="btn btn-primary">ตรวจสอบ</button>
-                                            <button class="btn btn-danger">ลบ</button>
+                                        <td class="align-middle">3</td>
+                                        <td class="align-middle">สหกิจศึกษา</td>
+                                        <td class="align-middle">Web Design</td>
+                                        <td class="align-middle">17</td>
+                                        <td class="align-middle">
+                                            <button type="button" class="btn btn-qr-code" style="font-size: 25px">
+                                                <i class='bx bx-qr-scan'></i>
+                                            </button>
+                                        </td>
+                                        <td class="align-middle">
+                                            <button class="btn btn-link" style="color: #00B187">แก้ไข</button>
+                                            <button class="btn btn-link" style="color: #E8042C">ลบ</button>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>5/2024</td>
-                                        <td>รับสมัครที่ม.หัวเฉียว</td>
-                                        <td>02/01/2024</td>
-                                        <td>02/08/2024</td>
-                                        <td>เปิดรับสมัคร</td>
-                                        <td><button class="btn btn-primary">ตรวจสอบ</button>
-                                            <button class="btn btn-danger">ลบ</button>
+                                        <td class="align-middle">4</td>
+                                        <td class="align-middle">สหกิจศึกษา</td>
+                                        <td class="align-middle">Back End Dev</td>
+                                        <td class="align-middle">10</td>
+                                        <td class="align-middle">
+                                            <button type="button" class="btn btn-qr-code" style="font-size: 25px">
+                                                <i class='bx bx-qr-scan'></i>
+                                            </button>
+                                        </td>
+                                        <td class="align-middle">
+                                            <button class="btn btn-link" style="color: #00B187">แก้ไข</button>
+                                            <button class="btn btn-link" style="color: #E8042C">ลบ</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="align-middle">5</td>
+                                        <td class="align-middle">สมัครงาน</td>
+                                        <td class="align-middle">Full Stack</td>
+                                        <td class="align-middle">90</td>
+                                        <td class="align-middle">
+                                            <button type="button" class="btn btn-qr-code" style="font-size: 25px">
+                                                <i class='bx bx-qr-scan'></i>
+                                            </button>
+                                        </td>
+                                        <td class="align-middle">
+                                            <button class="btn btn-link" style="color: #00B187">แก้ไข</button>
+                                            <button class="btn btn-link" style="color: #E8042C">ลบ</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="align-middle">6</td>
+                                        <td class="align-middle">สหกิจศึกษา</td>
+                                        <td class="align-middle">Admin</td>
+                                        <td class="align-middle">13</td>
+                                        <td class="align-middle">
+                                            <button type="button" class="btn btn-qr-code" style="font-size: 25px">
+                                                <i class='bx bx-qr-scan'></i>
+                                            </button>
+                                        </td>
+                                        <td class="align-middle">
+                                            <button class="btn btn-link" style="color: #00B187">แก้ไข</button>
+                                            <button class="btn btn-link" style="color: #E8042C">ลบ</button>
                                         </td>
                                     </tr>
 
@@ -242,26 +326,46 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
+
+    <!-- DATA TABLE -->
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable({
                 columnDefs: [{
-                        className: 'text-center',
-                        targets: [0, 1, 2, 3, 4]
-                    },
-                    {
-                        type: 'date',
-                        targets: [2, 3]
-                    }
-                ],
+                    className: 'text-center',
+                    targets: [0, 1, 2, 3, 4]
+                }, ],
                 stateSave: true
+            });
+
+            // Filter the table based on the dropdown values
+            $('.table-filter').on('change', function() {
+                var filterValue = $(this).val();
+                var columnIndex = $(this).closest('th').index();
+
+                if (filterValue === 'all') {
+                    table.column(columnIndex).search('').draw();
+                } else {
+                    table.column(columnIndex).search(filterValue).draw();
+                }
             });
         });
     </script>
+
+    <!-- MODAL -->
     <script>
-        $(".dropdown-menu li a").click(function() {
-            var selText = $(this).text();
-            $(this).parents('.btn-group').find('.dropdown-toggle').html(selText + ' <span class="caret"></span>');
+        // Assume you have a function to generate QR code
+        function generateQRCode(data) {
+            // Your QR code generation logic here
+            return 'data:image/png;base64,...'; // Replace with your actual QR code image data
+        }
+
+        // Add click event listener to the QR code button
+        $('#example tbody').on('click', 'button.btn-qr-code', function() {
+            var data = 'Some data to be encoded in the QR code';
+            var qrCodeImageSrc = generateQRCode(data);
+            $('#qrCodeContainer').html('<img src="' + qrCodeImageSrc + '" alt="ตำแหน่ง Dev">');
+            $('#qrCodeModal').modal('show');
         });
     </script>
 </body>
