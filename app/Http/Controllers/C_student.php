@@ -15,7 +15,7 @@ class C_student extends Controller
 
     public function information()
     {
-        $forms = F_Student::all();
-        return view('information', compact('forms')); //
+        $Testforms = F_Student::all();
+        return view('information', compact('Testforms')); //
     }
 }

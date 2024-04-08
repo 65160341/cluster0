@@ -9,14 +9,14 @@ class F_Student extends Model
 {
     use HasFactory;
 
-    protected $table = 'forms';
-    protected $primaryKey = 'form_id ';
+    protected $table = 'Testforms';
+    protected $primaryKey = 'Testforms_id ';
 
     protected $fillable = [
-        'form_id ',
-        'form_round ',
-        'form_date_start',
-        'form_date_end',
-        'form_detail'
+        'Testforms_id ',
+        'Testforms_roundcount ',
+        'Testforms_detail',
+        'Testforms_status',
+        'Testforms_status_se'
     ];
 }

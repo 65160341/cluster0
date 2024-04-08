@@ -9,227 +9,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <link rel="stylesheet" href="{{ asset('asset\dist\css\style.css') }}">
-    {{-- <style>
-        @import url('https://fonts.googleapis.com/css?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-        ::after,
-        ::before {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-
-        header .sidebar-logo .header-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .sidebar-logo img {
-            width: 150px;
-            /* ปรับขนาดภาพ */
-            height: 110%;
-            object-fit: cover;
-            /* ปรับขนาดภาพให้พอดีกับขนาดที่กำหนด */
-        }
-
-        /* ปรับตำแหน่งของ logo */
-        .sidebar-logo {
-            margin: 20px auto;
-            /* ตำแหน่งตามต้องการ */
-        }
-
-        /* แก้ไขมา */
-        a {
-            text-decoration: none;
-        }
-
-        li {
-            list-style: none;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .wrapper {
-            display: flex;
-        }
-
-        .main {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            width: 100%;
-            overflow: hidden;
-            transition: all 0.35s ease-in-out;
-            background-color: #d5d5d5;
-            min-width: 0;
-        }
-
-        #sidebar {
-            width: 70px;
-            min-width: 70px;
-            z-index: 1000;
-            transition: all .25s ease-in-out;
-            background-color: #ffffff;
-            display: flex;
-            flex-direction: column;
-        }
-
-        #sidebar.expand {
-            width: 260px;
-            min-width: 260px;
-        }
-
-        .toggle-btn {
-            background-color: transparent;
-            cursor: pointer;
-            border: 0;
-            padding: 1rem 1.5rem;
-        }
-
-        .toggle-btn i {
-            font-size: 1.5rem;
-            color: #000000;
-        }
-
-        .sidebar-logo {
-            margin: auto 0;
-        }
-
-        .sidebar-logo a {
-            color: #ff0000;
-            font-size: 1.15rem;
-            font-weight: 600;
-        }
-
-        #sidebar:not(.expand) .sidebar-logo,
-        #sidebar:not(.expand) a.sidebar-link span {
-            display: none;
-        }
-
-        #sidebar.expand .sidebar-logo,
-        #sidebar.expand a.sidebar-link span {
-            animation: fadeIn .25s ease;
-        }
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        .sidebar-nav {
-            padding: 2rem 0;
-            flex: 1 1 auto;
-        }
-
-        a.sidebar-link {
-            padding: .625rem 1.625rem;
-            color: #000000;
-            display: block;
-            font-size: 0.9rem;
-            white-space: nowrap;
-            border-left: 3px solid transparent;
-        }
-
-        .sidebar-link i,
-        .dropdown-item i {
-            font-size: 1.1rem;
-            margin-right: .75rem;
-        }
-
-        a.sidebar-link:hover {
-            background-color: red;
-            border-left: 3px solid #3b7ddd;
-        }
-
-        .sidebar-item {
-            position: relative;
-        }
-
-        #sidebar:not(.expand) .sidebar-item .sidebar-dropdown {
-            position: absolute;
-            top: 0;
-            left: 70px;
-            background-color: #0e2238;
-            padding: 0;
-            min-width: 15rem;
-            display: none;
-        }
-
-        #sidebar:not(.expand) .sidebar-item:hover .has-dropdown+.sidebar-dropdown {
-            display: block;
-            max-height: 15em;
-            width: 100%;
-            opacity: 1;
-        }
-
-        #sidebar.expand .sidebar-link[data-bs-toggle="collapse"]::after {
-            border: solid;
-            border-width: 0 .075rem .075rem 0;
-            content: "";
-            display: inline-block;
-            padding: 2px;
-            position: absolute;
-            right: 1.5rem;
-            top: 1.4rem;
-            transform: rotate(-135deg);
-            transition: all .2s ease-out;
-        }
-
-        #sidebar.expand .sidebar-link[data-bs-toggle="collapse"].collapsed::after {
-            transform: rotate(45deg);
-            transition: all .2s ease-out;
-        }
-
-        .navbar {
-            background-color: #ff0000;
-            box-shadow: 0 0 2rem 0 rgba(33, 37, 41, .1);
-        }
-
-        .navbar-expand .navbar-collapse {
-            min-width: 200px;
-        }
-
-        .avatar {
-            height: 40px;
-            width: 40px;
-        }
-
-        .sidebar-item.active a.sidebar-link {
-            background-color: red;
-            color: white;
-            border-left: 3px solid #3b7ddd;
-        }
-
-        .button-group {
-            display: flex;
-        }
-
-        .button {
-            margin: 5px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .button:hover {
-            background-color: #ddd;
-        }
-
-
-
-
-        @media (min-width: 768px) {}
-    </style> --}}
 </head>
 
 <body>
@@ -249,7 +29,7 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="/dashboard" class="sidebar-link">
+                    <a href="/main" class="sidebar-link">
                         <i class='bx bxs-dashboard'></i>
                         <span>แดชบอร์ด</span>
                     </a>
@@ -321,14 +101,12 @@
                                 เลือกปีที่รับสมัคร
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">2567</a></li>
-                                <li><a class="dropdown-item" href="#">2566</a></li>
-                                <li><a class="dropdown-item" href="#">2565</a></li>
-                                <li><a class="dropdown-item" href="#">2564</a></li>
-                                <li><a class="dropdown-item" href="#">2563</a></li>
-                                <li><a class="dropdown-item" href="#">2562</a></li>
-                                <li><a class="dropdown-item" href="#">2561</a></li>
-                                <li><a class="dropdown-item" href="#">2560</a></li>
+                                <li><a class="dropdown-item" href="#">2/2570</a></li>
+                                <li><a class="dropdown-item" href="#">1/2570</a></li>
+                                <li><a class="dropdown-item" href="#">2/2568</a></li>
+                                <li><a class="dropdown-item" href="#">1/2568</a></li>
+                                <li><a class="dropdown-item" href="#">2/2565</a></li>
+                                <li><a class="dropdown-item" href="#">1/2565</a></li>
                             </ul>
                         </div>
                     </div>
@@ -368,8 +146,6 @@
                                                 สถานะการคัดเลือก
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="selectionStatusDropdown">
-                                                <li><a class="dropdown-item" href="#">ยังไม่ได้คัดเลือก</a>
-                                                </li>
                                                 <li><a class="dropdown-item" href="#">อยู่ระหว่างดำเนินการ</a>
                                                 </li>
                                                 <li><a class="dropdown-item" href="#">คัดเลือกเสร็จสิ้น</a></li>
@@ -377,19 +153,19 @@
                                         </div>
                                     </th>
                                     <th scope="col"></th>
-                                    <th scope="col"></th>
                                 </tr>
                             </thead>
 
                             <tbody id="myTable">
-                                @foreach ($forms as $item)
+                                @foreach ($Testforms as $item)
                                     <tr>
-                                        <td>{{ $item->form_roundcount }}</td>
-                                        <td>{{ $item->form_detail }}</td>
-                                        <td>{{ $item->form_status }}</td>
-                                        <td>{{ $item->form_date_end }}</td>
+                                        <td>{{ $item->Testforms_roundcount }}</td>
+                                        <td>{{ $item->Testforms_detail }}</td>
+                                        <td>{{ $item->Testforms_status }}</td>
+                                        <td>{{ $item->Testforms_status_se }}</td>
                                         <td>
-                                            <a href="{{ $item->form_id }}" class="btn btn-primary">ตรวจสอบ</a>
+                                            <a href="{{ $item->Testforms_id }}" class="btn btn-primary">ตรวจสอบ</a>
+                                            <a href="" class="btn btn-success">เสร็จสิ้น</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -430,6 +206,8 @@
         hamBurger.addEventListener("click", function() {
             document.querySelector("#sidebar").classList.toggle("expand");
         });
+
+        // ค้นหา
         $(document).ready(function() {
             $("#myInput").on("keyup", function() {
                 var value = $(this).val().toLowerCase();
@@ -486,6 +264,61 @@
                     $('#myTable tr:eq(' + i + ')').show();
                 }
             });
+        });
+
+        $(document).ready(function() {
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+
+
+            // เพิ่มการจัดการเหตุการณ์เมื่อเลือกปีที่รับสมัคร
+            $(".dropdown-menu a").click(function() {
+                var selectedYear = $(this).text(); // ปีที่รับสมัครที่ถูกเลือก
+                $("#myTable tr").hide(); // ซ่อนทั้งหมดก่อน
+                $("#myTable tr").each(function() {
+                    // ตรวจสอบว่าปีที่รับสมัครของแถวนี้ตรงกับปีที่ถูกเลือกหรือไม่
+                    if ($(this).find("td:eq(0)").text().trim() === selectedYear) {
+                        $(this).show(); // แสดงแถวนี้
+                    }
+                });
+            });
+        });
+
+        $('a.btn-success').click(function(e) {
+            e.preventDefault(); // ป้องกันการโหลดหน้าใหม่
+            var url = $(this).attr('information'); // URL ที่เรียก
+            var status = "คัดเลือกเสร็จสิ้น"; // ค่าใหม่ที่ต้องการให้เปลี่ยนเป็น
+            var btn = $(this); // เก็บองค์ประกอบไว้ในตัวแปร
+            // ทำการเปลี่ยนค่าโดยใช้ Ajax เพื่อส่งค่าไปยังเซิร์ฟเวอร์โดยไม่ต้องโหลดหน้าใหม่
+            $.ajax({
+                url: url,
+                type: 'GET', // หรือสามารถเป็น 'POST' ได้ตามที่คุณกำหนด
+                data: {
+                    status: status
+                }, // ส่งข้อมูลสถานะใหม่ไปยังเซิร์ฟเวอร์
+                success: function(response) {
+                    // หากสำเร็จ ทำการอัพเดทค่าใน DOM
+                    btn.closest('tr').find('td:eq(3)').text(status);
+                    // เปลี่ยนสีของปุ่มเป็นสีเขียว
+                    btn.removeClass('btn-success').addClass('btn-secondary').text('เสร็จสิ้น').attr(
+                        'disabled', true);
+                },
+                error: function(xhr, status, error) {
+                    console.error(error); // แสดงข้อผิดพลาดที่เกิดขึ้นในกรณีที่เกิดข้อผิดพลาด
+                }
+            });
+        });
+        $(document).ready(function() {
+            // ตรวจสอบว่ามีค่า status ที่ถูกเก็บไว้ใน Local Storage หรือไม่
+            var storedStatus = localStorage.getItem('status');
+            if (storedStatus) {
+                // หากมี ให้อัพเดทค่าใน DOM
+                $('tbody#myTable tr td:eq(3)').text(storedStatus);
+            }
         });
     </script>
 </body>
