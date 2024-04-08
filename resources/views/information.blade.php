@@ -391,36 +391,32 @@
                                         <td>
                                             <a href="{{ $item->form_id }}" class="btn btn-primary">ตรวจสอบ</a>
                                         </td>
-                                        {{-- <td>
-                                            <button type="button" class="btn btn-secondary"
-                                                onclick="changeColor(this)">เสร็จสิ้น</button>
-                                        </td> --}}
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous" id="previousPage">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#" id="page1">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#" id="page2">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#" id="page3">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#" id="page3">4</a></li>
+                        <li class="page-item"><a class="page-link" href="#" id="page3">5</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next" id="nextPage">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </main>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous" id="previousPage">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#" id="page1">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#" id="page2">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#" id="page3">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#" id="page3">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#" id="page3">5</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next" id="nextPage">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -434,16 +430,6 @@
         hamBurger.addEventListener("click", function() {
             document.querySelector("#sidebar").classList.toggle("expand");
         });
-
-        // <!-- ปุ่มเสร็จสิ้น -->
-        // function changeColor(_this) {
-        //     if (_this.style.backgroundColor === "green") {
-        //         _this.style.backgroundColor = "#6c757d";
-        //     } else {
-        //         _this.style.backgroundColor = "green";
-        //     }
-        // }
-        // <!-- ค้นหา -->
         $(document).ready(function() {
             $("#myInput").on("keyup", function() {
                 var value = $(this).val().toLowerCase();
@@ -501,18 +487,6 @@
                 }
             });
         });
-
-             // Filter the table based on the dropdown values
-            $('.table-filter').on('change', function() {
-                var filterValue = $(this).val();
-                var columnIndex = $(this).closest('th').index();
-
-                if (filterValue === 'all') {
-                    table.column(columnIndex).search('').draw();
-                } else {
-                    table.column(columnIndex).search(filterValue).draw();
-                }
-            });
     </script>
 </body>
 
