@@ -10,10 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
-
-    {{-- <link rel="stylesheet" href="styleTest.css"> --}}
-    <style>
+    <link rel="stylesheet" href="{{ asset('asset\dist\css\style.css') }}">
+    {{-- <style>
         @import url('https://fonts.googleapis.com/css?family=Poppins:wght@300;400;500;600;700&display=swap');
 
         ::after,
@@ -231,7 +229,7 @@
 
 
         @media (min-width: 768px) {}
-    </style>
+    </style> --}}
 </head>
 
 <body>
@@ -403,25 +401,6 @@
                         </table>
                     </div>
                 </div>
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
             </main>
         </div>
     </div>
@@ -469,7 +448,6 @@
                 $(this).text($(this).attr("aria-label"));
             });
         });
-        
     </script>
 </body>
 
