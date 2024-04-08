@@ -33,9 +33,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/main', function () {
     return view('main');
-});
-
-
+})->name('main');
 Route::get('/information', function () {
     return view('information');
 });
@@ -44,6 +42,10 @@ Route::get('/selected', function () {
     return view('selected');
 });
 
+
 Route::get('/selected', [C_student::class, 'selected']);
 
 Route::get('/information', [C_student::class, 'information']);
+Route::get('/selected-information/{id}', [C_student::class, 'selected_information'])->name('selected-information');
+// Route::post('/selected-information/{id}', [C_student::class, 'show_selected'])->name('show_selected');
+

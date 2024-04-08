@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>สถานะการคัดเลือก</title>
+    <title>แสดงผลผู้สมัครที่คัดเลือก</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -238,12 +238,9 @@
 
         @media (min-width: 768px) {}
     </style>
-
 </head>
 
-
 <body>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
     <div class="wrapper">
         <aside id="sidebar">
             <div class="d-flex">
@@ -391,39 +388,24 @@
                                             </ul>
                                         </div>
                                     </th>
-                                    <th scope="col">วันที่สมัคร</th>
+                                    <th scope="col">วันที่ตอบรับ</th>
+                                    <th scope="col">สถานะ</th>
                                     <th scope="col">ฟอร์ม</th>
-                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
-                            @foreach ($user as $item)
-                                <tbody id="row_{{ $item->app_id }}">
+                            <tbody id="my_tbody">
                                     <tr>
-                                        <td>{{ $item->app_id }}</td>
-                                        <td>{{ $item->app_firstname . ' ' . $item->app_lastname }}</td>
-                                        <td>{{ $item->app_age }}</td>
-                                        <td>{{ $item->app_email }}</td>
-                                        <td>
-                                            <button data-id="{{ $item->app_id }}"
-                                                class="userinfo btn btn-primary">view</button>
-                                        </td>
-                                        <td style="display: flex ; height: 95px ">
-
-                                            <button style="height: 38px ; margin-left: 10px"
-                                                class="btn btn-secondary hide-btn" data-id="{{ $item->app_id }}"
-                                                onclick="hideRow({{ $item->app_id }})">ซ่อน</button>
-                                            <button style="height: 38px; margin-left: 10px" class="btn btn-success"
-                                                onclick="showModal({{ $item->app_id }})">คัดเลือก
-                                            </button>
-                            @endforeach
-                            </td>
-                            </tr>
-
+                                       <td>{{ $user->app_firstname . ' ' . $user->app_lastname }}</td>
+                                       <td></td>
+                                       <td>{{ $pos_name }}</td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                    </tr>
                             </tbody>
                         </table>
-                        <a class="btn btn-primary" href="/information" role="button">กลับไปหน้าแรก</a>
+                        <a class="btn btn-primary" href="/selected" role="button">กลับไปหน้าคัดเลือก</a>
                     </div>
-
             </main>
 
         </div>
@@ -432,10 +414,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
     <script>
+
         const hamBurger = document.querySelector(".toggle-btn");
 
         hamBurger.addEventListener("click", function() {
@@ -487,93 +467,28 @@
                 modal.style.display = 'none';
             });
         });
-        document.addEventListener("DOMContentLoaded", function() {
-            const modal = document.querySelector('.modal');
-            const closeModalButtons = document.querySelectorAll('.btn-close, [data-bs-dismiss="modal"]');
-            const confirmButton = document.getElementById('confirmButton');
-            const selectButtons = document.querySelectorAll('.btn-success');
-
-            selectButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    modal.style.display = 'block';
-                    document.querySelector('.modal-title').innerText = 'Modal title';
-
-                    // Get the ID from the data-id attribute of the button's parent row
-                    const userId = this.closest('tr').getAttribute('data-id');
-
-                    // Set the form action URL dynamically based on the ID
-                    const form = document.querySelector('form');
-                    form.action = '/selected-information/' + userId;
-                });
-            });
-
-            closeModalButtons.forEach(closeButton => {
-                closeButton.addEventListener('click', function() {
-                    modal.style.display = 'none';
-                });
-            });
-
-            confirmButton.addEventListener('click', function() {
-                alert('คัดเลือกเสร็จสิ้น');
-                modal.style.display = 'none';
-            });
-        });
-
-        function showModal(id) {
-            swal({
-                    title: "ยืนยันการคัดเลือก",
-                    icon: "success",
-                    buttons: {
-                        cancle: "NO",
-                        confirm: {
-                            text: "Yes",
-                            value: true,
-                            visible: true,
-                            className: "btn-success",
-                        },
-                    },
-                })
-                .then((value) => {
-                    if (value) {
-                        window.location.href = "/selected-information/" + id;
-                        deleteRow(id);
-                    }
-                });
-        }
-        function deleteRow(id) {
-            if (row) {
-            row.remove();
-            // Add deleted row ID to the URL as a query parameter
-            var url = new URL('/selected', window.location.href);
-            url.searchParams.append('deleted_id', id);
-            window.location.href = url.href;
-        }
-        }
-
-        function hideRow(id) {
-            var row = document.getElementById("row_" + id);
-            if (row) {
-                row.style.display = "none";
-            } else {
-                console.error("Row with id " + id + " not found.");
-            }
-        }
-
-        // function sendUserId(id) {
-        //     console.log("Sending user ID:", id);
-        //     $.ajax({
-        //         url: '/selected-information/' + id,
-        //         type: 'PUT',
-        //         success: function(data) {
-        //             console.log('success');
-        //         },
-        //         error: function(error) {
-        //             console.error(error);
-        //         }
-        //     });
-        // }
     </script>
-
+    <div class="modal" tabindex="-1" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img src="https://blog.clicknext.com/wp-content/themes/clicknext_blog2/assets/images/clicknext-logo.png"
+                        alt="logo">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="margin: center">
+                    <h4>
+                        <p>ยืนยันการคัดเลือก</p>
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
+                    <button type="button" class="btn btn-success" id="confirmButton"
+                        data-bs-dismiss="modal">ยืนยัน</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

@@ -29,7 +29,7 @@ class Authenticate extends Controller
             $user = Hrs::where('hr_username', $credentials['hr_username'])->first();
             if ($user && Hash::check($credentials['password'], $user->getAuthPassword())) {
                 $request->session()->put('authenticated_username', $user->hr_username);
-                return redirect()->route('index');
+                return redirect()->route('main');
             } else {
                 return redirect()->back()->withErrors(['error' => 'Invalid credentials']);
             }
