@@ -369,22 +369,19 @@ th {
                 </div>
             </nav>
             <main class="content px-3 py-4">
-         <form onsubmit="return confirmForm()">
-                <div class="select_round">
-                    <label for="applicationRound">รอบการรับสมัคร:</label>
-                    <input type="text" id="form_roundcount" value="" name="form_roundcount" placeholder="ระบุรอบ/ปี เช่น รอบที่ 1/2566">
-                </div>
-                <div class="select_date">
-                    <label for="applicationPeriod">ระยะเวลาการรับสมัคร:</label>
-                    <input type="date" id="form_date_end" value="" name="form_date_end" class="form-control" placeholder="เลือกวันที่">
-            </div>
-        <div class="table-form">
-        <label for="additionalInfo">รายละเอียดเพิ่มเติม:</label>
-        <input type="text" id="pf_Info" value="" name="pf_Info" placeholder="กรอกรายละเอียดเพิ่มเติม">
-        <button class="add-form" onclick="toggleConfirmationPopup()" >+ เพิ่มรายการรับสมัคร</button>
-    </div>
-</form>
 
+
+                        {{-- <label for="applicationRound">รอบการรับสมัคร:</label>
+                        <input type="text" id="form_roundcount" value="" name="form_roundcount" placeholder="ระบุรอบ/ปี เช่น รอบที่ 1/2566">
+
+
+                        <label for="applicationPeriod">ระยะเวลาการรับสมัคร:</label>
+                        <input type="date" id="form_date_end" value="" name="form_date_end" class="form-control" placeholder="เลือกวันที่">
+
+
+                        <label for="additionalInfo">รายละเอียดเพิ่มเติม:</label>
+                        <input type="text" id="pf_info" value="" name="pf_info" placeholder="กรอกรายละเอียดเพิ่มเติม"> --}}
+     <button class="add-form" onclick="toggleConfirmationPopup()" >+ เพิ่มรายการรับสมัคร</button>
 
 <div>
 <table>
@@ -413,9 +410,21 @@ th {
         <!-- เพิ่มแถวตามความเหมาะสม -->
     </tbody>
 </table>
-</div><div class="popup" id="popup">
+</div>
+
+<div class="popup" id="popup">
+    <form action="/store" method="post" enctype="multipart/form-data" onsubmit="return confirmForm()">
     <h2>เพิ่มรายการรับสมัคร</h2>
-    <form onsubmit="return confirmForm()">
+    <label for="applicationRound">รอบการรับสมัคร:</label>
+    <input type="text" id="form_roundcount" value="" name="form_roundcount" placeholder="ระบุรอบ/ปี เช่น รอบที่ 1/2566">
+
+
+    <label for="applicationPeriod">ระยะเวลาการรับสมัคร:</label>
+    <input type="date" id="form_date_end" value="" name="form_date_end" class="form-control" placeholder="เลือกวันที่">
+
+
+    <label for="additionalInfo">รายละเอียดเพิ่มเติม:</label>
+    <input type="text" id="pf_info" value="" name="pf_info" placeholder="กรอกรายละเอียดเพิ่มเติม">
 
         <label for="jobType" >ลักษณะงาน:</label>
         <select id="pf_type_jobs" name="pf_type_jobs" >
@@ -423,18 +432,23 @@ th {
             <option value="สหกิจ">สหกิจ</option>
         </select>
         <label for="position">ตำแหน่งงาน:</label>
-        <select id="pf_name" name="pf_name" >
-            <option value="ไม่ระบุตำแหน่งงาน">-</option>
-            <option value="Tester">Tester</option>
-            <option value="UX/UI">UX/UI</option>
-            <option value="Project Manageer">Project Manageer</option>
+        <select id="pos_id" name="pos_id" >
+            <option value=1>ไม่ระบุตำแหน่งงาน</option>
+            <option value=2>Tester</option>
+            <option value=3>UX/UI</option>
+            <option value=4>Project Manageer</option>
+            <option value=5>Designer</option>
+            <option value=6>Developer</option>
+            <option value=7>Bussiness Analytics</option>
+
         </select>
         <label for="numOfApplicants">จำนวนการรับสมัคร:</label>
         <input type="text" value="" id="pf_amount_of_position" name="pf_amount_of_position">
         <button type="button" class="cancel-button" onclick="togglePopup()">ยกเลิก</button>
-        <button type="submit" class="confirm-button">ยืนยัน</button>
+        <button type="submit" class="confirm-button"onclick="toggleConfirmationPopup()()">ยืนยัน</button>
     </form>
 </div>
+
 
             </main>
         </div>
@@ -448,13 +462,13 @@ th {
     });
 
     function togglePopup() {
-        var popup = document.getElementById("popup");
-        if (popup.style.display === "block") {
-            popup.style.display = "none";
-        } else {
-            popup.style.display = "block";
-        }
+    var popup = document.getElementById("popup");
+    if (popup.style.display === "block") {
+        popup.style.display = "none";
+    } else {
+        popup.style.display = "block";
     }
+}
 
     function confirmForm() {
         togglePopup(); // ปิด popup เมื่อยืนยัน
@@ -462,11 +476,11 @@ th {
     }
 
     function toggleConfirmationPopup() {
-        var confirmationPopup = document.getElementById("confirmationPopup");
-        if (confirmationPopup.style.display === "none") {
-            confirmationPopup.style.display = "block";
-        } else {
+        var confirmationPopup = document.getElementById("popup");
+        if (confirmationPopup.style.display === "block") {
             confirmationPopup.style.display = "none";
+        } else {
+            confirmationPopup.style.display = "block";
         }
     }
 

@@ -207,6 +207,121 @@
             color: white;
             border-left: 3px solid #3b7ddd;
         }
+        body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+header {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header a {
+  text-decoration: underline;
+  color: #fff;
+}
+
+main {
+  padding: 20px;
+}
+
+form {
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.column {
+  width: 50%;
+  margin-right: 20px;
+}
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input, textarea, select {
+  border: 1px solid #ccc;
+  padding: 5px;
+  width: 100%;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0069d9;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input, textarea, select {
+  border: 1px solid #ccc;
+  padding: 5px;
+  width: 100%;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0069d9;
+}
+
+
 
         @media (min-width: 768px) {}
     </style>
@@ -279,8 +394,9 @@
                                 <img src="Unknown_person.jpg" class="avatar img-fluid" alt="">Username
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">โปรไฟล์</a></li>
-                                <li><a class="dropdown-item" href="#">ตั้งค่า</a></li>
+                                
+                                <li><a class="dropdown-item" href="{{ route('profile') }}">ตั้งค่า</a></li>
+
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -290,6 +406,73 @@
                     </ul>
                 </div>
             </nav>
+            <!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title >ตั้งค่าโปรไฟล์</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header style="background-color: #990000">
+      <h1 >ตั้งค่าโปรไฟล์</h1>
+      
+    </header>
+    <main>
+      <form action="#">
+        <div class="row">
+          <div class="column">
+            <h2>ข้อมูลส่วนตัว</h2>
+            <label for="name">ชื่อ:</label>
+            <ul>
+                @foreach ($hrs as $profile)
+                    <li>{{ $profile->hrs_firstname }}</li>
+                @endforeach
+            </ul> 
+            
+
+            <label for="surname">นามสกุล:</label>
+            <ul>
+                @foreach ($hrs as $profile)
+                    <li>{{ $profile->hrs_firstname }}</li>
+                @endforeach
+            </ul> 
+
+          </div>
+          <div class="column">
+            <h2>ข้อมูลติดต่อ</h2>
+            <label for="phone">อีเมล์</label>
+            <input type="Email" id="mail" name="mail" >
+            <label for="phone">เบอร์โทรศัพท์:</label>
+            <input type="tel" id="phone" name="phone" >
+
+          </div>
+          <div class="column">
+            <h2>เปลี่ยนรหัสผ่าน</h2>
+            <form action="#">
+                <label for="current_password">รหัสผ่านปัจจุบัน:</label>
+                <input type="password" id="current_password" name="current_password" required>
+          
+                <label for="new_password">รหัสผ่านใหม่:</label>
+                <input type="password" id="new_password" name="new_password" required>
+          
+                <label for="confirm_password">ยืนยันรหัสผ่านใหม่:</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+          
+                <button type="submit">เปลี่ยนรหัสผ่าน</button>
+            </form>
+
+          </div>
+        </div>
+        
+      </form>
+    </main>
+  </div>
+</body>
+</html>
+
             <!-- <main class="content px-3 py-4">
                 <div class="container-fluid">
                     <div class="mb-3">

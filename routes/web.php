@@ -4,6 +4,8 @@ use App\Http\Controllers\Authenticate;
 use App\Http\Controllers\Clicknext_page;
 use App\Http\Controllers\position_form_Controller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\profilecontroller;
+use App\Http\Controllers\p_Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +40,9 @@ Route::get('/main', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
+Route::get('/profile', [profilecontroller::class , 'selected']);
 Route::get('/', [position_form_Controller::class, 'index']);
 Route::post('/store', [position_form_Controller::class, 'index']);
+
+Route::get('/profile', [p_Controller::class, 'index'])->name('profile');
 
