@@ -45,3 +45,7 @@ Route::get('/formdetail', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
+
+Route::get('/test_sidebar', function () {
+    return view('test_sidebar');
+});
