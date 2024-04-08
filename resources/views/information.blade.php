@@ -9,6 +9,9 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
     {{-- <link rel="stylesheet" href="styleTest.css"> --}}
     <style>
         @import url('https://fonts.googleapis.com/css?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -332,6 +335,19 @@
                         </div>
                     </div>
                     <div class="col-12 table-responsive">
+                        <div class="input-group">
+                            <div class="form-outline" data-mdb-input-init>
+                                <input type="search" id="form1" class="form-control" />
+                            </div>
+                            <button type="button" id="searchButton" class="btn btn-primary" data-mdb-ripple-init
+                                style="height: 40% ">
+                                <i class='bx bx-search-alt-2'></i>
+                            </button>
+                            <button type="button" id="resetPage" class="btn btn-danger" data-mdb-ripple-init>
+                                <i class='bx bx-reset'></i> Reset
+                            </button>
+                        </div>
+                        <br>
                         <table class="table table-striped">
                             <thead>
                                 <tr class="text-center">
@@ -370,12 +386,12 @@
                                 </tr>
                             </thead>
 
-                            <tbody>
+                            <tbody id="myTable">
                                 @foreach ($forms as $item)
                                     <tr>
-                                        <td>{{ $item->form_id }}</td>
                                         <td>{{ $item->form_round }}</td>
-                                        <td>{{ $item->form_date_start }}</td>
+                                        <td>{{ $item->form_detail }}</td>
+                                        <td>{{ $item->form_status }}</td>
                                         <td>{{ $item->form_date_end }}</td>
                                         <td>
                                             <a href="/selected" class="btn btn-primary">ตรวจสอบ</a>
@@ -394,6 +410,10 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
     <script>
         const hamBurger = document.querySelector(".toggle-btn");
 
@@ -401,6 +421,7 @@
             document.querySelector("#sidebar").classList.toggle("expand");
         });
 
+        // <!-- ปุ่มเสร็จสิ้น -->
         function changeColor(_this) {
             if (_this.style.backgroundColor === "green") {
                 _this.style.backgroundColor = "#6c757d";
@@ -408,6 +429,31 @@
                 _this.style.backgroundColor = "green";
             }
         }
+        // <!-- ค้นหา -->
+        $(document).ready(function() {
+            $("#searchButton").click(function() {
+                var value = $("#form1").val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+        document.getElementById("resetPage").addEventListener("click", function() {
+            // ล้างข้อมูลในช่อง input
+            document.getElementById("form1").value = ""; // เปลี่ยนเป็น id ของ input ที่ต้องการล้างข้อมูล
+
+            // ล้างการค้นหาที่ได้ทำไว้
+            $("#myTable tr").show();
+
+            // รีเซ็ตสีของปุ่ม "เสร็จสิ้น"
+            $("button.btn-secondary").css("background-color", "#6c757d");
+
+            // ล้าง dropdown ที่ถูกเลือก
+            $(".dropdown-toggle").each(function() {
+                $(this).text($(this).attr("aria-label"));
+            });
+        });
     </script>
 </body>
 
