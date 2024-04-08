@@ -337,14 +337,11 @@
                     <div class="col-12 table-responsive">
                         <div class="input-group">
                             <div class="form-outline" data-mdb-input-init>
-                                <input type="search" id="form1" class="form-control" />
+                                <input class="form-control" id="myInput" type="text" placeholder="ค้นหา..">
                             </div>
                             <button type="button" id="searchButton" class="btn btn-primary" data-mdb-ripple-init
                                 style="height: 40% ">
                                 <i class='bx bx-search-alt-2'></i>
-                            </button>
-                            <button type="button" id="resetPage" class="btn btn-danger" data-mdb-ripple-init>
-                                <i class='bx bx-reset'></i> Reset
                             </button>
                         </div>
                         <br>
@@ -406,6 +403,25 @@
                         </table>
                     </div>
                 </div>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </main>
         </div>
     </div>
@@ -431,14 +447,13 @@
         }
         // <!-- ค้นหา -->
         $(document).ready(function() {
-            $("#searchButton").click(function() {
-                var value = $("#form1").val().toLowerCase();
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
                 $("#myTable tr").filter(function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
         });
-
         document.getElementById("resetPage").addEventListener("click", function() {
             // ล้างข้อมูลในช่อง input
             document.getElementById("form1").value = ""; // เปลี่ยนเป็น id ของ input ที่ต้องการล้างข้อมูล
@@ -454,6 +469,7 @@
                 $(this).text($(this).attr("aria-label"));
             });
         });
+        
     </script>
 </body>
 
