@@ -21,13 +21,14 @@ class Authenticate extends Controller
         try {
             $request->validate([
                 'hr_username' => 'required|string',
-                'password' => 'required|string',
+                'hr_password' => 'required|string',
             ]);
 
 
-            $credentials = $request->only('hr_username', 'password');
+            $credentials = $request->only('hr_username', 'hr_password');
             $user = Hrs::where('hr_username', $credentials['hr_username'])->first();
-            if ($user && Hash::check($credentials['password'], $user->getAuthPassword())) {
+
+            if ($user && $user->hr_password === $credentials['hr_password']) {
                 $request->session()->put('authenticated_username', $user->hr_username);
                 return redirect()->route('index');
             } else {
