@@ -13,33 +13,13 @@ class FormsController extends Controller
         return view('myform', compact('forms'));
     }
 
-    public function create()
-    {
-        //
-    }
+    public function update(){
 
-    public function store(Request $request)
-    {
-        //
     }
-
-    public function show(string $id)
+    
+    public function destroy(FormsModel $id)
     {
-        //
-    }
-
-    public function edit(string $id)
-    {
-        //
-    }
-
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    public function destroy(string $id)
-    {
-        //
+        $id->delete();
+        return redirect(route('index.form'))->with('succes', ('Form deleted succesffully'));
     }
 }

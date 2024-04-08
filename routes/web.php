@@ -35,4 +35,5 @@ Route::get('/', function () {
     return redirect('/forms');
 });
 
-Route::get('/forms', [FormsController::class, 'index']);
+Route::get('/forms', [FormsController::class, 'index'])->name('index.form');
+Route::delete('/forms/{id}', [FormsController::class, 'destroy'])->name('delete.form');

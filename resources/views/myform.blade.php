@@ -135,9 +135,13 @@
                                                 <font style="color:#00B187">{{$form->form_status}}</font>
                                                 @endif
                                             </td>
-                                            <td class="align-middle">
-                                                <button class="btn btn-primary">ตรวจสอบ</button>
-                                                <button class="btn btn-danger">ลบ</button>
+                                            <td>
+                                                <form action="{{ route('delete.form', ['id' => $form->form_id]) }}" method="POST">
+                                                    <button class="btn btn-primary">ตรวจสอบ</button>
+                                                    @csrf   
+                                                    @method('delete')
+                                                    <button type="submit" class="btn btn-danger">ลบ</button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
