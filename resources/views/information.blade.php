@@ -207,7 +207,8 @@
             document.querySelector("#sidebar").classList.toggle("expand");
         });
 
-        // ค้นหา
+        //ค้นหา//
+
         $(document).ready(function() {
             $("#myInput").on("keyup", function() {
                 var value = $(this).val().toLowerCase();
@@ -216,6 +217,43 @@
                 });
             });
         });
+
+        // $(document).ready(function() {
+        //     $("#myInput").on("keyup", function() {
+        //         var value = $(this).val().toLowerCase();
+        //         $("#myTable tr").filter(function() {
+        //             var status = $(this).find("td:eq(2)").text()
+        //         .toLowerCase(); // ดึงข้อมูลสถานะการรับสมัคร
+        //             return $(this).text().toLowerCase().indexOf(value) > -1 && status !=="ปิดรับสมัคร"; // เพิ่มเงื่อนไขตรวจสอบสถานะ
+        //         }).show();
+        //         $("#myTable tr").filter(function() {
+        //             var status = $(this).find("td:eq(2)").text()
+        //         .toLowerCase(); // ดึงข้อมูลสถานะการรับสมัคร
+        //             return $(this).text().toLowerCase().indexOf(value) === -1 || status ==="ปิดรับสมัคร"; // เพิ่มเงื่อนไขตรวจสอบสถานะ
+        //         }).hide();
+        //     });
+        // });
+
+        // $(document).ready(function() {
+        //     $("#myInput").on("keyup", function() {
+        //         var value = $(this).val().toLowerCase();
+        //         $("#myTable tr").filter(function() {
+        //             var status = $(this).find("td:eq(2)").text()
+        //                 .toLowerCase(); // ดึงข้อมูลสถานะการรับสมัคร
+        //             return $(this).text().toLowerCase().indexOf(value) > -1 && status !==
+        //                 "ปิดรับสมัคร"; // เพิ่มเงื่อนไขตรวจสอบสถานะ
+        //         }).show();
+        //         $("#myTable tr").filter(function() {
+        //             var status = $(this).find("td:eq(2)").text()
+        //                 .toLowerCase(); // ดึงข้อมูลสถานะการรับสมัคร
+        //             return $(this).text().toLowerCase().indexOf(value) === -1 || status ===
+        //                 "ปิดรับสมัคร"; // เพิ่มเงื่อนไขตรวจสอบสถานะ
+        //         }).hide();
+        //     });
+        // });
+
+
+
 
         $(document).ready(function() {
             // กำหนดจำนวนข้อมูลต่อหน้า
