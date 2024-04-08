@@ -50,7 +50,7 @@
                         <span>แดชบอร์ด</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
+                {{-- <li class="sidebar-item">
                     <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#auth"
                         aria-expanded="false" aria-controls="auth">
                         <i class='bx bxs-food-menu'></i>
@@ -59,14 +59,28 @@
                     <div id="auth" class="sidebar-dropdown collapse">
                         <ul class="list-unstyled">
                             <li class="sidebar-item">
-
                                 <a href="#" class="sidebar-link"><i
                                         class='bx bx-chevron-right'></i>สร้างฟอร์มรับสมัคร</a>
                             </li>
                             <li class="sidebar-item">
-
                                 <a href="#" class="sidebar-link"><i
                                         class='bx bx-chevron-right'></i>ฟอร์มของฉัน</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li> --}}
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link" data-bs-toggle="collapse" data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
+                        <i class='bx bxs-food-menu'></i>
+                        <span>ฟอร์ม</span>
+                    </a>
+                    <div id="auth" class="sidebar-dropdown collapse">
+                        <ul class="list-unstyled">
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link"><i class='bx bx-chevron-right'></i>สร้างฟอร์มรับสมัคร</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link"><i class='bx bx-chevron-right'></i>ฟอร์มของฉัน</a>
                             </li>
                         </ul>
                     </div>
@@ -107,20 +121,25 @@
                 </div>
             </nav>
             <main class="content px-3 py-4">
-                <!-- Modal แสดง QR Code -->
-                {{-- <div class="modal fade" id="qrCodeModal" tabindex="-1" aria-labelledby="qrCodeModalLabel" aria-hidden="true">
+                <!-- Modal แสดง QR Code สำหรับ QR Code ไม่ระบุตำแหน่งงาน -->
+                <div class="modal fade" id="qrCodeModalNoPosition" tabindex="-1"
+                    aria-labelledby="qrCodeModalNoPositionLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="qrCodeModalLabel">QR Code</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <h5 class="modal-title" id="qrCodeModalNoPositionLabel">QR Code สำหรับสมัครงานทั่วไป
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
-                                <div id="qrCodeContainer"></div>
+                            <div class="modal-body d-flex justify-content-center">
+                                <div id="qrCodeContainerNoPosition"></div>
                             </div>
                         </div>
                     </div>
-                </div> --}}
+                </div>
+
+                <!-- Modal แสดง QR Code -->
                 <div class="modal fade" id="qrCodeModal" tabindex="-1" aria-labelledby="qrCodeModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
@@ -136,10 +155,10 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- หน้าจอ -->
                 <div class="container-fluid">
                     <div class="mb-3">
-
                         <div class="row align-items-center mb-3">
                             <div class="col-auto">
                                 <span>รอบการสมัคร</span>
@@ -162,7 +181,16 @@
                                     aria-describedby="basic-addon1">
                             </div>
                         </div>
-
+                        <div class="row align-items-center mb-3">
+                            <div class="col-auto">
+                                <span>QR Code ไม่ระบุตำแหน่งงาน</span>
+                            </div>
+                            <div class="col-auto">
+                                <button type="button" class="btn btn-qr-code-no-position" style="font-size: 25px">
+                                    <i class='bx bx-qr-scan'></i>
+                                </button>
+                            </div>
+                        </div>
                         <div class="col-12 columnset">
                             <table id="example" class="table table-striped" style="width:100%">
                                 <thead>
@@ -290,6 +318,7 @@
                     </div>
                 </div>
         </div>
+
         </main>
     </div>
     </div>
@@ -302,13 +331,13 @@
             console.log($j().jquery); // This prints v1.9.1
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         const hamBurger = document.querySelector(".toggle-btn");
 
         hamBurger.addEventListener("click", function() {
             document.querySelector("#sidebar").classList.toggle("expand");
         });
+
     </script>
     <script>
         $j(function() {
@@ -351,6 +380,10 @@
             });
         });
     </script>
+    <script>
+        console.log(typeof $); // should log "function"
+        console.log(typeof bootstrap); // should log "object"
+    </script>
 
     <!-- MODAL -->
     <script>
@@ -368,6 +401,22 @@
             $('#qrCodeModal').modal('show');
         });
     </script>
+    <script>
+        // Assume you have a function to generate QR code without position
+        function generateQRCodeNoPosition(data) {
+            // Your QR code generation logic here
+            return 'data:image/png;base64,...'; // Replace with your actual QR code image data
+        }
+
+        // Add click event listener to the QR code button without position
+        $('button.btn-qr-code-no-position').on('click', function() {
+            var data = 'Some data to be encoded in the QR code';
+            var qrCodeImageSrc = generateQRCodeNoPosition(data);
+            $('#qrCodeContainerNoPosition').html('<img src="' + qrCodeImageSrc + '" alt="ตำแหน่งงานทั่วไป">');
+            $('#qrCodeModalNoPosition').modal('show');
+        });
+    </script>
+
 </body>
 
 </html>
