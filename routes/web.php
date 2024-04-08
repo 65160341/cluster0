@@ -31,16 +31,8 @@ use App\Http\Controllers\FormsController;
 //     echo "<h1>test</h1><a href='" . url('/') . "'>HOME " . url('/') . "</a>";
 // });
 
-Route::get('/main', function () {
-    return view('main');
-});
-
 Route::get('/', function () {
-    return view('/myform');
+    return redirect('/forms');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
-
-Route::get('/myform', [FormsController::class, 'myform']);
+Route::get('/forms', [FormsController::class, 'index']);

@@ -8,7 +8,6 @@
     <title>ระบบรับสมัครพนักงงาน</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    {{-- <link rel="stylesheet" href="styleTest.css"> --}}
     <link rel="stylesheet" href="{{ asset('asset\dist\css\page.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css">
@@ -101,17 +100,12 @@
                                 <span>ปีที่เปิดรับสมัคร</span>
                             </div>
                             <div class="col-auto">
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button"
-                                        id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        ปีที่รับสมัคร
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="#">2567</a></li>
-                                        <li><a class="dropdown-item" href="#">2566</a></li>
-                                        <li><a class="dropdown-item" href="#">2565</a></li>
-                                    </ul>
-                                </div>
+                                <select class="form-select shadow sm-1 mb-1 bg-body rounded" aria-label="Default select example">
+                                    <option selected>ปีที่รับสมัคร</option>
+                                    <option value="1">2024</option>
+                                    <option value="2">2023</option>
+                                    <option value="3">2022</option>
+                                  </select>
                             </div>
                         </div>
                         <div class="col-12 columnset">
@@ -128,18 +122,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($forms as $item)
+                                    @foreach ($forms as $form)
                                         <tr>
-                                            <td>{{$item->item_round}}</td>
-                                            <td>{{$item->item_date_start}}</td>
-                                            <td>{{$item->item_date_end}}</td>
-                                            <td>{{$item->item_detail}}</td>
-                                            @if ($item->status == 'ปิดรับสมัคร')
-                                                <td style="color:#E8042C">{{$item->status}}</td>
-                                            @else
-                                                <td style="color:#00B187">{{$item->status}}</td>
-                                            @endif
-                                            <td>
+                                            <td class="align-middle">{{$form->form_round}}</td>
+                                            <td class="align-middle">{{$form->form_detail}}</td>
+                                            <td class="align-middle">{{$form->form_date_start}}</td>
+                                            <td class="align-middle">{{$form->form_date_end}}</td>
+                                            <td class="align-middle">
+                                                @if ($form->form_status == 'ปิดรับสมัคร')
+                                                <font style="color:#E8042C">{{$form->form_status}}</font>
+                                                @elseif ($form->form_status == 'เปิดรับสมัคร')
+                                                <font style="color:#00B187">{{$form->form_status}}</font>
+                                                @endif
+                                            </td>
+                                            <td class="align-middle">
                                                 <button class="btn btn-primary">ตรวจสอบ</button>
                                                 <button class="btn btn-danger">ลบ</button>
                                             </td>
@@ -164,7 +160,6 @@
     </script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
