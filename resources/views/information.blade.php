@@ -384,17 +384,17 @@
                             <tbody id="myTable">
                                 @foreach ($forms as $item)
                                     <tr>
-                                        <td>{{ $item->form_round }}</td>
+                                        <td>{{ $item->form_roundcount }}</td>
                                         <td>{{ $item->form_detail }}</td>
                                         <td>{{ $item->form_status }}</td>
                                         <td>{{ $item->form_date_end }}</td>
                                         <td>
-                                            <a href="/selected" class="btn btn-primary">ตรวจสอบ</a>
+                                            <a href="{{ $item->form_id }}" class="btn btn-primary">ตรวจสอบ</a>
                                         </td>
-                                        <td>
+                                        {{-- <td>
                                             <button type="button" class="btn btn-secondary"
                                                 onclick="changeColor(this)">เสร็จสิ้น</button>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -402,6 +402,25 @@
                     </div>
                 </div>
             </main>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous" id="previousPage">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#" id="page1">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#" id="page2">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#" id="page3">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#" id="page3">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#" id="page3">5</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next" id="nextPage">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -417,13 +436,13 @@
         });
 
         // <!-- ปุ่มเสร็จสิ้น -->
-        function changeColor(_this) {
-            if (_this.style.backgroundColor === "green") {
-                _this.style.backgroundColor = "#6c757d";
-            } else {
-                _this.style.backgroundColor = "green";
-            }
-        }
+        // function changeColor(_this) {
+        //     if (_this.style.backgroundColor === "green") {
+        //         _this.style.backgroundColor = "#6c757d";
+        //     } else {
+        //         _this.style.backgroundColor = "green";
+        //     }
+        // }
         // <!-- ค้นหา -->
         $(document).ready(function() {
             $("#myInput").on("keyup", function() {
@@ -433,21 +452,67 @@
                 });
             });
         });
-        document.getElementById("resetPage").addEventListener("click", function() {
-            // ล้างข้อมูลในช่อง input
-            document.getElementById("form1").value = ""; // เปลี่ยนเป็น id ของ input ที่ต้องการล้างข้อมูล
 
-            // ล้างการค้นหาที่ได้ทำไว้
-            $("#myTable tr").show();
+        $(document).ready(function() {
+            // กำหนดจำนวนข้อมูลต่อหน้า
+            var recordsPerPage = 6;
+            // กำหนดหน้าเริ่มต้น
+            var currentPage = 1;
 
-            // รีเซ็ตสีของปุ่ม "เสร็จสิ้น"
-            $("button.btn-secondary").css("background-color", "#6c757d");
+            // ซ่อนทั้งหมดของรายการในตาราง
+            $('#myTable tr').hide();
 
-            // ล้าง dropdown ที่ถูกเลือก
-            $(".dropdown-toggle").each(function() {
-                $(this).text($(this).attr("aria-label"));
+            // แสดงข้อมูลในหน้าที่ 1
+            $('#myTable tr').slice(0, recordsPerPage).show();
+
+            // คลิกปุ่มหน้าก่อนหน้า
+            $('#previousPage').click(function() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    $('#myTable tr').hide();
+                    var grandTotal = recordsPerPage * currentPage;
+                    for (var i = grandTotal - recordsPerPage; i < grandTotal; i++) {
+                        $('#myTable tr:eq(' + i + ')').show();
+                    }
+                }
+            });
+
+            // คลิกปุ่มหน้าถัดไป
+            $('#nextPage').click(function() {
+                if (currentPage < ($('#myTable tr').length / recordsPerPage)) {
+                    currentPage++;
+                    $('#myTable tr').hide();
+                    var grandTotal = recordsPerPage * currentPage;
+                    for (var i = grandTotal - recordsPerPage; i < grandTotal; i++) {
+                        $('#myTable tr:eq(' + i + ')').show();
+                    }
+                }
+            });
+
+            // คลิกที่หมายเลขหน้า
+            $('.pagination a').click(function() {
+                $('.pagination li').removeClass('active');
+                $(this).parent().addClass('active');
+                currentPage = parseInt($(this).text());
+                $('#myTable tr').hide();
+                var grandTotal = recordsPerPage * currentPage;
+                for (var i = grandTotal - recordsPerPage; i < grandTotal; i++) {
+                    $('#myTable tr:eq(' + i + ')').show();
+                }
             });
         });
+
+             // Filter the table based on the dropdown values
+            $('.table-filter').on('change', function() {
+                var filterValue = $(this).val();
+                var columnIndex = $(this).closest('th').index();
+
+                if (filterValue === 'all') {
+                    table.column(columnIndex).search('').draw();
+                } else {
+                    table.column(columnIndex).search(filterValue).draw();
+                }
+            });
     </script>
 </body>
 
