@@ -215,10 +215,29 @@ a.sidebar-link:hover {
     height: 40px;
     padding: 6px;
     text-align: center;
-
 }
 
+.modal-header {
+    background-color: #E8042C;
+    color: #fff;
+}
 
+.modal-body {
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+#qrCodeContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+
+#qrCodeContainer img {
+    max-width: 100%;
+    max-height: 100%;
+}
 
 
 
