@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Authenticate;
 use App\Http\Controllers\Clicknext_page;
+use Illuminate\Http\Request;
 use App\Http\Controllers\position_form_Controller;
 use Illuminate\Support\Facades\Route;
 
@@ -39,5 +40,5 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 Route::get('/', [position_form_Controller::class, 'index']);
-Route::post('/store', [position_form_Controller::class, 'index']);
+Route::post('/store', [position_form_Controller::class, 'store']);
 
