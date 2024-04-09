@@ -8,11 +8,9 @@
     <title>ระบบรับสมัครพนักงงาน</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    {{-- <link rel="stylesheet" href="styleTest.css"> --}}
     <link rel="stylesheet" href="{{ asset('asset\dist\css\page.css') }}">
     <link
         rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" />
-
 </head>
 
 <body>
