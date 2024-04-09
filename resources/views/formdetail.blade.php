@@ -1,7 +1,9 @@
+
 @extends('layouts.v_sidebar')
 
 @section('content')
     {{-- date range picker --}}
+
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -10,7 +12,6 @@
     {{-- data table --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css">
-
     <!-- Modal แสดง QR Code สำหรับ QR Code ไม่ระบุตำแหน่งงาน -->
     <div class="modal fade" id="qrCodeModalNoPosition" tabindex="-1" aria-labelledby="qrCodeModalNoPositionLabel"
         aria-hidden="true">
@@ -196,11 +197,22 @@
                                 <button class="btn btn-link" style="color: #E8042C">ลบ</button>
                             </td>
                         </tr>
+
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+    </div>
+    <script>
+        var $j = jQuery.noConflict(true);
+    </script>
+    <script>
+        $(document).ready(function() {
+            console.log($().jquery); // This prints v1.9.1
+            console.log($j().jquery); // This prints v1.9.1
+        });
+    </script>
     <script>
         $j(function() {
             $j('input[name="daterange"]').daterangepicker({
@@ -211,8 +223,10 @@
             });
         });
     </script>
+
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> --}}
     <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
 
@@ -224,7 +238,7 @@
                     className: 'text-center',
                     targets: [0, 1, 2, 3, 4]
                 }, ],
-                stateSave: false
+                stateSave: true
             });
 
             // Filter the table based on the dropdown values
@@ -239,11 +253,7 @@
             });
         });
     </script>
-    
-    <script>
-        console.log(typeof $); // should log "function"
-        console.log(typeof bootstrap); // should log "object"
-    </script>
+
 
     <!-- MODAL -->
     <script>
