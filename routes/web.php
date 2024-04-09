@@ -4,6 +4,7 @@ use App\Http\Controllers\Authenticate;
 use App\Http\Controllers\C_Information;
 use App\Http\Controllers\C_student;
 use App\Http\Controllers\Clicknext_page;
+use App\Models\P_Password;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +37,11 @@ Route::get('/main', function () {
     return view('main');
 });
 
+Route::get('/password', function () {
+    return view('change-password');
+});
+
+
 
 Route::get('/information', function () {
     return view('information');
@@ -43,3 +49,5 @@ Route::get('/information', function () {
 
 
 Route::get('/information', [C_Information::class, 'information']);
+
+Route::get('/password', [C_Information::class, 'password']);

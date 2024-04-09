@@ -9,13 +9,13 @@ class F_Information extends Model
 {
     use HasFactory;
 
-    protected $table = 'Testforms';
-    protected $primaryKey = 'Testforms_id';
+    protected $table = 'hrs';
+    protected $primaryKey = 'hr_id';
 
     protected $fillable = [
-        'Testforms_roundcount',
-        'Testforms_detail',
-        'Testforms_status',
-        'Testforms_status_se'
+        'hr_username',
+        'hr_firstname',
+        'hr_lastname',
+        'hr_password'
     ];
 }

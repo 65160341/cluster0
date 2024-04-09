@@ -8,8 +8,8 @@
     <title>ระบบรับสมัครพนักงงาน</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    {{-- <link rel="stylesheet" href="styleTest.css"> --}}
-    <style>
+    <link rel="stylesheet" href="{{ asset('asset\dist\css\style.css') }}">
+    {{-- <style>
         @import url('https://fonts.googleapis.com/css?family=Poppins:wght@300;400;500;600;700&display=swap');
 
         ::after,
@@ -209,7 +209,7 @@
         }
 
         @media (min-width: 768px) {}
-    </style>
+    </style> --}}
 </head>
 
 <body>
@@ -279,8 +279,7 @@
                                 <img src="Unknown_person.jpg" class="avatar img-fluid" alt="">Username
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">โปรไฟล์</a></li>
-                                <li><a class="dropdown-item" href="#">ตั้งค่า</a></li>
+                                <li><a class="dropdown-item" href="/password">ตั้งค่า</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>

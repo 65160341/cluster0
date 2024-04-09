@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>information</title>
+    <title>ข้อมูล</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -80,8 +80,7 @@
                                     alt="">Username
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">โปรไฟล์</a></li>
-                                <li><a class="dropdown-item" href="#">ตั้งค่า</a></li>
+                                <li><a class="dropdown-item" href="/password">ตั้งค่า</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -101,7 +100,7 @@
                                 เลือกปีที่รับสมัคร
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">2/2570</a></li>
+                                <li><a class="dropdown-item" href="#">1/2023</a></li>
                                 <li><a class="dropdown-item" href="#">1/2570</a></li>
                                 <li><a class="dropdown-item" href="#">2/2568</a></li>
                                 <li><a class="dropdown-item" href="#">1/2568</a></li>
@@ -159,7 +158,8 @@
                             <tbody id="myTable">
                                 @foreach ($pos_forms as $item)
                                     <tr>
-                                        <td>{{ $item->form->form_round_count }}</td>
+                                        <td>{{ $item->form->form_round_count . '/' . $item->form->form_round_year }}
+                                        </td>
                                         <td>{{ $item->fp_detail }}</td>
                                         <td>{{ $item->fp_status }} </td>
                                         <td>{{ $item->form->form_round_year }}</td>
