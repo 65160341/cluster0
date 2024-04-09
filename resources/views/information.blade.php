@@ -138,7 +138,7 @@
                                             </ul>
                                         </div> --}}
                                     </th>
-                                    <th scope="col">สถานะการคัดเลือก
+                                    <th scope="col">
                                         {{-- <div class="dropdown">
                                             <button class="btn btn-white dropdown-toggle" type="button"
                                                 id="selectionStatusDropdown" data-bs-toggle="dropdown"
