@@ -23,9 +23,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css">
 
-    <script>
-        var $j = jQuery.noConflict(true);
-    </script>
+
 </head>
 
 <body>
@@ -70,17 +68,28 @@
                     </div>
                 </li> --}}
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link" data-bs-toggle="collapse" data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
+                    {{-- <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Button with data-bs-target
+                      </button>
+                      <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                          Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                        </div>
+                      </div> --}}
+                    <a href="#" class="sidebar-link" data-bs-toggle="collapse" data-bs-target="#auth"
+                        aria-expanded="false" aria-controls="auth">
                         <i class='bx bxs-food-menu'></i>
                         <span>ฟอร์ม</span>
                     </a>
                     <div id="auth" class="sidebar-dropdown collapse">
                         <ul class="list-unstyled">
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link"><i class='bx bx-chevron-right'></i>สร้างฟอร์มรับสมัคร</a>
+                                <a href="#" class="sidebar-link"><i
+                                        class='bx bx-chevron-right'></i>สร้างฟอร์มรับสมัคร</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link"><i class='bx bx-chevron-right'></i>ฟอร์มของฉัน</a>
+                                <a href="#" class="sidebar-link"><i
+                                        class='bx bx-chevron-right'></i>ฟอร์มของฉัน</a>
                             </li>
                         </ul>
                     </div>
@@ -318,26 +327,15 @@
                     </div>
                 </div>
         </div>
-
         </main>
     </div>
     </div>
-    <script>
-        var $j = jQuery.noConflict(true);
-    </script>
-    <script>
-        $(document).ready(function() {
-            console.log($().jquery); // This prints v1.9.1
-            console.log($j().jquery); // This prints v1.9.1
-        });
-    </script>
     <script>
         const hamBurger = document.querySelector(".toggle-btn");
 
         hamBurger.addEventListener("click", function() {
             document.querySelector("#sidebar").classList.toggle("expand");
         });
-
     </script>
     <script>
         $j(function() {
@@ -351,7 +349,7 @@
     </script>
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
@@ -371,11 +369,10 @@
             $('.table-filter').on('change', function() {
                 var filterValue = $(this).val();
                 var columnIndex = $(this).closest('th').index();
-
                 if (filterValue === 'all') {
                     table.column(columnIndex).search('').draw();
                 } else {
-                    table.column(columnIndex).search(filterValue).draw();
+                    table.column(columnIndex).search('^' + filterValue + '$', true, false).draw();
                 }
             });
         });
