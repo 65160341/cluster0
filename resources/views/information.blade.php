@@ -349,6 +349,8 @@
                     // คืนค่ากลับมาแสดงค่าของตัวมันเอง
                     var originalStatus = btn.closest('tr').find('td:eq(3)').text();
                     btn.closest('tr').find('td:eq(3)').text(originalStatus);
+                    // เปลี่ยนสีข้อความในตารางเป็นสีเขียว
+                    btn.closest('tr').find('td:eq(3)').css('color', '#00B187');
                 },
                 error: function(xhr, status, error) {
                     console.error(error); // แสดงข้อผิดพลาดที่เกิดขึ้นในกรณีที่เกิดข้อผิดพลาด
