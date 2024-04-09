@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\F_Information;
+
+use App\Models\form_positions;
 use Illuminate\Http\Request;
 
 class C_Information extends Controller
 {
     public function information()
     {
-
-        $Testforms = F_Information::all();
-        return view('information', compact('Testforms'));
+        $pos_forms = form_positions::all();
+        return view('information', compact('pos_forms'));
 
         // $user = F_Information::all();
         // return view('information', compact('user'));

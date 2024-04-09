@@ -18,14 +18,4 @@ class F_Information extends Model
         'Testforms_status',
         'Testforms_status_se'
     ];
-
-    // protected $table = 'applicants';
-    // protected $primaryKey = 'app_id';
-
-    // protected $fillable = [
-    //     'app_firstname',
-    //     'app_age',
-    //     'app_edcation',
-    //     'app_faculty'
-    // ];
 }

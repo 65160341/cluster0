@@ -157,12 +157,12 @@
                             </thead>
 
                             <tbody id="myTable">
-                                @foreach ($Testforms as $item)
+                                @foreach ($pos_forms as $item)
                                     <tr>
-                                        <td>{{ $item->Testforms_roundcount }}</td>
-                                        <td>{{ $item->Testforms_detail }}</td>
-                                        <td>{{ $item->Testforms_status }} </td>
-                                        <td>{{ $item->Testforms_status_se }}</td>
+                                        <td>{{ $item->form->form_round_count }}</td>
+                                        <td>{{ $item->fp_detail }}</td>
+                                        <td>{{ $item->fp_status }} </td>
+                                        <td>{{ $item->form->form_round_year }}</td>
                                         <td>
                                             <a href="{{ $item->Testforms_id }}" class="btn btn-primary"
                                                 style="margin-left: 10%">ตรวจสอบ</a>
