@@ -21,9 +21,12 @@ use Illuminate\Support\Facades\Route;
 //     Route::post('login', 'login_save')->name('login.save');
 // });
 
-// Route::controller(Clicknext_page::class)->prefix('pages')->group(function () {
-//     Route::get('index', 'index')->name('index');
-// });
+Route::controller(Clicknext_page::class)->middleware('auth.sessions')->prefix('pages')->group(function () {
+        Route::get('index', 'index')->name('index');
+});
+Route::middleware(['auth.sessions'])->group(function () {
+    Route::get('index', 'App\Http\Controllers\Clicknext_page@index')->name('index');
+});
 
 
 // Route::get('/test', function () {

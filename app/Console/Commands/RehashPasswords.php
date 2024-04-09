@@ -32,7 +32,7 @@ class RehashPasswords extends Command
         $hrs = Hrs::all();
 
         foreach ($hrs as $hr) {
-            $hr->password = Hash::make($hr->password);
+            $hr->hr_password = Hash::make($hr->hr_password);
             $hr->save();
         }
 

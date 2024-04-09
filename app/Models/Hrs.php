@@ -9,11 +9,11 @@ class Hrs extends Model
 {
     use HasFactory;
         protected $fillable = [
-        'id',
+        'hr_id',
         'hr_username',
         'hr_firstname',
         'hr_lastname',
-        'password'
+        'hr_password'
     ];
     public function getAuthIdentifierName()
     {
@@ -37,6 +37,6 @@ class Hrs extends Model
      */
     public function getAuthPassword()
     {
-        return $this->getAttribute('password');
+        return $this->getAttribute('hr_password');
     }
 }

@@ -196,7 +196,7 @@
                                         <i class="fa-solid fa-lock"></i>
                                     </span>
                                     <input type="password" id="form3Example2" class="form-control"
-                                        placeholder="Password" name="password" />
+                                        placeholder="Password" name="hr_password" />
                                 </div>
                             </div>
                         </div>

@@ -1,38 +1,53 @@
+version: '3'
 services:
-    php:
-        build:
-            context: .
-            dockerfile: Dockerfile.php
-        container_name: php
-        volumes:
-            - .:/var/www/html
-        depends_on:
-            - database
-    web:
-        build:
-            context: .
-            dockerfile: Dockerfile.apache
-        ports:
-            - "80:80"
-        volumes:
-            - .:/var/www/html
-        depends_on:
-            - php
-    database:
-        image: mysql:8.0
-        container_name: database
-        volumes:
-            - ./server_data:/var/lib/mysql
-        environment:
-            - "MYSQL_DATABASE=app"
-            - "MYSQL_USER=app"
-            - "MYSQL_PASSWORD=app@"
-            - "MYSQL_ROOT_PASSWORD=root@"
-        ports:
-            - "3306:3306"
-        command:
-            [
-                "--character-set-server=utf8mb4",
-                "--collation-server=utf8mb4_unicode_ci",
-                "--default-authentication-plugin=mysql_native_password",
-            ]
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile.php
+    container_name: php
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - database
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.apache
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - php
+
+  database:
+    image: mysql:8.0
+    container_name: database
+    volumes:
+      - ./server_data:/var/lib/mysql
+    environment:
+      - "MYSQL_DATABASE=cluster0"
+      - "MYSQL_USER=cluster0"
+      - "MYSQL_PASSWORD=PHMB9@TIpKgSMlK3"
+      - "MYSQL_ROOT_PASSWORD=root@"
+    ports:
+      - "3306:3306"
+    command:
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_unicode_ci"
+      - "--default-authentication-plugin=mysql_native_password"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    links:
+      - database
+    ports:
+      - "8080:80"
+    environment:
+      - PMA_ARBITRARY=1
+      - MYSQL_USER=cluster0
+      - MYSQL_PASSWORD=PHMB9@TIpKgSMlK3
+      - MYSQL_ROOT_PASSWORD=root@
+      - MYSQL_HOST=database

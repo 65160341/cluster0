@@ -10,7 +10,7 @@ RUN apk update && \
     && docker-php-ext-install pdo_mysql zip
 
 # Set the working directory
-WORKDIR /var/www/html
+WORKDIR /var/www
 
 # Copy composer files and install dependencies
 COPY composer.json composer.lock ./
