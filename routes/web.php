@@ -3,6 +3,7 @@
 use App\Http\Controllers\Authenticate;
 use App\Http\Controllers\Clicknext_page;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FormsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,22 +31,8 @@ use Illuminate\Support\Facades\Route;
 //     echo "<h1>test</h1><a href='" . url('/') . "'>HOME " . url('/') . "</a>";
 // });
 
-Route::get('/main', function () {
-    return view('main');
+Route::get('/', function () {
+    return redirect('/forms');
 });
 
-Route::get('/myform', function () {
-    return view('myform');
-});
-
-Route::get('/formdetail', function () {
-    return view('formdetail');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
-
-Route::get('/test_sidebar', function () {
-    return view('test_sidebar');
-});
+Route::get('/forms', [FormsController::class, 'index'])->name('form.index');
