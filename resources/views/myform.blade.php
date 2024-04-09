@@ -4,10 +4,8 @@
 {{-- data table --}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css">
-
     <div class="container-fluid content px-3 py-4">
         <div class="mb-3">
-
             <div class="row align-items-center mb-3">
                 <div class="col-auto">
                     <span>ปีที่เปิดรับสมัคร</span>
@@ -22,7 +20,6 @@
                 </div>
             </div>
             <div class="col-12 columnset">
-
                 <table id="example" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
@@ -78,8 +75,6 @@
             </div>
         </div>
     </div>
-    </div>
-
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> --}}
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> --}}
