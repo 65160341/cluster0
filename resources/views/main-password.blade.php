@@ -78,7 +78,7 @@
                                 <img src="Unknown_person.jpg" class="avatar img-fluid" alt="">Username
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/change-password">ตั้งค่า</a></li>
+                                <li><a class="dropdown-item" href="/main-password">ตั้งค่า</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -88,6 +88,39 @@
                     </ul>
                 </div>
             </nav>
+            <main class="content px-3 py-4">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">การตั้งค่า</h3>
+
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <!-- ตาราง -->
+                                <td>Name</td>
+                                <td>Email</td>
+                                <td width="150px">Tools</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($users as $item)
+                                <tr>
+                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->email }}</td>
+                                    <td style="display: flex ; height: 95px ">
+                                        <!-- ปุ่มกด เปลี่ยนรหัสผ่าน -->
+                                        <a href="{{ url('change-password/' . $item->id) }}" class="btn btn-warning"
+                                            style="height: 38px ; margin-right :5px ; width: 70px">แก้ไข</a>
+                                        <button style="height: 38px ; margin-left: 10px"
+                                            class="btn btn-danger delete-btn" data-id="{{ $item->id }}">ลบ</button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </main>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

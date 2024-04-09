@@ -170,33 +170,7 @@
                                         </td>
                                     </tr>
                                 @endforeach
-                                {{-- @foreach ($user as $item)
-                                    <tr>
-                                        <td>{{ $item->app_firstname }}</td>
-                                        <td>{{ $item->app_age }}</td>
-                                        <td>{{ $item->app_education }} </td>
-                                        <td>{{ $item->app_faculty }}</td>
-                                        <td>
-                                            <a href="{{ $item->app_id }}" class="btn btn-primary"
-                                                style="margin-left: 10%">ตรวจสอบ</a>
-                                            <a href="" class="btn btn-success">เสร็จสิ้น</a>
-                                        </td>
-                                    </tr>
-                                @endforeach --}}
-                                {{-- <tr>
-                                    <td>dddddd</td>
-                                    <td>dddddd</td>
-                                    <td>dddddd</td>
-                                    <td>dddddd</td>
-                                    <td><a href="" class="btn btn-success">เสร็จสิ้น</a></td>
-                                </tr>
-                                <tr>
-                                    <td>dddddd</td>
-                                    <td>dddddd</td>
-                                    <td>dddddd</td>
-                                    <td>dddddd</td>
-                                    <td><a href="" class="btn btn-success">เสร็จสิ้น</a></td>
-                                </tr> --}}
+                        
                             </tbody>
                         </table>
                     </div>

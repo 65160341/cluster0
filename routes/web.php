@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Authenticate;
 use App\Http\Controllers\C_Information;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\C_student;
 use App\Http\Controllers\Clicknext_page;
 use App\Models\P_Password;
@@ -33,8 +34,8 @@ use Illuminate\Support\Facades\Route;
 //     echo "<h1>test</h1><a href='" . url('/') . "'>HOME " . url('/') . "</a>";
 // });
 
-Route::get('/main', function () {
-    return view('main');
+Route::get('/main-password', function () {
+    return view('main-password');
 });
 
 Route::get('/change-password', function () {
@@ -50,4 +51,6 @@ Route::get('/information', function () {
 
 Route::get('/information', [C_Information::class, 'information']);
 
-// Route::get('/change-password', [C_Information::class, 'password']);
+Route::get('/main-password', [UserController::class, 'index']); // แสดงหน้าผู้ใช้ homepage
+Route::get('/change-password/{id}', [UserController::class, 'edit']); // การเรียกฟอร์มแก้ไขข้อมูลผู้ใช้ || edit-user
+Route::put('update-user/{id}', [UserController::class, 'update']);

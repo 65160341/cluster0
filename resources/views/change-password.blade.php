@@ -95,66 +95,42 @@
                     <div class="card-header">
                         <h3 class="card-title">การตั้งค่า</h3>
                     </div>
-                    <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
-                        <!-- Form fields... -->
-                        {{-- @foreach ($hrs as $hr) --}}
+                    <form class="form-horizontal" action="{{ url('update-user/' . $user->id) }}" method="post"
+                        enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
                         <div class="card-body">
+                            <!-- กล่องข้อความ Name -->
                             <div class="form-group row">
                                 <label for="name" class="col-sm-2 col-form-label">ชื่อ</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="name" name="name"
-                                        value="">
+                                        value="{{ $user->name }}">
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="surname" class="col-sm-2 col-form-label">นามสกุล</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="surname" name="surname"
-                                        value="">
-                                </div>
-                            </div>
+                            <!-- กล่องข้อความ Email -->
                             <div class="form-group row">
                                 <label for="email" class="col-sm-2 col-form-label">อีเมล</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="email" name="email"
-                                        value="">
+                                        value="{{ $user->email }}">
                                 </div>
                             </div>
+                            <!-- กล่องข้อความ รหัสผ่าน -->
                             <div class="form-group row">
-                                <label for="phone" class="col-sm-2 col-form-label">โทรศัพท์</label>
+                                <label for="password" class="col-sm-2 col-form-label">รหัสผ่าน</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="phone" name="phone"
-                                        value="">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="old_password" class="col-sm-2 col-form-label">รหัสผ่านเก่า</label>
-                                <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="old_password"
-                                        name="old_password" value="">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="new_password" class="col-sm-2 col-form-label">รหัสผ่านใหม่</label>
-                                <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="new_password"
-                                        name="new_password" value="">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="confirm_password" class="col-sm-2 col-form-label">ยืนยันรหัสผ่าน</label>
-                                <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="confirm_password"
-                                        name="confirm_password" value="">
+                                    <input type="text" class="form-control" id="password" name="password"
+                                        value="{{ $user->password }}">
                                 </div>
                             </div>
                         </div>
+                        <!-- /.card-body -->
                         <div class="card-footer">
-                            {{-- <button type="submit" class="btn btn-danger">อัปเดต</button> --}}
-                            <a class="btn btn-danger" href="/main" role="button">อัปเดต</a>
-                            <a href="{{ url('/main') }}" class="btn btn-default float-right">Cancel</a>
+                            <button type="submit" class="btn btn-danger">อัพเดท</button>
+                            <a href="{{ url('/main-password') }}" class="btn btn-default float-right">ยกเลิก</a>
                         </div>
-                        {{-- @endforeach --}}
+                        <!-- /.card-footer -->
                     </form>
                 </div>
             </main>
