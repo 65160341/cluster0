@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>แสดงผลผู้สมัครที่คัดเลือก</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>สถานะการคัดเลือก</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -238,9 +239,12 @@
 
         @media (min-width: 768px) {}
     </style>
+
 </head>
 
+
 <body>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
     <div class="wrapper">
         <aside id="sidebar">
             <div class="d-flex">
@@ -326,23 +330,20 @@
                         <div class="dropdown shadow-sm">
                             <select class="form-select" aria-label="Default select example"
                                 onchange="navigateToRoute(this.value)">
-                                <option value="{{ route('selected') }}">ยังไม่ได้คัดเลือก</option>
-                                <option value="{{ route('selected_information') }}" selected>คัดเลือกแล้ว</option>
+                                <option value="{{ route('selected') }}" selected>ยังไม่ได้คัดเลือก</option>
+                                <option value="{{ route('selected_information') }}">คัดเลือกแล้ว</option>
                             </select>
                         </div>
-                        {{-- <div class="mb-3 d-flex align-items-center ms-auto"> <!-- เพิ่ม class ms-auto -->
+                        <div class="mb-3 d-flex align-items-center ms-auto"> <!-- เพิ่ม class ms-auto -->
                             <div class="dropdown shadow-sm">
-                                <button class="btn btn-light btn-sm dropdown-toggle" type="button"
-                                    id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                    ข้อมูลทั้งหมด
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                                    <!-- เปลี่ยนตำแหน่งของ dropdown-menu ไปอยู่ท้ายสุด -->
-                                    <li><a class="dropdown-item" href="#">ข้อมูลที่เปิดเผย</a></li>
-                                    <li><a class="dropdown-item" href="#">ข้อมูลที่ซ่อนไว้</a></li>
-                                </ul>
+                                <select class="form-select" aria-label="Default select example"
+                                    onchange="navigateToRoute(this.value)">
+                                    <option value="{{ route('selected') }}">ข้อมูลทั้งหมด</option>
+                                    <option value="{{ route('public_data') }}">ข้อมูลที่เปิดเผย</option>
+                                    <option value="{{ route('hidden_data') }}" selected>ข้อมูลที่ซ่อนไว้</option>
+                                </select>
                             </div>
-                        </div> --}}
+                        </div>
                     </div>
                     <div class="col-12 table-responsive">
                         <table class="table table-striped">
@@ -386,41 +387,47 @@
                                             </ul>
                                         </div>
                                     </th>
-                                    <th scope="col">วันที่ตอบรับ</th>
-                                    <th scope="col">สถานะ</th>
+                                    <th scope="col">วันที่สมัคร</th>
                                     <th scope="col">ฟอร์ม</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             @foreach ($user as $item)
-                            <tbody id="my_tbody">
-                            @if ($item->app_selected == 1)
-                            <tr>
-                                <td>{{ $item->app_firstname . ' ' . $item->app_lastname }}</td>
-                                <td></td>
-                                <td>{{ $item->position->pos_name  }}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                             </tr>
-                            @endif
-                            </tbody>
+                                <tbody id="row_{{ $item->app_id }}">
+                                    @if ($item->app_status === 0)
+                                        <tr>
+                                            <td>{{ $item->app_firstname . ' ' . $item->app_lastname }}</td>
+                                            <td></td>
+                                            <td>{{ $item->position->pos_name}}</td>
+                                            <td></td>
+                                            <td>
+                                                <button data-id="{{ $item->app_id }}"
+                                                    class="userinfo btn btn-primary">view</button>
+                                            </td>
+                                            <td style="display: flex ; height: 95px ">
+                                                <button style="height: 38px ; margin-left: 10px"
+                                                    class="btn btn-secondary hide-btn" data-id="{{ $item->app_id }}"
+                                                    onclick="sendIdToController({{ $item->app_id }})">แสดง</button>
+                                            </td>
+                                        </tr>
+                                    @endif
+
+                                </tbody>
                             @endforeach
                         </table>
-                        <a class="btn btn-primary" href="/selected" role="button">กลับไปหน้าคัดเลือก</a>
+                        <a class="btn btn-primary" href="/information" role="button">กลับไปหน้าแรก</a>
                     </div>
             </main>
-
         </div>
     </div>
-</body>
-</html>
-
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-
         const hamBurger = document.querySelector(".toggle-btn");
 
         hamBurger.addEventListener("click", function() {
@@ -472,7 +479,93 @@
                 modal.style.display = 'none';
             });
         });
+        document.addEventListener("DOMContentLoaded", function() {
+            const modal = document.querySelector('.modal');
+            const closeModalButtons = document.querySelectorAll('.btn-close, [data-bs-dismiss="modal"]');
+            const confirmButton = document.getElementById('confirmButton');
+            const selectButtons = document.querySelectorAll('.btn-success');
+
+            selectButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    modal.style.display = 'block';
+                    document.querySelector('.modal-title').innerText = 'Modal title';
+
+                    // Get the ID from the data-id attribute of the button's parent row
+                    const userId = this.closest('tr').getAttribute('data-id');
+
+                    // Set the form action URL dynamically based on the ID
+                    const form = document.querySelector('form');
+                    form.action = '/selected-information/' + userId;
+                });
+            });
+            closeModalButtons.forEach(closeButton => {
+                closeButton.addEventListener('click', function() {
+                    modal.style.display = 'none';
+                });
+            });
+            confirmButton.addEventListener('click', function() {
+                alert('คัดเลือกเสร็จสิ้น');
+                modal.style.display = 'none';
+            });
+        });
+        function showModal(id) {
+            swal({
+                    title: "ยืนยันการคัดเลือก",
+                    icon: "success",
+                    buttons: {
+                        cancle: "NO",
+                        confirm: {
+                            text: "Yes",
+                            value: true,
+                            visible: true,
+                            className: "btn-success",
+                        },
+                    },
+                })
+                .then((value) => {
+                    if (value) {
+                        window.location.href = "/selected-information/" + id;
+
+                    }
+                });
+        }
+
+        function sendIdToController(id) {
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: '/update/' + id,
+                type: 'GET',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken // Include CSRF token in the headers
+                },
+                data: {
+                    id: id
+                },
+                success: function(response) {
+                    console.log('ID sent successfully');
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error sending ID: ', error);
+                }
+            });
+        }
+
+        function showData() {
+            var rows = document.querySelectorAll("[id^='row']");
+            rows.forEach(function(row) {
+                var computedStyle = window.getComputedStyle(row);
+                if (computedStyle.display === "none") {
+                    row.style.display = "table-row"; // Display the row if it's currently hidden
+                } else {
+                    row.style.display = "none"; // Hide the row if it's currently visible
+                }
+            });
+        }
+
         function navigateToRoute(route) {
             window.location.href = route;
         }
     </script>
+</body>
+
+</html>

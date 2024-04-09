@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>สถานะการคัดเลือก</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -327,25 +328,20 @@
                     <div class="mb-3 d-flex align-items-center">
                         <h4 class="me-3">สถานะการคัดเลือก : </h4>
                         <div class="dropdown shadow-sm">
-                            <a class="btn btn-light btn-sm dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                ยังไม่ได้คัดเลือก
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">คัดเลือกแล้ว</a></li>
-                            </ul>
+                            <select class="form-select" aria-label="Default select example"
+                                onchange="navigateToRoute(this.value)">
+                                <option value="{{ route('selected') }}" selected>ยังไม่ได้คัดเลือก</option>
+                                <option value="{{ route('selected_information') }}">คัดเลือกแล้ว</option>
+                            </select>
                         </div>
                         <div class="mb-3 d-flex align-items-center ms-auto"> <!-- เพิ่ม class ms-auto -->
                             <div class="dropdown shadow-sm">
-                                <button class="btn btn-light btn-sm dropdown-toggle" type="button"
-                                    id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                    ข้อมูลทั้งหมด
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                                    <!-- เปลี่ยนตำแหน่งของ dropdown-menu ไปอยู่ท้ายสุด -->
-                                    <li><a class="dropdown-item" href="#">ข้อมูลที่เปิดเผย</a></li>
-                                    <li><a class="dropdown-item" href="#">ข้อมูลที่ซ่อนไว้</a></li>
-                                </ul>
+                                <select class="form-select" aria-label="Default select example"
+                                    onchange="navigateToRoute(this.value)">
+                                    <option value="{{ route('selected') }}" selected>ข้อมูลทั้งหมด</option>
+                                    <option value="{{ route('public_data') }}">ข้อมูลที่เปิดเผย</option>
+                                    <option value="{{ route('hidden_data') }}">ข้อมูลที่ซ่อนไว้</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -398,11 +394,12 @@
                             </thead>
                             @foreach ($user as $item)
                                 <tbody id="row_{{ $item->app_id }}">
-                                    <tr>
-                                        <td>{{ $item->app_id }}</td>
+                                    @if ($item->app_selected == 0)
+                                        <tr>
                                         <td>{{ $item->app_firstname . ' ' . $item->app_lastname }}</td>
-                                        <td>{{ $item->app_age }}</td>
-                                        <td>{{ $item->app_email }}</td>
+                                        <td></td>
+                                        <td>{{ $item->position->pos_name}}</td>
+                                        <td></td>
                                         <td>
                                             <button data-id="{{ $item->app_id }}"
                                                 class="userinfo btn btn-primary">view</button>
@@ -411,30 +408,28 @@
 
                                             <button style="height: 38px ; margin-left: 10px"
                                                 class="btn btn-secondary hide-btn" data-id="{{ $item->app_id }}"
-                                                onclick="hideRow({{ $item->app_id }})">ซ่อน</button>
+                                                onclick="hideRow({{ $item->app_id }})"
+                                                {{ $item->app_status == 0 ? 'disabled' : 'enabled' }}>ซ่อน</button>
                                             <button style="height: 38px; margin-left: 10px" class="btn btn-success"
-                                                onclick="showModal({{ $item->app_id }})">คัดเลือก
+                                                onclick="showModal({{ $item->app_id }})"  {{ $item->app_selected == 1 ? 'disabled' : 'enabled' }}>คัดเลือก
                                             </button>
+                                        </td>
+                                    </tr>
+                                    @endif
+                                </tbody>
                             @endforeach
-                            </td>
-                            </tr>
-
-                            </tbody>
                         </table>
                         <a class="btn btn-primary" href="/information" role="button">กลับไปหน้าแรก</a>
                     </div>
-
             </main>
-
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         const hamBurger = document.querySelector(".toggle-btn");
 
@@ -535,45 +530,72 @@
                 })
                 .then((value) => {
                     if (value) {
-                        window.location.href = "/selected-information/" + id;
-                        deleteRow(id);
+                       sendUserId(id);
+
                     }
                 });
         }
-        function deleteRow(id) {
-            if (row) {
-            row.remove();
-            // Add deleted row ID to the URL as a query parameter
-            var url = new URL('/selected', window.location.href);
-            url.searchParams.append('deleted_id', id);
-            window.location.href = url.href;
+        function sendUserId(id) {
+            console.log("Sending user ID:", id);
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: '/update-selected/' + id,
+                type: 'GET',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken // Include CSRF token in the headers
+                },
+                success: function(data) {
+                    console.log('success');
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
         }
-        }
-
         function hideRow(id) {
             var row = document.getElementById("row_" + id);
             if (row) {
                 row.style.display = "none";
+                sendIdToController(id);
             } else {
                 console.error("Row with id " + id + " not found.");
             }
         }
+        function sendIdToController(id) {
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-        // function sendUserId(id) {
-        //     console.log("Sending user ID:", id);
-        //     $.ajax({
-        //         url: '/selected-information/' + id,
-        //         type: 'PUT',
-        //         success: function(data) {
-        //             console.log('success');
-        //         },
-        //         error: function(error) {
-        //             console.error(error);
-        //         }
-        //     });
-        // }
+            $.ajax({
+                url: '/update/' + id,
+                type: 'GET',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                },
+                data: {
+                    id: id
+                },
+                success: function(response) {
+                    console.log('ID sent successfully');
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error sending ID: ', error);
+                }
+            });
+        }
+        function showData() {
+            var rows = document.querySelectorAll("[id^='row']");
+            rows.forEach(function(row) {
+                var computedStyle = window.getComputedStyle(row);
+                if (computedStyle.display === "none") {
+                    row.style.display = "table-row";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+        function navigateToRoute(route) {
+            window.location.href = route;
+        }
     </script>
-
 </body>
 
 </html>

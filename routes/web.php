@@ -43,9 +43,12 @@ Route::get('/selected', function () {
 });
 
 
-Route::get('/selected', [C_student::class, 'selected']);
+Route::get('/selected', [C_student::class, 'selected'])->name('selected');
 
 Route::get('/information', [C_student::class, 'information']);
-Route::get('/selected-information/{id}', [C_student::class, 'selected_information'])->name('selected-information');
-// Route::post('/selected-information/{id}', [C_student::class, 'show_selected'])->name('show_selected');
+Route::get('/update-selected/{id}', [C_student::class, 'update_selected']);
+Route::get('/selected-information', [C_student::class, 'show_selected'])->name('selected_information');
+Route::get('/update/{id}', [C_student::class, 'update_status']);
+Route::get('/hidden-data',  [C_student::class, 'showHiddenData'])->name('hidden_data');
+Route::get('/public-data',  [C_student::class, 'showPublicData'])->name('public_data');
 

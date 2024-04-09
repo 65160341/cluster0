@@ -22,8 +22,12 @@ class M_Student extends Model
         'app_require_salary',
         'app_question',
         'app_resume',
+        'app_status',
+        'app_selected',
         'pos_id',
         'hr_id',
+        'updated_at',
+
     ];
 
     public function position()
