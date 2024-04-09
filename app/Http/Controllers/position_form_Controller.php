@@ -24,35 +24,39 @@ class position_form_controller extends Controller
     return view('creatform', compact('positionForms'));
 }
 
-    // บันทึกข้อมูลใหม่ลงในตาราง position_form
-    public function store(Request $request)
-    {
-        $latestId = Form::max('form_id');
+public function store(Request $request) {
+    // ตรวจสอบว่ามีข้อมูลที่ส่งมาจากฟอร์มหรือไม่
+    if ($request->has('pf_type_jobs') && $request->has('pos_id') && $request->has('pf_amount_of_position')) {
+        // ดึงข้อมูลจากฟอร์ม
+        $pf_type_jobs = $request->input('pf_type_jobs');
+        $pos_id = $request->input('pos_id');
+        $pf_amount_of_position = $request->input('pf_amount_of_position');
 
-// กำหนดค่า 'form_id' ใหม่โดยเพิ่มค่าล่าสุดขึ้นไปหนึ่ง
-$latestId++;
+        // ตรวจสอบว่าข้อมูลมีค่าเป็น array หรือไม่
+        if (is_array($pf_type_jobs) && is_array($pos_id) && is_array($pf_amount_of_position)) {
+            // สร้างอาร์เรย์ข้อมูลจากข้อมูลที่ได้รับ
+            $formData = [];
+            foreach ($pf_type_jobs as $key => $value) {
+                $formData[] = [
+                    'pf_type_jobs' => $value,
+                    'pos_id' => $pos_id[$key],
+                    'pf_amount_of_position' => $pf_amount_of_position[$key]
+                ];
+            }
+            $formData -> save
 
-
-        // // Create and save a new form
-        $form = new Form();
-        $form->form_id = $latestId;
-        $form->form_date_start = now();
-        $form->form_roundcount = $request->input('form_roundcount');
-        $form->form_date_end = $request->input('form_date_end') ?? now();
-        $form->save();
-
-        // Create and save a new position form
-        $positionForms = new PositionForm();
-        $positionForms->pf_info = $request->input('pf_info');
-        $positionForms->pf_type_jobs = $request->input('pf_type_jobs');
-        $positionForms->pos_id = $request->input('pos_id');
-        $positionForms->pf_amount_of_position = $request->input('pf_amount_of_position');
-        $positionForms->form_id = $form->form_id;
-        $positionForms->save();
-
-        // Return to the desired view
-        return redirect('/');
+            // ส่งข้อมูลไปยังหน้าเว็บ
+            return view('creatform')->with('formData', $formData);
+        } else {
+            // กรณีข้อมูลไม่ใช่ array
+            return back()->withInput()->withErrors(['message' => 'ข้อมูลที่ส่งมาจากฟอร์มไม่ถูกต้อง']);
+        }
+    } else {
+        // กรณีไม่มีข้อมูลที่ส่งมาจากฟอร์ม
+        return back()->withInput()->withErrors(['message' => 'ไม่พบข้อมูลที่ส่งมาจากฟอร์ม']);
     }
+}
+
     public function update(Request $request, $id)
     {
         $positionForm = PositionForm::findOrFail($id);

@@ -41,4 +41,6 @@ Route::get('/dashboard', function () {
 });
 Route::get('/', [position_form_Controller::class, 'index']);
 Route::post('/store', [position_form_Controller::class, 'store']);
-
+Route::get('/test', function () {
+    return view('maintest');
+});

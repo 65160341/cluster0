@@ -207,14 +207,6 @@
             color: white;
             border-left: 3px solid #3b7ddd;
         }
-        #applicationPeriod {
-            margin-left: auto; /* ระยะห่างระหว่าง input text กับปฏิทิน */
-        }
-        .add-form {
-            color: rgb(255, 255, 255);
-            background-color: #870000;
-            background-size: 10px;
-        }
         table {
     border-collapse: collapse;
     margin-right: 40px;
@@ -232,58 +224,6 @@ th {
     background-color: #f2f2f2;
     border-top: 1px solid #ddd; /* เพิ่มเส้นขอบด้านบนให้กับหัวคอลัมน์ */
 }
-.popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            z-index: 999;
-        }
-
-        .popup h2 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .popup input[type="text"],
-        .popup select {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .popup button {
-            padding: 10px 20px;
-            margin-right: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .cancel-button {
-            background-color: #860202;
-            color: white;
-        }
-
-        .confirm-button {
-            background-color: #00FF00;
-            color: white;
-        }
-
-        /* CSS สำหรับไอคอนเครื่องหมายถูก */
-        .icon {
-            color: #00FF00;
-            font-size: 24px;
-            vertical-align: middle;
-            margin-right: 5px;
-        }
-
 
         @media (min-width: 768px) {}
     </style>
@@ -383,7 +323,7 @@ th {
                         <input type="text" id="pf_info" value="" name="pf_info" placeholder="กรอกรายละเอียดเพิ่มเติม"> --}}
 
                         <label for="applicationRound">รอบการรับสมัคร:</label>
-                        <input type="text" id="form_roundcount" value="" name="form_roundcount" placeholder="ระบุรอบ/ปี เช่น รอบที่ 1/2566">
+                        <input type="text" id="form_roundcount" value="" name="form_roundcount" placeholder="ระบุรอบ/ปี เช่น รอบที่ 1/2566"><br>
                         <label for="applicationPeriod">ระยะเวลาการรับสมัคร:</label>
                         <label for="dateStart">เวลาเริ่มต้น</label>
                         <input type="date" id="form_date_start" value="" name="form_date_strat" class="form-control" placeholder="เลือกวันที่เริ่ม">
@@ -391,60 +331,67 @@ th {
                         <input type="date" id="form_date_end" value="" name="form_date_end" class="form-control" placeholder="เลือกวันที่สิ้นสุด">
                         <label for="additionalInfo">รายละเอียดเพิ่มเติม:</label>
                         <input type="text" id="pf_info" value="" name="pf_info" placeholder="กรอกรายละเอียดเพิ่มเติม">
-                         <button class="add-form" onclick="toggleConfirmationPopup()" >+ เพิ่มรายการรับสมัคร</button>
-                        <div class="popup" id="popup">
-                            <form action="/store" method="post" enctype="multipart/form-data" onsubmit="return confirmForm()">
-                                @csrf
-                                <h2>เพิ่มรายการรับสมัคร</h2>
-                                <!-- โปรดทราบว่าฉันได้เปลี่ยนชื่อของฟิลด์เป็นแบบ array ตามที่คุณต้องการ -->
-                                <label for="jobType[]" >ลักษณะงาน:</label>
-                                <select id="pf_type_jobs" name="jobType[]" >
-                                    <option value="พนักงาน">พนักงาน</option>
-                                    <option value="สหกิจ">สหกิจ</option>
-                                </select>
-                                <label for="position[]">ตำแหน่งงาน:</label>
-                                <select id="pos_id" name="position[]" >
-                                    <option value=1>ไม่ระบุตำแหน่งงาน</option>
-                                    <option value=2>Tester</option>
-                                    <option value=3>UX/UI</option>
-                                    <option value=4>Project Manager</option>
-                                    <option value=5>Designer</option>
-                                    <option value=6>Developer</option>
-                                    <option value=7>Business Analytics</option>
-                                </select>
-                                <label for="numOfApplicants[]">จำนวนการรับสมัคร:</label>
-                                <input type="text" value="" id="pf_amount_of_position" name="numOfApplicants[]">
-                                <button type="button" class="cancel-button" onclick="togglePopup()">ยกเลิก</button>
-                                <button type="submit" class="confirm-button"onclick="toggleConfirmationPopup()()">ยืนยัน</button>
-                            </form>
-                    </div>
-<div>
-    <table>
-        <thead>
-            <tr>
-                <th>ลำดับ</th>
-                <th>ลักษณะงาน</th>
-                <th>ตำแหน่งงาน</th>
-                <th>จำนวนการรับสมัคร</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($positionForms  as $key => $item)
-            <tr>
-                <td>{{ $key + 1 }}</td>
-                <td>{{ $item['pf_type_jobs'] }}</td>
-                <td>{{ $item['pos_id'] }}</td>
-                <td>{{ $item['pf_amount_of_position'] }}</td>
-                <td>
-                    <button style="background-color: green; color: white;">แก้ไข</button>
-                    <button style="background-color: red; color: white;">ลบ</button>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
+
+                        <div>
+                            <button onclick="addRow()">เพิ่มข้อมูล</button>
+                            <table id="dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>ลำดับ</th>
+                                        <th>ลักษณะงาน</th>
+                                        <th>ตำแหน่งงาน</th>
+                                        <th>จำนวนการรับสมัคร</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>
+                                            <select name="pf_job_type" id="pf_job_type">
+                                                <option value="" disabled selected>เลือก</option>
+                                                <option value="พนักงาน">พนักงาน</option>
+                                                <option value="สหกิจ">สหกิจ</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select name="pos_id" id="pos_id">
+                                                <option value="" disabled selected>เลือก</option>
+                                                <option value="1">Tester</option>
+                                                <option value="2">UX/UI</option>
+                                                <option value="3">Project Manager</option>
+                                                <option value="4">Designer</option>
+                                                <option value="5">Developer</option>
+                                                <option value="6">Business Analytics</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <button onclick="decreaseApplicants(this)">-</button>
+                                            <input type="number" id="pf_amount_of_positions" name="pf_amount_of_positions"  min="0" value="0">
+                                            <button onclick="increaseApplicants(this)">+</button>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+<script>
+    function increaseApplicants() {
+        var input = document.querySelector('input[type="number"]');
+        var currentValue = parseInt(input.value);
+        input.value = currentValue + 1;
+    }
+
+    function decreaseApplicants() {
+        var input = document.querySelector('input[type="number"]');
+        var currentValue = parseInt(input.value);
+        if (currentValue > 0) {
+            input.value = currentValue - 1;
+        }
+    }
+</script>
 
 <button style="background-color: red; color: white;" onclick="submit()">สร้างฟอร์มและ QR Code</button>
 
@@ -461,29 +408,6 @@ th {
     hamBurger.addEventListener("click", function() {
         document.querySelector("#sidebar").classList.toggle("expand");
     });
-
-    function togglePopup() {
-    var popup = document.getElementById("popup");
-    if (popup.style.display === "block") {
-        popup.style.display = "none";
-    } else {
-        popup.style.display = "block";
-    }
-}
-
-    function confirmForm() {
-        togglePopup(); // ปิด popup เมื่อยืนยัน
-        toggleConfirmationPopup(); // เปิด popup
-    }
-
-    function toggleConfirmationPopup() {
-        var confirmationPopup = document.getElementById("popup");
-        if (confirmationPopup.style.display === "block") {
-            confirmationPopup.style.display = "none";
-        } else {
-            confirmationPopup.style.display = "block";
-        }
-    }
     function collectFormData() {
     var formData = {
         jobType: [],
@@ -505,6 +429,41 @@ th {
 
     return formData;
 }
+
+    function increaseApplicants(button) {
+        var input = button.parentNode.querySelector('input[type="number"]');
+        var currentValue = parseInt(input.value);
+        input.value = currentValue + 1;
+    }
+
+    function decreaseApplicants(button) {
+        var input = button.parentNode.querySelector('input[type="number"]');
+        var currentValue = parseInt(input.value);
+        if (currentValue > 0) {
+            input.value = currentValue - 1;
+        }
+    }
+
+    function addRow() {
+        var table = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+        var rowCount = table.rows.length;
+        if (rowCount < 10) {
+            var newRow = table.insertRow(rowCount);
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            var cell3 = newRow.insertCell(2);
+            var cell4 = newRow.insertCell(3);
+            var cell5 = newRow.insertCell(4);
+            cell1.innerHTML = rowCount + 1;
+            cell2.innerHTML = '<select><option value="" disabled selected>เลือก</option><option value="พนักงาน">พนักงาน</option><option value="สหกิจ">สหกิจ</option></select>';
+            cell3.innerHTML = '<select><option value="" disabled selected>เลือก</option><option value="1">Tester</option><option value="2">UX/UI</option><option value="3">Project Manager</option><option value="4">Designer</option><option value="5">Developer</option><option value="6">Business Analytics</option></select>';
+            cell4.innerHTML = '<button onclick="decreaseApplicants(this)">-</button><input type="number" min="0" value="0"><button onclick="increaseApplicants(this)">+</button>';
+            cell5.innerHTML = '';
+        } else {
+            alert('ไม่สามารถเพิ่มแถวได้เพิ่มแล้ว 10 แถว');
+        }
+    }
+
 
 </script>
 
