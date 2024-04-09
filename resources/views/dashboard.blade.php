@@ -8,6 +8,8 @@
     <title>ระบบรับสมัครพนักงงาน</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+
     {{-- <link rel="stylesheet" href="styleTest.css"> --}}
     <style>
         @import url('https://fonts.googleapis.com/css?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -213,6 +215,7 @@
 </head>
 
 <body>
+
     <div class="wrapper">
         <aside id="sidebar">
             <div class="d-flex">
@@ -293,54 +296,14 @@
             <main class="content px-3 py-4">
                 <div class="container-fluid">
                     <div class="mb-3">
-                        <h4><label for="ปีที่เปิดรับสมัคร">ปีที่เปิดรับสมัคร</label></h4>
-                        <div class="row">
-                            <div class="col-12">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">รอบการคัดเลือก</th>
-                                            <th scope="col">รายละเอียด</th>
-                                            <th scope="col">วันที่เปิดรับ</th>
-                                            <th scope="col">วันที่สิ้นสุด</th>
-                                            <th scope="col">สถานะ</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1 / 2567</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>เปิดรับสมัคร</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td>เปิดรับสมัคร</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td colspan="2">Larry the Bird</td>
-                                            <td>@twitter</td>
-                                            <td>ปิดรับสมัคร</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">4</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td>ปิดรับสมัคร</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div style="width: 900px; margin: auto;">
+                            <canvas id="chart"></canvas>
                         </div>
+
+                        
                     </div>
                 </div>
-            </main> 
+            </main>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
