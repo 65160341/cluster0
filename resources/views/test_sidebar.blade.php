@@ -11,7 +11,37 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css">
 
+    <!-- Modal แสดง QR Code สำหรับ QR Code ไม่ระบุตำแหน่งงาน -->
+    <div class="modal fade" id="qrCodeModalNoPosition" tabindex="-1" aria-labelledby="qrCodeModalNoPositionLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="qrCodeModalNoPositionLabel">QR Code สำหรับสมัครงานทั่วไป
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex justify-content-center">
+                    <div id="qrCodeContainerNoPosition"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Modal แสดง QR Code -->
+    <div class="modal fade" id="qrCodeModal" tabindex="-1" aria-labelledby="qrCodeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="qrCodeModalLabel">QR Code สำหรับสหกิจศึกษา</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex justify-content-center">
+                    <div id="qrCodeContainer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- หน้าจอ -->
     <div class="container-fluid content px-3 py-4">
@@ -52,15 +82,15 @@
                         <tr>
                             <th width="150px">ลำดับ</th>
                             <th width="200px" data-orderable="false">
-                                {{-- <select class="table-filter">
+                                <select class="table-filter">
                                     <option selected value="all">ลักษณะงาน</option>
                                     <option value="สหกิจศึกษา">สหกิจศึกษา</option>
                                     <option value="สมัครงาน">สมัครงาน</option>
 
-                                </select> --}}
+                                </select>
                             </th>
                             <th width="200px" data-orderable="false">
-                                {{-- <select class="table-filter">
+                                <select class="table-filter">
                                     <option selected value="all">ตำแหน่งงาน</option>
                                     <option value="DEV">DEV</option>
                                     <option value="Soft En">Soft En</option>
@@ -68,7 +98,7 @@
                                     <option value="Back End Dev">Back End Dev</option>
                                     <option value="Full Stack">Full Stack</option>
                                     <option value="Admin">Admin</option>
-                                </select> --}}
+                                </select>
                             </th>
                             <th width="200px">จำนวนการรับสมัคร</th>
                             <th width="200px" data-orderable="false">QR Code</th>
@@ -166,14 +196,11 @@
                                 <button class="btn btn-link" style="color: #E8042C">ลบ</button>
                             </td>
                         </tr>
-
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    </div>
-
     <script>
         $j(function() {
             $j('input[name="daterange"]').daterangepicker({
@@ -184,7 +211,6 @@
             });
         });
     </script>
-
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
@@ -198,19 +224,19 @@
                     className: 'text-center',
                     targets: [0, 1, 2, 3, 4]
                 }, ],
-                stateSave: true
+                stateSave: false
             });
 
             // Filter the table based on the dropdown values
-            // $('.table-filter').on('change', function() {
-            //     var filterValue = $(this).val();
-            //     var columnIndex = $(this).closest('th').index();
-            //     if (filterValue === 'all') {
-            //         table.column(columnIndex).search('').draw();
-            //     } else {
-            //         table.column(columnIndex).search('^' + filterValue + '$', true, false).draw();
-            //     }
-            // });
+            $('.table-filter').on('change', function() {
+                var filterValue = $(this).val();
+                var columnIndex = $(this).closest('th').index();
+                if (filterValue === 'all') {
+                    table.column(columnIndex).search('').draw();
+                } else {
+                    table.column(columnIndex).search('^' + filterValue + '$', true, false).draw();
+                }
+            });
         });
     </script>
     <script>
@@ -249,5 +275,4 @@
             $('#qrCodeModalNoPosition').modal('show');
         });
     </script>
-
 @endsection
