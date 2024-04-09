@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-// Route::controller(Authenticate::class)->group(function () {
-//     Route::get('login', 'login')->name('login');
-//     Route::post('login', 'login_save')->name('login.save');
-// });
+Route::controller(Authenticate::class)->group(function () {
+    Route::get('login', 'login')->name('login');
+    Route::post('login', 'login_save')->name('login.save');
+});
 
 Route::controller(Clicknext_page::class)->middleware('auth.sessions')->prefix('pages')->group(function () {
         Route::get('index', 'index')->name('index');
