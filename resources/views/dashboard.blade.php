@@ -244,7 +244,7 @@
                         <ul class="list-unstyled">
                             <li class="sidebar-item">
 
-                                <a href="#" class="sidebar-link"><i
+                                <a href="/test" class="sidebar-link"><i
                                         class='bx bx-chevron-right'></i>สร้างฟอร์มรับสมัคร</a>
                             </li>
                             <li class="sidebar-item">

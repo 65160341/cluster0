@@ -14,15 +14,13 @@ class Form extends Model
     public $timestamps = false; // ไม่ใช้ timestamps
 
     protected $fillable = [
-
         'form_roundcount',
         'form_date_start',
         'form_date_end',
-
     ];
     public function form()
 {
-    return $this->belongsTo(Form::class, 'form_id');
+    return $this->belongsTo(Form::class, 'form_roundcount');
 }
 public function positionForm()
 {

@@ -40,7 +40,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 Route::get('/', [position_form_Controller::class, 'index']);
-Route::post('/store', [position_form_Controller::class, 'store']);
+Route::post('/store', [position_form_Controller::class, 'store'])->name ('stored_data');
 Route::get('/test', function () {
     return view('maintest');
 });
