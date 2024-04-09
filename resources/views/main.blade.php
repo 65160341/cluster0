@@ -229,7 +229,7 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="/dashboard" class="sidebar-link">
+                    <a href="#" class="sidebar-link">
                         <i class='bx bxs-dashboard'></i>
                         <span>แดชบอร์ด</span>
                     </a>

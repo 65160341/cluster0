@@ -138,7 +138,7 @@
                                             </ul>
                                         </div> --}}
                                     </th>
-                                    <th scope="col">
+                                    <th scope="col">สถานะการคัดเลือก
                                         {{-- <div class="dropdown">
                                             <button class="btn btn-white dropdown-toggle" type="button"
                                                 id="selectionStatusDropdown" data-bs-toggle="dropdown"
@@ -157,7 +157,7 @@
                             </thead>
 
                             <tbody id="myTable">
-                                @foreach ($Testforms as $item)
+                                {{-- @foreach ($Testforms as $item)
                                     <tr>
                                         <td>{{ $item->Testforms_roundcount }}</td>
                                         <td>{{ $item->Testforms_detail }}</td>
@@ -165,6 +165,19 @@
                                         <td>{{ $item->Testforms_status_se }}</td>
                                         <td>
                                             <a href="{{ $item->Testforms_id }}" class="btn btn-primary"
+                                                style="margin-left: 10%">ตรวจสอบ</a>
+                                            <a href="" class="btn btn-success">เสร็จสิ้น</a>
+                                        </td>
+                                    </tr>
+                                @endforeach --}}
+                                @foreach ($user as $item)
+                                    <tr>
+                                        <td>{{ $item->app_firstname }}</td>
+                                        <td>{{ $item->app_age }}</td>
+                                        <td>{{ $item->app_education }} </td>
+                                        <td>{{ $item->app_faculty }}</td>
+                                        <td>
+                                            <a href="{{ $item->app_id }}" class="btn btn-primary"
                                                 style="margin-left: 10%">ตรวจสอบ</a>
                                             <a href="" class="btn btn-success">เสร็จสิ้น</a>
                                         </td>
@@ -181,11 +194,16 @@
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
-                        <li class="page-item"><a class="page-link" href="#" id="page1">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#" id="page2">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#" id="page3">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#" id="page3">4</a></li>
-                        <li class="page-item"><a class="page-link" href="#" id="page3">5</a></li>
+                        <li class="page-item"><a class="page-link" href="#" id="page1"
+                                style="color: rgb(0, 0, 0);">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#" id="page2"
+                                style="color: rgb(0, 0, 0);">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#" id="page3"
+                                style="color: rgb(0, 0, 0); ">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#" id="page4"
+                                style="color: rgb(0, 0, 0);">4</a></li>
+                        <li class="page-item"><a class="page-link" href="#" id="page5"
+                                style="color: rgb(0, 0, 0); ">5</a></li>
                         <li class="page-item">
                             <a class="page-link" href="#" aria-label="Next" id="nextPage">
                                 <span aria-hidden="true">&raquo;</span>
@@ -213,12 +231,17 @@
         $(document).ready(function() {
             $("#myInput").on("keyup", function() {
                 var value = $(this).val().toLowerCase();
-                $("#myTable tr").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                $("#myTable tr").each(function() {
+                    // ดักคำว่า "ปิดรับสมัคร" และซ่อนแถวที่มีคำนี้อยู่
+                    if ($(this).text().toLowerCase().indexOf(value) > -1 || value ===
+                        "ปิดรับสมัคร") {
+                        $(this).show(); // แสดงแถว
+                    } else {
+                        $(this).hide(); // ซ่อนแถว
+                    }
                 });
             });
         });
-
 
         $(document).ready(function() {
             // กำหนดจำนวนข้อมูลต่อหน้า
