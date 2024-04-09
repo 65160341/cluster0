@@ -157,7 +157,7 @@
                             </thead>
 
                             <tbody id="myTable">
-                                {{-- @foreach ($Testforms as $item)
+                                @foreach ($Testforms as $item)
                                     <tr>
                                         <td>{{ $item->Testforms_roundcount }}</td>
                                         <td>{{ $item->Testforms_detail }}</td>
@@ -169,8 +169,8 @@
                                             <a href="" class="btn btn-success">เสร็จสิ้น</a>
                                         </td>
                                     </tr>
-                                @endforeach --}}
-                                @foreach ($user as $item)
+                                @endforeach
+                                {{-- @foreach ($user as $item)
                                     <tr>
                                         <td>{{ $item->app_firstname }}</td>
                                         <td>{{ $item->app_age }}</td>
@@ -182,7 +182,21 @@
                                             <a href="" class="btn btn-success">เสร็จสิ้น</a>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @endforeach --}}
+                                {{-- <tr>
+                                    <td>dddddd</td>
+                                    <td>dddddd</td>
+                                    <td>dddddd</td>
+                                    <td>dddddd</td>
+                                    <td><a href="" class="btn btn-success">เสร็จสิ้น</a></td>
+                                </tr>
+                                <tr>
+                                    <td>dddddd</td>
+                                    <td>dddddd</td>
+                                    <td>dddddd</td>
+                                    <td>dddddd</td>
+                                    <td><a href="" class="btn btn-success">เสร็จสิ้น</a></td>
+                                </tr> --}}
                             </tbody>
                         </table>
                     </div>
@@ -314,7 +328,6 @@
             });
         });
 
-
         $('a.btn-success').click(function(e) {
             e.preventDefault(); // ป้องกันการโหลดหน้าใหม่
             var url = $(this).attr('information'); // URL ที่เรียก
@@ -333,19 +346,14 @@
                     // เปลี่ยนสีของปุ่มเป็นสีเขียว
                     btn.removeClass('btn-success').addClass('btn-secondary').text('เสร็จสิ้น').attr(
                         'disabled', true);
+                    // คืนค่ากลับมาแสดงค่าของตัวมันเอง
+                    var originalStatus = btn.closest('tr').find('td:eq(3)').text();
+                    btn.closest('tr').find('td:eq(3)').text(originalStatus);
                 },
                 error: function(xhr, status, error) {
                     console.error(error); // แสดงข้อผิดพลาดที่เกิดขึ้นในกรณีที่เกิดข้อผิดพลาด
                 }
             });
-        });
-        $(document).ready(function() {
-            // ตรวจสอบว่ามีค่า status ที่ถูกเก็บไว้ใน Local Storage หรือไม่
-            var storedStatus = localStorage.getItem('status');
-            if (storedStatus) {
-                // หากมี ให้อัพเดทค่าใน DOM
-                $('tbody#myTable tr td:eq(3)').text(storedStatus);
-            }
         });
     </script>
 </body>
