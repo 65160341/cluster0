@@ -14,9 +14,9 @@ class C_Information extends Controller
         $pos_forms = form_positions::all();
         return view('information', compact('pos_forms'));
     }
-    public function password()
-    {
-        $hrs = F_Information::all();
-        return view('change-password', compact('hrs'));
-    }
+    // public function password()
+    // {
+    //     $hrs = F_Information::all();
+    //     return view('change-password', compact('hrs'));
+    // }
 }

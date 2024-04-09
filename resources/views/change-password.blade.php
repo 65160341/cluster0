@@ -95,69 +95,67 @@
                     <div class="card-header">
                         <h3 class="card-title">การตั้งค่า</h3>
                     </div>
-                    @foreach ($hrs as $hr)
-                        <form class="form-horizontal" action="/update-profile" method="post"
-                            enctype="multipart/form-data">
-                            <!-- Form fields... -->
-                            <div class="card-body">
-                                <div class="form-group row">
-                                    <label for="name" class="col-sm-2 col-form-label">ชื่อ</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="name" name="name"
-                                            value="{{ $hr->hr_firstname }}">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="surname" class="col-sm-2 col-form-label">นามสกุล</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="surname" name="surname"
-                                            value="{{ $hr->hr_lastname }}">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="email" class="col-sm-2 col-form-label">อีเมล</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="email" name="email"
-                                            value="">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="phone" class="col-sm-2 col-form-label">โทรศัพท์</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="phone" name="phone"
-                                            value="">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="old_password" class="col-sm-2 col-form-label">รหัสผ่านเก่า</label>
-                                    <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="old_password"
-                                            name="old_password" value="{{ $hr->hr_password }}">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="new_password" class="col-sm-2 col-form-label">รหัสผ่านใหม่</label>
-                                    <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="new_password"
-                                            name="new_password" value="">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="confirm_password"
-                                        class="col-sm-2 col-form-label">ยืนยันรหัสผ่าน</label>
-                                    <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="confirm_password"
-                                            name="confirm_password" value="">
-                                    </div>
+                    <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
+                        <!-- Form fields... -->
+                        {{-- @foreach ($hrs as $hr) --}}
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label for="name" class="col-sm-2 col-form-label">ชื่อ</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="name" name="name"
+                                        value="">
                                 </div>
                             </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-danger">อัปเดต</button>
-                                <a href="{{ url('/main') }}" class="btn btn-default float-right">Cancel</a>
+                            <div class="form-group row">
+                                <label for="surname" class="col-sm-2 col-form-label">นามสกุล</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="surname" name="surname"
+                                        value="">
+                                </div>
                             </div>
-
-                        </form>
-                    @endforeach
+                            <div class="form-group row">
+                                <label for="email" class="col-sm-2 col-form-label">อีเมล</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="email" name="email"
+                                        value="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="phone" class="col-sm-2 col-form-label">โทรศัพท์</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="phone" name="phone"
+                                        value="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="old_password" class="col-sm-2 col-form-label">รหัสผ่านเก่า</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="old_password"
+                                        name="old_password" value="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="new_password" class="col-sm-2 col-form-label">รหัสผ่านใหม่</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="new_password"
+                                        name="new_password" value="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="confirm_password" class="col-sm-2 col-form-label">ยืนยันรหัสผ่าน</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="confirm_password"
+                                        name="confirm_password" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            {{-- <button type="submit" class="btn btn-danger">อัปเดต</button> --}}
+                            <a class="btn btn-danger" href="/main" role="button">อัปเดต</a>
+                            <a href="{{ url('/main') }}" class="btn btn-default float-right">Cancel</a>
+                        </div>
+                        {{-- @endforeach --}}
+                    </form>
                 </div>
             </main>
         </div>
@@ -169,51 +167,6 @@
         hamBurger.addEventListener("click", function() {
             document.querySelector("#sidebar").classList.toggle("expand");
         });
-
-        document.querySelector(".form-horizontal").addEventListener("submit", function(event) {
-            event.preventDefault(); // ป้องกันการส่งฟอร์มเป็นวิธีการที่ไม่ใช่จาก JavaScript
-            const formData = new FormData(this);
-
-            fetch('/update-profile', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    // ทำสิ่งที่คุณต้องการหลังจากที่ได้รับการตอบกลับจากเซิร์ฟเวอร์ เช่น แสดงข้อความว่าอัปเดตสำเร็จ
-                    console.log('Update successful:', data);
-                })
-                .catch(error => {
-                    console.error('There was a problem with the fetch operation:', error);
-                });
-        });
-
-        const express = require('express');
-        const bodyParser = require('body-parser');
-        const app = express();
-
-        // เรียกใช้ middleware เพื่อให้ Express สามารถอ่านข้อมูลที่ถูกส่งมาจากฟอร์มได้
-        app.use(bodyParser.urlencoded({
-            extended: true
-        }));
-        app.use(bodyParser.json());
-
-        // กำหนดเส้นทางสำหรับการอัปเดตข้อมูลผู้ใช้
-        app.post('/update-profile', (req, res) => {
-            const userData = req.body;
-            // ทำตามขั้นตอนที่เหมาะสมเพื่ออัปเดตข้อมูลผู้ใช้ในฐานข้อมูลของคุณ
-            // ตัวอย่างเช่น: ใช้ ORM หรือการเขียนคำสั่ง SQL เพื่ออัปเดตข้อมูลผู้ใช้
-            res.json({
-                message: 'User profile updated successfully'
-            });
-        });
-
-        app.listen(3000, () => console.log('Server is running on port 3000'));
     </script>
 </body>
 

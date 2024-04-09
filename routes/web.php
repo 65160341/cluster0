@@ -37,7 +37,7 @@ Route::get('/main', function () {
     return view('main');
 });
 
-Route::get('/password', function () {
+Route::get('/change-password', function () {
     return view('change-password');
 });
 
@@ -50,4 +50,4 @@ Route::get('/information', function () {
 
 Route::get('/information', [C_Information::class, 'information']);
 
-Route::get('/password', [C_Information::class, 'password']);
+// Route::get('/change-password', [C_Information::class, 'password']);

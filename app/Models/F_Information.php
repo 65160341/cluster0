@@ -7,15 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class F_Information extends Model
 {
-    use HasFactory;
+    // use HasFactory;
 
-    protected $table = 'hrs';
-    protected $primaryKey = 'hr_id';
+    // protected $table = 'hr';
+    // protected $primaryKey = 'hr_id';
 
-    protected $fillable = [
-        'hr_username',
-        'hr_firstname',
-        'hr_lastname',
-        'hr_password'
-    ];
+    // protected $fillable = [
+    //     'hr_username',
+    //     'hr_firstname',
+    //     'hr_lastname',
+    //     'hr_password'
+    // ];
 }
