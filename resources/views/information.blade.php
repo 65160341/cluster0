@@ -126,8 +126,8 @@
                                 <tr class="text-center">
                                     <th scope="col">รอบการรับสมัคร</th>
                                     <th scope="col">รายละเอียด</th>
-                                    <th scope="col">
-                                        <div class="dropdown">
+                                    <th scope="col">สถานะการรับสมัคร
+                                        {{-- <div class="dropdown">
                                             <button class="btn btn-white dropdown-toggle" type="button"
                                                 id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                                 สถานะการรับสมัคร
@@ -136,10 +136,10 @@
                                                 <li><a class="dropdown-item" href="#">ปิดรับสมัคร</a></li>
                                                 <li><a class="dropdown-item" href="#">เปิดรับสมัคร</a></li>
                                             </ul>
-                                        </div>
+                                        </div> --}}
                                     </th>
-                                    <th scope="col">
-                                        <div class="dropdown">
+                                    <th scope="col">สถานะการคัดเลือก
+                                        {{-- <div class="dropdown">
                                             <button class="btn btn-white dropdown-toggle" type="button"
                                                 id="selectionStatusDropdown" data-bs-toggle="dropdown"
                                                 aria-expanded="false">
@@ -150,7 +150,7 @@
                                                 </li>
                                                 <li><a class="dropdown-item" href="#">คัดเลือกเสร็จสิ้น</a></li>
                                             </ul>
-                                        </div>
+                                        </div> --}}
                                     </th>
                                     <th scope="col"></th>
                                 </tr>
@@ -161,10 +161,11 @@
                                     <tr>
                                         <td>{{ $item->Testforms_roundcount }}</td>
                                         <td>{{ $item->Testforms_detail }}</td>
-                                        <td>{{ $item->Testforms_status }}</td>
+                                        <td>{{ $item->Testforms_status }} </td>
                                         <td>{{ $item->Testforms_status_se }}</td>
                                         <td>
-                                            <a href="{{ $item->Testforms_id }}" class="btn btn-primary">ตรวจสอบ</a>
+                                            <a href="{{ $item->Testforms_id }}" class="btn btn-primary"
+                                                style="margin-left: 10%">ตรวจสอบ</a>
                                             <a href="" class="btn btn-success">เสร็จสิ้น</a>
                                         </td>
                                     </tr>
@@ -218,46 +219,10 @@
             });
         });
 
-        // $(document).ready(function() {
-        //     $("#myInput").on("keyup", function() {
-        //         var value = $(this).val().toLowerCase();
-        //         $("#myTable tr").filter(function() {
-        //             var status = $(this).find("td:eq(2)").text()
-        //         .toLowerCase(); // ดึงข้อมูลสถานะการรับสมัคร
-        //             return $(this).text().toLowerCase().indexOf(value) > -1 && status !=="ปิดรับสมัคร"; // เพิ่มเงื่อนไขตรวจสอบสถานะ
-        //         }).show();
-        //         $("#myTable tr").filter(function() {
-        //             var status = $(this).find("td:eq(2)").text()
-        //         .toLowerCase(); // ดึงข้อมูลสถานะการรับสมัคร
-        //             return $(this).text().toLowerCase().indexOf(value) === -1 || status ==="ปิดรับสมัคร"; // เพิ่มเงื่อนไขตรวจสอบสถานะ
-        //         }).hide();
-        //     });
-        // });
-
-        // $(document).ready(function() {
-        //     $("#myInput").on("keyup", function() {
-        //         var value = $(this).val().toLowerCase();
-        //         $("#myTable tr").filter(function() {
-        //             var status = $(this).find("td:eq(2)").text()
-        //                 .toLowerCase(); // ดึงข้อมูลสถานะการรับสมัคร
-        //             return $(this).text().toLowerCase().indexOf(value) > -1 && status !==
-        //                 "ปิดรับสมัคร"; // เพิ่มเงื่อนไขตรวจสอบสถานะ
-        //         }).show();
-        //         $("#myTable tr").filter(function() {
-        //             var status = $(this).find("td:eq(2)").text()
-        //                 .toLowerCase(); // ดึงข้อมูลสถานะการรับสมัคร
-        //             return $(this).text().toLowerCase().indexOf(value) === -1 || status ===
-        //                 "ปิดรับสมัคร"; // เพิ่มเงื่อนไขตรวจสอบสถานะ
-        //         }).hide();
-        //     });
-        // });
-
-
-
 
         $(document).ready(function() {
             // กำหนดจำนวนข้อมูลต่อหน้า
-            var recordsPerPage = 6;
+            var recordsPerPage = 5;
             // กำหนดหน้าเริ่มต้น
             var currentPage = 1;
 
@@ -325,6 +290,7 @@
                 });
             });
         });
+
 
         $('a.btn-success').click(function(e) {
             e.preventDefault(); // ป้องกันการโหลดหน้าใหม่

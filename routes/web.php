@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Authenticate;
+use App\Http\Controllers\C_Information;
 use App\Http\Controllers\C_student;
 use App\Http\Controllers\Clicknext_page;
 use Illuminate\Support\Facades\Route;
@@ -40,10 +41,5 @@ Route::get('/information', function () {
     return view('information');
 });
 
-Route::get('/selected', function () {
-    return view('selected');
-});
 
-Route::get('/selected', [C_student::class, 'selected']);
-
-Route::get('/information', [C_student::class, 'information']);
+Route::get('/information', [C_Information::class, 'information']);

@@ -239,6 +239,10 @@ a.sidebar-link:hover {
     max-height: 100%;
 }
 
+td {
+    text-align: center;
+
+}
 
 
 @media (min-width: 768px) {}
