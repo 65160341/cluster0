@@ -63,12 +63,6 @@
                     </a>
                 </li>
             </ul>
-            <div class="sidebar-footer">
-                <a href="#" class="sidebar-link">
-                    <i class='bx bx-log-out'></i>
-                    <span>ออกจากระบบ</span>
-                </a>
-            </div>
         </aside>
         <div class="main">
             <nav class="navbar navbar-expand-lg px-4 py-3">
