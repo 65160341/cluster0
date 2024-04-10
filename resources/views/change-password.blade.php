@@ -151,7 +151,7 @@
                         <!-- /.card-body -->
                         <div class="card-footer">
                             <button type="submit" class="btn btn-danger">อัพเดท</button>
-                            <a href="#" class="btn btn-default float-right">ยกเลิก</a>
+                            <a href="/main-password" class="btn btn-default float-right">ยกเลิก</a>
                         </div>
                         <!-- /.card-footer -->
                     </form>
