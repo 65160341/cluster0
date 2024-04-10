@@ -155,41 +155,41 @@
                                 </td>
                             </tr>
                         @endforeach --}}
-                        @foreach ($forms_Pos as $item)
+                        {{-- @foreach ($forms_Pos as $item)
                             <tr>
-                                <td>{{ $loop->index + 1 }}</td>
-                                <td>
+                                <td class="align-middle">{{ $loop->index + 1 }}</td>
+                                <td class="align-middle">
                                     @if ($item->fp_position_type == '0')
                                     <font>พนักงาน</font>
                                     @elseif ($item->fp_position_type == '1')
                                     <font>สหกิจ</font>
                                     @endif
                                 </td>
-                                <td>
-                                    @if ($item->fp_position_type == '1')
+                                <td class="align-middle">
+                                    @if ($item->pos_id == '1')
                                         <font>Frontend Developer</font>
-                                    @elseif ($item->fp_position_type == '2')
+                                    @elseif ($item->pos_id == '2')
                                         <font>Unity Developer</font>
-                                    @elseif ($item->fp_position_type == '3')
+                                    @elseif ($item->pos_id == '3')
                                         <font>Tester</font>
-                                    @elseif ($item->fp_position_type == '4')
+                                    @elseif ($item->pos_id == '4')
                                         <font>Graphic Design</font>
-                                    @elseif ($item->fp_position_type == '5')
+                                    @elseif ($item->pos_id == '5')
                                         <font>Backend Developer</font>
-                                    @elseif ($item->fp_position_type == '6')
+                                    @elseif ($item->pos_id == '6')
                                         <font>Ui Design</font>
-                                    @elseif ($item->fp_position_type == '7')
+                                    @elseif ($item->pos_id == '7')
                                         <font>3D Model</font>
-                                    @elseif ($item->fp_position_type == '8')
+                                    @elseif ($item->pos_id == '8')
                                         <font>BA/Project Co.</font>
-                                    @elseif ($item->fp_position_type == '9')
+                                    @elseif ($item->pos_id == '9')
                                         <font>Digital Marketing</font>
                                     @endif
                                 </td>
-                                <td>{{ $item->fp_amount_of_postion }}</td>
-                                <td>
+                                <td class="align-middle">{{ $item->fp_amount_of_postion }}</td>
+                                <td class="align-middle">
                                     <button type="button" class="btn btn-qr-code" style="font-size: 25px">
-                                    <i class='bx bx-qr-scan'></i>
+                                        <i class='bx bx-qr-scan'></i>
                                     </button>
                                 </td>
                                 <td class="align-middle">
@@ -199,6 +199,58 @@
                                 <!-- Add a hidden span to hold the form_id -->
                                 <span class="form-id" style="display: none;">{{ $item->form_id }}</span>
                             </tr>
+                        @endforeach --}}
+                        @foreach ($forms_Pos as $item)
+                        @if ($item->form_id == $formID)
+                            <tr>
+                                <td class="align-middle">{{ $loop->index + 1 }}</td>
+                                <td class="align-middle">
+                                    @if ($item->fp_position_type == '0')
+                                    <font>พนักงาน</font>
+                                    @elseif ($item->fp_position_type == '1')
+                                    <font>สหกิจ</font>
+                                    @endif
+                                </td>
+                                <td class="align-middle">
+                                    @if ($item->pos_id == '1')
+                                    <font>Frontend Developer</font>
+                                    @elseif ($item->pos_id == '2')
+                                    <font>Unity Developer</font>
+                                    @elseif ($item->pos_id == '3')
+                                    <font>Tester</font>
+                                    @elseif ($item->pos_id == '4')
+                                    <font>Graphic Design</font>
+                                    @elseif ($item->pos_id == '5')
+                                    <font>Backend Developer</font>
+                                    @elseif ($item->pos_id == '6')
+                                    <font>Ui Design</font>
+                                    @elseif ($item->pos_id == '7')
+                                    <font>3D Model</font>
+                                    @elseif ($item->pos_id == '8')
+                                    <font>BA/Project Co.</font>
+                                    @elseif ($item->pos_id == '9')
+                                    <font>Digital Marketing</font>
+                                    @endif
+                                </td>
+                                <td class="align-middle">{{ $item->fp_amount_of_postion }}</td>
+                                <td class="align-middle">
+                                    <button type="button" class="btn btn-qr-code" style="font-size: 25px">
+                                        <i class='bx bx-qr-scan'></i>
+                                    </button>
+                                </td>
+                                <td class="align-middle">
+                                    <form action="{{ route('formpositions.delete', ['positionId' => $position->id]) }}" method="POST">
+                                        <button class="btn btn-link" style="color: #00B187">แก้ไข</button>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-link" style="color: #E8042C">ลบ</button>
+                                    </form>
+                                    <button class="btn btn-link" style="color: #00B187">แก้ไข</button>
+                                </td>
+                                <!-- Add a hidden span to hold the form_id -->
+                                <span class="form-id" style="display: none;">{{ $item->form_id }}</span>
+                            </tr>
+                        @endif
                         @endforeach
                     </tbody>
                 </table>

@@ -41,18 +41,18 @@
                     <tbody>
                         @foreach ($forms as $item)
                             <tr>
-                                <td>{{ $item->form_round_count.'/'.$item->form_round_year }}</td>
-                                <td>{{ $item->form_detail }}</td>
-                                <td>{{ $item->form_date_start }}</td>
-                                <td>{{ $item->form_date_end }}</td>
-                                <td>
+                                <td class="align-middle">{{ $item->form_round_count.'/'.$item->form_round_year }}</td>
+                                <td class="align-middle">{{ $item->form_detail }}</td>
+                                <td class="align-middle">{{ $item->form_date_start }}</td>
+                                <td class="align-middle">{{ $item->form_date_end }}</td>
+                                <td class="align-middle">
                                     @if ($item->form_status == 0)
                                     <font style="color:#E8042C">ปิดรับสมัคร</font>
                                     @elseif ($item->form_status == 1)
                                     <font style="color:#00B187">เปิดรับสมัคร</font>
                                     @endif
                                 </td>
-                                <td>
+                                <td class="align-middle">
                                     <form method="POST" action="{{ route('forms.destroy', $item->form_id) }}">                                        
                                         <a href="{{ route('formdetail.show', $item->form_id) }}" class="btn btn-primary">ตรวจสอบ</a>
                                         @csrf

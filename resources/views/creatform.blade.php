@@ -231,7 +231,7 @@
                     <div style="display: flex; flex-direction: column;" class="col-auto mb-3">
                         @php
                             // เรียกข้อมูลรอบการรับสมัครล่าสุด
-                            $latestFormRound = App\Models\formsModel::orderBy('form_round_count', 'desc')->value(
+                            $latestFormRound = \App\Models\formsModel::orderBy('form_round_count', 'desc')->value(
                                 'form_round_count'
                             );
                     

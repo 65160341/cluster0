@@ -23,21 +23,17 @@ class FormController extends Controller{
     public function show($form_id)
     {
         // Retrieve the form details from the database based on the $form_id
-        $form = \App\Models\formsModel::findOrFail($form_id);
+        // $form = \App\Models\formsModel::findOrFail($form_id);
         $forms_Pos = formPositionsModel::all();
-        // Pass the form details to the view
-        return view('formdetail', compact('form', 'forms_Pos'));
+        $formID = $form_id;
+        return view('formdetail', compact('forms_Pos', 'formID'));
     }
-
-    // public function viewFormDeteil()
-    // {
-    //     $forms_Pos = formPositionsModel::all();
-    //     return view('formdetail', compact('forms_Pos'));
-    // }
 
     public function formStore(Request $request) {
         // Get the count of existing forms
-        $countForms = formsModel::count();
+        $countForms = \App\Models\formsModel::orderBy('form_round_count', 'desc')->value(
+            'form_round_count'
+        );
         $count = $countForms + 1;
     
         // Get form input data
@@ -107,6 +103,16 @@ class FormController extends Controller{
         $form->delete();
 
         return redirect()->route('forms.index')->with('success', 'Form and associated positions deleted successfully.');
+    }
+    
+    public function deleteFormPosition($positionId) {
+        // Find the form position record
+        $position = formPositionsModel::findOrFail($positionId);
+    
+        // Delete the form position record
+        $position->delete();
+    
+        return redirect()->route('forms.index')->with('success', 'Form position deleted successfully.');
     }
     
 }

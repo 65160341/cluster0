@@ -161,7 +161,7 @@
             </div>
             <div id="card-content">
                 <h2 class="fw-normal display-5 text-center" id="text-login">เข้าสู่ระบบ</h2>
-                <form action="{{ route("login.save")}}" method="POST">
+                <form action="{{ url('login_save')}}" method="POST">
                     @csrf
 
                 @if ($errors->any())
