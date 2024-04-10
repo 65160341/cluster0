@@ -80,7 +80,7 @@
                                     alt="">Username
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/password">ตั้งค่า</a></li>
+                                <li><a class="dropdown-item" href="/main-password">ตั้งค่า</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -170,7 +170,7 @@
                                         </td>
                                     </tr>
                                 @endforeach
-                        
+
                             </tbody>
                         </table>
                     </div>

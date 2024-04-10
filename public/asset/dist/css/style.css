@@ -244,5 +244,11 @@ td {
 
 }
 
+.centered-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
 
 @media (min-width: 768px) {}

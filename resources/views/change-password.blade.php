@@ -76,11 +76,12 @@
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="Unknown_person.jpg" class="avatar img-fluid" alt="">Username
+                                <img src="https://cdn-icons-png.freepik.com/512/149/149071.png" class="avatar img-fluid"
+                                    alt="">Username
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
-                                <li><a class="dropdown-item" href="">ตั้งค่า</a></li>
+                                <li><a class="dropdown-item" href="#">ตั้งค่า</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -95,40 +96,62 @@
                     <div class="card-header">
                         <h3 class="card-title">การตั้งค่า</h3>
                     </div>
-                    <form class="form-horizontal" action="{{ url('update-user/' . $user->id) }}" method="post"
+                    <form class="form-horizontal" action="{{ url('update-user/' . $hrs->hr_id) }}" method="post"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="card-body">
-                            <!-- กล่องข้อความ Name -->
+                            <!-- กล่องข้อความ Username -->
                             <div class="form-group row">
-                                <label for="name" class="col-sm-2 col-form-label">ชื่อ</label>
+                                <label for="name" class="col-sm-2 col-form-label">ชื่อผู้ใช้</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="name" name="name"
-                                        value="{{ $user->name }}">
+                                    <label for="name"
+                                        class="col-sm-2 col-form-label">{{ $hrs->hr_username }}</label>
+                                </div>
+                            </div>
+                            <!-- กล่องข้อความ FirstName -->
+                            <div class="form-group row">
+                                <label for="name" class="col-sm-2 col-form-label">ชื่อ - นามสกุล</label>
+                                <div class="col-sm-10">
+                                    <label for="name"
+                                        class="col-sm-2 col-form-label">{{ $hrs->hr_firstname . ' ' . $hrs->hr_lastname }}</label>
                                 </div>
                             </div>
                             <!-- กล่องข้อความ Email -->
-                            <div class="form-group row">
+                            {{-- <div class="form-group row">
                                 <label for="email" class="col-sm-2 col-form-label">อีเมล</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="email" name="email"
                                         value="{{ $user->email }}">
                                 </div>
-                            </div>
+                            </div> --}}
                             <!-- กล่องข้อความ รหัสผ่าน -->
                             <div class="form-group row">
                                 <label for="password" class="col-sm-2 col-form-label">รหัสผ่าน</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="password" name="password"
-                                        value="{{ $user->password }}">
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        value="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="password" class="col-sm-2 col-form-label">รหัสผ่านใหม่</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        value="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="password" class="col-sm-2 col-form-label">ยืนยันรหัสผ่าน</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        value="">
                                 </div>
                             </div>
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
                             <button type="submit" class="btn btn-danger">อัพเดท</button>
-                            <a href="{{ url('/main-password') }}" class="btn btn-default float-right">ยกเลิก</a>
+                            <a href="#" class="btn btn-default float-right">ยกเลิก</a>
                         </div>
                         <!-- /.card-footer -->
                     </form>

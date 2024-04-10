@@ -9,14 +9,14 @@ class Title extends Model
 {
     use HasFactory;
 
-    protected $table = 'users';  // กำหนดตารางเป็น users
-    protected $primaryKey = 'id'; // กำหนด id เป็น primaryKey
+    protected $table = 'hrs';  // กำหนดตารางเป็น users
+    protected $primaryKey = 'hr_id'; // กำหนด id เป็น primaryKey
 
 
     protected $fillable = [ // กำหนดให้ Laravel รู้ว่าอะไรบ้างสามารถแก้ไขได้
-        'name',
-        'email',
-        'avatar',
-        'title',
+        'hr_username',
+        'hr_firstname',
+        'hr_lastname',
+        'hr_password',
     ];
 }
