@@ -3,6 +3,7 @@
 use App\Http\Controllers\Authenticate;
 use App\Http\Controllers\Clicknext_page;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,9 +43,12 @@ Route::get('/formdetail', function () {
     return view('formdetail');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// });
+
+Route::get('/dashboard',[DashboardController::class,'userChart']);
+
 
 Route::get('/test_sidebar', function () {
     return view('test_sidebar');
