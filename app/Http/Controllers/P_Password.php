@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Title;
+use App\Models\Hrs_Password;
 use Illuminate\Http\Request;
 
 class P_Password extends Controller
@@ -10,7 +10,7 @@ class P_Password extends Controller
     public function store(Request $request)
     {
         // กำหนดข้อมูลต่างๆ จากฟอร์มที่ส่งมาให้
-        $hrs = new Title;
+        $hrs = new Hrs_Password;
         $hrs->hr_username = $request->input('hr_username');
         $hrs->hr_firstname = $request->input('hr_firstname');
         $hrs->hr_lastname = $request->input('hr_lastname');
@@ -25,7 +25,7 @@ class P_Password extends Controller
     // ดูข้อมูล
     public function index()
     {
-        $hrs = Title::all();
+        $hrs = Hrs_Password::all();
         // ส่งข้อมูลไปหน้า homepage
         return view('main-password', ['hrs' => $hrs]);
     }
@@ -33,7 +33,7 @@ class P_Password extends Controller
     // คำสั่งแก้ไขข้อมูล hrs
     public function edit($hr_id)
     {
-        $hrs = Title::find($hr_id);
+        $hrs = Hrs_Password::find($hr_id);
         // หากผู้ใช้ไม่พบ hrs จะไปยังหน้า homepage พร้อมกับแสดงข้อความว่า ไม่พบผู้ใช้
         if (!$hrs) {
             return redirect('/main-password')->with('error', 'hrs not found.');
@@ -46,7 +46,7 @@ class P_Password extends Controller
     public function update(Request $request, $hr_id)
     {
         // รับข้อมูลที่ต้องการอัปเดต
-        $hrs = Title::find($hr_id);
+        $hrs = Hrs_Password::find($hr_id);
 
         // ตรวจสอบว่ามีข้อมูลที่ถูกส่งมาหรือไม่ก่อนที่จะทำการอัปเดต
         if ($request->filled('hr_username')) {
@@ -71,7 +71,7 @@ class P_Password extends Controller
     public function delete($hr_id)
     {
         // พบผู้ใช้งาน
-        $hrs = Title::find($hr_id);
+        $hrs = Hrs_Password::find($hr_id);
         // หากผู้ใช้ไม่พบผู้ใช้ จะไปยังหน้า homepage พร้อมกับแสดงข้อความว่า ไม่พบผู้ใช้
         if (!$hrs) {
             return redirect('/main-password')->with('error', 'User not found.');
