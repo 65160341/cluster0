@@ -32,7 +32,7 @@ class M_Student extends Model
 
     public function position()
     {
-        return $this->belongsTo(positions::class, 'pos_id', 'pos_id');
+        return $this->belongsTo(positionModel::class, 'pos_id', 'pos_id');
     }
 
 

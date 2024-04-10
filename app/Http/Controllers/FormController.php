@@ -16,8 +16,9 @@ class FormController extends Controller{
 
     public function indexMyform()
     {
+        $today = Carbon::now();
         $forms = FormsModel::all();
-        return view('myform', compact('forms'));
+        return view('myform', compact('forms', 'today'));
     }
 
     public function show($form_id)
@@ -111,8 +112,9 @@ class FormController extends Controller{
     
         // Delete the form position record
         $position->delete();
-    
-        return redirect()->route('forms.index')->with('success', 'Form position deleted successfully.');
+
+        return redirect()->back()->with('success', 'Form position deleted successfully.');
+        // return redirect()->route('formdetail.show')->with('success', 'Form position deleted successfully.');
     }
     
 }

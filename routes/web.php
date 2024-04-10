@@ -133,9 +133,10 @@ Route::post('/contact/save', [contactFormController::class, 'store']);
     // });
 
 Route::get('/createform', [FormController::class, 'indexCreate'])->name('createform.index');
-Route::post('/formStore', [FormController::class, 'formStore'])->name('form.store');
+Route::post('/storeForm', [FormController::class, 'formStore'])->name('form.store');
 Route::delete('/forms/{id}', [FormController::class, 'destroy'])->name('forms.destroy');
 Route::get('/forms', [FormController::class, 'indexMyform'])->name('forms.index');
 Route::get('/formdetail/{form_id}', [FormController::class, 'show'])->name('formdetail.show');
 Route::get('/forms/{id}/edit', [FormController::class, 'edit'])->name('forms.edit');
 Route::post('/forms/{id}/update', [FormController::class, 'update'])->name('forms.update');
+Route::delete('/form-positions/{positionId}', [FormController::class, 'deleteFormPosition'])->name('formpositions.delete');

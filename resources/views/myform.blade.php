@@ -46,14 +46,14 @@
                                 <td class="align-middle">{{ $item->form_date_start }}</td>
                                 <td class="align-middle">{{ $item->form_date_end }}</td>
                                 <td class="align-middle">
-                                    @if ($item->form_status == 0)
+                                    @if ($item->form_date_end < $today)
                                     <font style="color:#E8042C">ปิดรับสมัคร</font>
-                                    @elseif ($item->form_status == 1)
+                                    @elseif ($item->form_date_end > $today)
                                     <font style="color:#00B187">เปิดรับสมัคร</font>
                                     @endif
                                 </td>
                                 <td class="align-middle">
-                                    <form method="POST" action="{{ route('forms.destroy', $item->form_id) }}">                                        
+                                    <form method="POST" action="{{ route('forms.destroy', ['id' => $item->form_id]) }}">                                        
                                         <a href="{{ route('formdetail.show', $item->form_id) }}" class="btn btn-primary">ตรวจสอบ</a>
                                         @csrf
                                         @method('DELETE')
