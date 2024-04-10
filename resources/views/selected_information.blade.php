@@ -56,7 +56,7 @@
                         </tbody>
                     @endforeach
                 </table>
-                <a class="btn btn-primary" href="/selected" role="button">กลับไปหน้าคัดเลือก</a>
+                <a class="btn btn-primary" href="{{ url('/selected') }}" role="button">กลับไปหน้าคัดเลือก</a>
             </div>
     </main>
 </body>

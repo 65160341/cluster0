@@ -78,7 +78,7 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="{{ url('') }}">ออกจากระบบ</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/') }}">ออกจากระบบ</a></li>
                             </ul>
                         </li>
                     </ul>

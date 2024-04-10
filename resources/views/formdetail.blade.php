@@ -161,6 +161,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                <a class="btn btn-primary" href="{{ url('/forms') }}" role="button">กลับ</a>
             </div>
         </div>
     </div>

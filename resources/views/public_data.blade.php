@@ -85,7 +85,7 @@
                                 </tbody>
                             @endforeach
                         </table>
-                        <a class="btn btn-primary" href="/information" role="button">กลับไปหน้าแรก</a>
+                        <a class="btn btn-primary" href="{{ url('/information') }}" role="button">กลับไปหน้าแรก</a>
                     </div>
             </main>
         </div>
