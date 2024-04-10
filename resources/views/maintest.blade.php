@@ -300,12 +300,15 @@
                                     <td>
                                         <select name="pos_id[]" id="pos_id">
                                             <option value="" disabled selected>เลือก</option>
-                                            <option value="1">Tester</option>
-                                            <option value="2">UX/UI</option>
-                                            <option value="3">Project Manager</option>
-                                            <option value="4">Designer</option>
-                                            <option value="5">Developer</option>
-                                            <option value="6">Business Analytics</option>
+                                            <option value="1">Frontend Developer</option>
+                                            <option value="2">Unity Developer</option>
+                                            <option value="3">Tester</option>
+                                            <option value="4">Graphic Design</option>
+                                            <option value="5">Backend Developer</option>
+                                            <option value="6">Ui Design</option>
+                                            <option value="7">3D Model</option>
+                                            <option value="8">BA/Project Co.</option>
+                                            <option value="9">Digital Marketing</option>
                                         </select>
                                     </td>
                                     <td>
@@ -399,11 +402,11 @@
                 var cell5 = newRow.insertCell(4);
                 cell1.innerHTML = rowCount + 1;
                 cell2.innerHTML =
-                    '<select name="pf_job_type[]" class="job-type"><option value="" disabled selected>เลือก</option><option value="พนักงาน">พนักงาน</option><option value="สหกิจ">สหกิจ</option></select>';
+                    '<select name="pf_type_jobs[]" id="pf_type_jobs"><option value="" disabled selected>เลือก</option><option value="0">พนักงาน</option><option value="1">สหกิจ</option></select>';
                 cell3.innerHTML =
-                    '<select name="pos_id[]" class="position"><option value="" disabled selected>เลือก</option><option value="1">Tester</option><option value="2">UX/UI</option><option value="3">Project Manager</option><option value="4">Designer</option><option value="5">Developer</option><option value="6">Business Analytics</option></select>';
+                    '<select name="pos_id[]" id="pos_id"><option value="" disabled selected>เลือก</option><option value="1">Frontend Developer</option><option value="2">Unity Developer</option><option value="3">Tester</option><option value="4">Graphic Design</option><option value="5">Backend Developer</option><option value="6">Ui Design</option><option value="7">3D Model</option><option value="8">BA/Project Co.</option><option value="9">Digital Marketing</option></select>';
                 cell4.innerHTML =
-                    '<input type="number" min="0" name="pf_amount_of_position[]" value="0">';
+                    '<input type="number" id="pf_amount_of_positions" name="pf_amount_of_position[]" min="0" value="0">';
                 cell5.innerHTML = '';
 
                 // เพิ่มโค้ดสำหรับการส่งข้อมูลไปยัง Laravel Controller เพื่อบันทึกลงในฐานข้อมูล

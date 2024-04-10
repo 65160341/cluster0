@@ -19,6 +19,7 @@ class FormsController extends Controller
     {
         $id->delete();
         return redirect(route('forms.index'))->with('succes', ('Form deleted succesffully'));
+        
     }
 
     public function edit(Form_PositionsModel $id)

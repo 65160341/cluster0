@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Formtest;
+use App\Models\PosittionTest;
 use Carbon\Carbon;
 
 class FormController extends Controller{
@@ -19,6 +20,7 @@ public function store(Request $request){
     foreach($countForm as $item){
         $count++;
     }
+    $positionData = new PosittionTest();
     $formData = new Formtest();
     $formData->form_round_count = $count;
     $formData->form_round_year = Carbon::now()->year;
@@ -28,15 +30,19 @@ public function store(Request $request){
 
     $token = $request->input('_token');
     // สร้างข้อมูลสำหรับแต่ละแถวที่ส่งมาจากฟอร์มและบันทึกลงในฐานข้อมูล
-    $positions = $request->input('pos_id[]');
-    $jobTypes = $request->input('pf_type_jobs[]');
-    $amounts = $request->input('pf_amount_of_position[]');
+    $positions = $request->input('pos_id')['0'];
+    $jobTypes = $request->input('pf_type_jobs')['0'];
+    $amounts = $request->input('pf_amount_of_position')['0'];
     // $positionForm = new PositionForm();
     $formData->pos_id = $positions;
     $formData->form_position_type = $jobTypes;
     $formData->form_amount_of_postion = $amounts;
 
+    $positionData->pos_id = $positions;
+    $positionData->job_type = $jobTypes;
+    $positionData->amount_of_postion = $amounts;
     // บันทึกข้อมูล PositionForm
+    $positionData->save();
     $formData->save();
 
 

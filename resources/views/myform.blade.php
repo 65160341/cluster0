@@ -41,14 +41,19 @@
                     <tbody>
                         @foreach ($forms as $item)
                             <tr>
-                                <td>{{ $item->Testforms_id }}</td>
-                                <td>{{ $item->Testforms_roundcount }}</td>
-                                <td>{{ $item->Testforms_detail }}</td>
-                                <td>{{ $item->Testforms_status }}</td>
-                                <td>{{ $item->Testforms_status_se }}</td>
+                                <td>{{ $item->form_round_count.'/'.$item->form_round_year }}</td>
+                                <td>{{ $item->form_detail }}</td>
+                                <td>{{ $item->form_date_start }}</td>
+                                <td>{{ $item->form_date_end }}</td>
                                 <td>
-                                    <form method="POST" action="{{ route('forms.destroy', $item->Testforms_id) }}">
-                                        <a href="/formdetail" class="btn btn-primary">ตรวจสอบ</a>
+                                    @if ($item->form_status == 0)
+                                    <font style="color:#E8042C">ปิดรับสมัคร</font>
+                                    @elseif ($item->form_status == 1)
+                                    <font style="color:#00B187">เปิดรับสมัคร</font>
+                                    @endif
+                                </td>
+                                <td>
+                                    <form method="POST" action="{{ route('forms.destroy', $item->form_id) }}">                                        <a href="/formdetail" class="btn btn-primary">ตรวจสอบ</a>
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">ลบ</button>

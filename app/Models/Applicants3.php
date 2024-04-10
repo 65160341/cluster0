@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Applicants3 extends Model
 {
     use HasFactory;
-    protected $table ='lolggez';
+    protected $table ='applicants';
     protected $primaryKey = 'app_id';
 }
