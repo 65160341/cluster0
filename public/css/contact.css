@@ -1,0 +1,107 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+.logo{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: left;
+    font-size: 20px;
+    margin-left: 20px;
+}
+
+h2 {
+    text-align: left;
+    font-size: 18px;
+    margin-left: 20px;
+    margin-top: -10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+input[type="text"],
+input[type="date"],
+textarea {
+    display: block;
+    width: 50%;
+    padding: 10px;
+    margin-left: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+input[type='radio'] {
+    display: inline;
+}
+
+input#eng[type="text"] {
+    display: block;
+    width: 80%;
+    padding: 10px;
+    margin-left: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+input#lang[type="text"] {
+    display: block;
+    width: 80%;
+    padding: 10px;
+    margin-left: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+input#com[type="text"] {
+    display: inline-block;
+    width: 80%;
+    padding: 10px;
+    margin-left: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    resize: none; 
+    overflow: auto; /
+}
+
+button {
+    background-color: red;
+    float:inline-end  ;
+    margin-top: 10px;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: darkred; 
+}
+
+.required-asterisk {
+    color: red;
+}
