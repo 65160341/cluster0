@@ -70,7 +70,7 @@
                                 <td>{{ $item->fp_status }} </td>
                                 <td>{{ $item->form->form_round_year }}</td>
                                 <td>
-                                    <a href="{{ $item->Testforms_id }}" class="btn btn-primary"
+                                    <a href="{{ route('selected', $item->Testforms_id) }}" class="btn btn-primary"
                                         style="margin-left: 10%">ตรวจสอบ</a>
                                     <a href="" class="btn btn-success">เสร็จสิ้น</a>
                                 </td>
