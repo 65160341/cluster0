@@ -79,28 +79,6 @@
             });
         </script>
 
-        <script>
-            var ctx = document.getElementById('chart2').getContext('2d');
-            var userChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: {!! json_encode($labels) !!},
-                    datasets: {!! json_encode($datasets) !!}
-                },
-            });
-        </script>
-
-        <script>
-            var ctx = document.getElementById('chart3').getContext('2d');
-            var userChart = new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: {!! json_encode($labels) !!},
-                    datasets: {!! json_encode($datasets) !!}
-                },
-            });
-        </script>
-
     </body>
 
     </html>

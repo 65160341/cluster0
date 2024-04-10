@@ -87,7 +87,7 @@ class DashboardController extends Controller
                 'data' => $data2,
                 'backgroundColor' => $colors[1]
             ],[
-                'label' => 'จำนวนผู้สมัคร', // ชื่อของแถวข้อมูล
+                'label' => 'จำนวนฟอร์มที่ถูกส่ง', // ชื่อของแถวข้อมูล
                 'data' => $data3,
                 'backgroundColor' => $colors[2]
             ],
