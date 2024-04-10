@@ -28,7 +28,8 @@ Route::controller(Authenticate::class)->group(function () {
 //         Route::get('/dashboard', 'dashboard')->name('dashboard');
 // });
 Route::middleware(['auth.sessions'])->group(function () {
-    Route::get('/dashboard', 'App\Http\Controllers\Clicknext_page@dashboard')->name('dashboard');
+    // Route::get('/index', 'App\Http\Controllers\Clicknext_page@index')->name('index');
+    Route::get('/dashboard',[DashboardController::class,'userChart'])->name('dashboard');
 });
 
 
@@ -52,7 +53,7 @@ Route::get('/formdetail', function () {
 //     return view('dashboard');
 // });
 
-Route::get('/dashboard',[DashboardController::class,'userChart']);
+// Route::get('/dashboard',[DashboardController::class,'userChart']);
 
 
 Route::get('/test_sidebar', function () {
