@@ -66,9 +66,14 @@
                             <tr>
                                 <td>{{ $item->form->form_round_count . '/' . $item->form->form_round_year }}
                                 </td>
-                                <td>{{ $item->fp_detail }}</td>
-                                <td>{{ $item->fp_status }} </td>
-                                <td>{{ $item->form->form_round_year }}</td>
+                                <td>{{ $item->form->form_detail }}</td>
+                                <td>
+                                    @if ($item->form_date_end < $today)
+                                    <font style="color:#E8042C">ปิดรับสมัคร</font>
+                                    @elseif ($item->form_date_end > $today)
+                                    <font style="color:#00B187">เปิดรับสมัคร</font>
+                                    @endif</td>
+                                <td>อยู่ระหว่างการดำเนินการ</td>
                                 <td>
                                     <a href="{{ route('selected', $item->Testforms_id) }}" class="btn btn-primary"
                                         style="margin-left: 10%">ตรวจสอบ</a>

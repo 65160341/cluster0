@@ -25,9 +25,10 @@ class FormController extends Controller{
     {
         // Retrieve the form details from the database based on the $form_id
         // $form = \App\Models\formsModel::findOrFail($form_id);
+        $i = 0;
         $forms_Pos = formPositionsModel::all();
         $formID = $form_id;
-        return view('formdetail', compact('forms_Pos', 'formID'));
+        return view('formdetail', compact('forms_Pos', 'formID', 'i'));
     }
 
     public function formStore(Request $request) {
@@ -70,23 +71,38 @@ class FormController extends Controller{
         return redirect()->route('createform.index');
     }
 
-    public function edit(Form_PositionsModel $id)
+    public function edit($id)
     {
-        return view('#', compact('id'));
+        $formposition = formPositionsModel::findOrFail($id);
+        return view('editform', compact('formposition'));
     }
 
-    public function update(Request $request, Form_PositionsModel $id)
+    public function update(Request $request, $id)
     {
-        $data = $request->validata([
-            'fp_position_type' => 'reduest',
-            'pos_id' => 'reduest',
-            'fp_amount_of_postion' => 'reduest|numeric'
+        $data = $request->validate([
+            'fp_position_type' => 'required',
+            'pos_id' => 'required',
+            'fp_amount_of_postion' => 'required|numeric'
         ]);
 
-        $id->update($data);
+        $formposition = formPositionsModel::findOrFail($id);
+        $formposition->update($data);
 
-        return redirect(route('forms.index'))->with('succes', ('Form update succesffully'));
+        return redirect()->route('formdetail.show', $formposition->form_id)->with('success', 'Form position updated successfully');
     }
+
+    // public function update(Request $request, formPositionsModel $id)
+    // {
+    //     $data = $request->validate([
+    //         'fp_position_type' => 'required',
+    //         'pos_id' => 'required',
+    //         'fp_amount_of_postion' => 'required|numeric'
+    //     ]);
+
+    //     $id->update($data);
+
+    //     return redirect()->route('formdetail.show', $id->form_id)->with('success', 'Form position updated successfully');
+    // }
 
     public function destroy($id) {
         // Find the form record

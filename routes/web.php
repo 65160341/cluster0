@@ -138,5 +138,7 @@ Route::delete('/forms/{id}', [FormController::class, 'destroy'])->name('forms.de
 Route::get('/forms', [FormController::class, 'indexMyform'])->name('forms.index');
 Route::get('/formdetail/{form_id}', [FormController::class, 'show'])->name('formdetail.show');
 Route::get('/forms/{id}/edit', [FormController::class, 'edit'])->name('forms.edit');
-Route::post('/forms/{id}/update', [FormController::class, 'update'])->name('forms.update');
+Route::post('/form-positions/{id}/update', [FormController::class, 'update'])->name('formpositions.update');
 Route::delete('/form-positions/{positionId}', [FormController::class, 'deleteFormPosition'])->name('formpositions.delete');
+
+Route::match(['post', 'put'], '/form-positions/{id}/update', [FormController::class, 'update'])->name('formpositions.update');

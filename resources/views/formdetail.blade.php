@@ -113,7 +113,7 @@
                         @foreach ($forms_Pos as $item)
                         @if ($item->form_id == $formID)
                             <tr>
-                                <td class="align-middle">{{ $loop->index + 1 }}</td>
+                                <td class="align-middle">{{ $i + 1 }}</td>
                                 <td class="align-middle">
                                     @if ($item->fp_position_type == '0')
                                     <font>พนักงาน</font>
@@ -150,7 +150,7 @@
                                 </td>
                                 <td class="align-middle">
                                     <form action="{{ route('formpositions.delete', ['positionId' => $item->id]) }}" method="POST">
-                                        <button class="btn btn-link" style="color: #00B187">แก้ไข</button>
+                                        <a href="{{ route('forms.edit', $item->id) }}" class="btn btn-link" style="color: #00B187">แก้ไข</a>
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-link" style="color: #E8042C">ลบ</button>
@@ -161,7 +161,9 @@
                         @endforeach
                     </tbody>
                 </table>
-                <a class="btn btn-primary" href="{{ url('/forms') }}" role="button">กลับ</a>
+                <div class="d-flex justify-content-end mt-3"> <!-- Adjusted this line -->
+                    <a class="btn btn-primary" href="{{ url('/forms') }}" role="button">กลับ</a>
+                </div>
             </div>
         </div>
     </div>
