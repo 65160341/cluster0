@@ -39,38 +39,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1/2024</td>
-                            <td>ฟดฟดฟดหห</td>
-                            <td>01/08/2024</td>
-                            <td>07/08/2024</td>
-                            <td>
-                                <font style="color:#E8042C">ปิดรับสมัคร</font>
-                            </td>
-                            <td><button class="btn btn-primary">ตรวจสอบ</button>
-                                <button class="btn btn-danger">ลบ</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2/2022</td>
-                            <td>รับสมัครที่</td>
-                            <td>01/11/2024</td>
-                            <td>01/18/2024</td>
-                            <td>ปิดรับสมัคร</td>
-                            <td><button class="btn btn-primary">ตรวจสอบ</button>
-                                <button class="btn btn-danger">ลบ</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3/2024</td>
-                            <td>ฟกดฟกดฟดฟ</td>
-                            <td>01/19/2024</td>
-                            <td>01/22/2024</td>
-                            <td>เปิดรับสมัคร</td>
-                            <td><button class="btn btn-primary">ตรวจสอบ</button>
-                                <button class="btn btn-danger">ลบ</button>
-                            </td>
-                        </tr>
+                        @foreach ($forms as $item)
+                            <tr>
+                                <td>{{ $item->Testforms_id }}</td>
+                                <td>{{ $item->Testforms_roundcount }}</td>
+                                <td>{{ $item->Testforms_detail }}</td>
+                                <td>{{ $item->Testforms_status }}</td>
+                                <td>{{ $item->Testforms_status_se }}</td>
+                                <td>
+                                    <form method="POST" action="{{ route('forms.destroy', $item->Testforms_id) }}">
+                                        <button class="btn btn-primary">ตรวจสอบ</button>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">ลบ</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -79,28 +64,6 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
-    {{-- <script>
-        $(document).ready(function() {
-            var table = $('#example').DataTable({
-                columnDefs: [{
-                    className: 'text-center',
-                    targets: [0, 1, 2, 3, 4]
-                }, ],
-                stateSave: true
-            });
-
-            // Filter the table based on the dropdown values
-            $('.table-filter').on('change', function() {
-                var filterValue = $(this).val();
-                var columnIndex = $(this).closest('th').index();
-                if (filterValue === 'all') {
-                    table.column(columnIndex).search('').draw();
-                } else {
-                    table.column(columnIndex).search('^' + filterValue + '$', true, false).draw();
-                }
-            });
-        });
-    </script> --}}
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable({
