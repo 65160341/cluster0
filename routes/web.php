@@ -44,3 +44,6 @@ Route::post('/store', [position_form_Controller::class, 'store'])->name ('stored
 Route::get('/test', function () {
     return view('maintest');
 });
+Route::get('/test2', function () {
+    return view('test2');
+});

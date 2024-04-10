@@ -254,7 +254,7 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="dashboard" class="sidebar-link">
+                    <a href="#" class="sidebar-link">
                         <i class='bx bxs-dashboard'></i>
                         <span>แดชบอร์ด</span>
                     </a>
@@ -329,7 +329,7 @@
 
                         <label for="additionalInfo">รายละเอียดเพิ่มเติม:</label>
                         <input type="text" id="pf_info" value="" name="pf_info" placeholder="กรอกรายละเอียดเพิ่มเติม"> --}}
-                <form action="{{ Route('stored_data') }}" method="POST">
+                 {{-- <form action="{{ Route('stored_data') }}" method="POST"> --}}
                     <div style="display: flex; flex-direction: column;">
                         @php
                             // เรียกข้อมูลรอบการรับสมัครล่าสุด
@@ -382,14 +382,14 @@
                                 <tr>
                                     <td>1</td>
                                     <td>
-                                        <select name="pf_type_jobs" id="pf_job_type">
+                                        <select name="pf_type_jobs1" id="pf_job_type">
                                             <option value="" disabled selected>เลือก</option>
                                             <option value="พนักงาน">พนักงาน</option>
                                             <option value="สหกิจ">สหกิจ</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select name="pos_id" id="pos_id">
+                                        <select name="pos_id1" id="pos_id">
                                             <option value="" disabled selected>เลือก</option>
                                             <option value="1">Tester</option>
                                             <option value="2">UX/UI</option>
@@ -402,7 +402,259 @@
                                     <td>
                                         <div onclick="decreaseApplicants(this)">-</div>
                                         <input type="number" id="pf_amount_of_positions"
-                                            name="pf_amount_of_position" min="0" value="0">
+                                            name="pf_amount_of_position1" min="0" value="0">
+                                        <div onclick="increaseApplicants(this)">+</div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>
+                                        <select name="pf_type_jobs2" id="pf_job_type">
+                                            <option value="" disabled selected>เลือก</option>
+                                            <option value="พนักงาน">พนักงาน</option>
+                                            <option value="สหกิจ">สหกิจ</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select name="pos_id2" id="pos_id">
+                                            <option value="" disabled selected>เลือก</option>
+                                            <option value="1">Tester</option>
+                                            <option value="2">UX/UI</option>
+                                            <option value="3">Project Manager</option>
+                                            <option value="4">Designer</option>
+                                            <option value="5">Developer</option>
+                                            <option value="6">Business Analytics</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div onclick="decreaseApplicants(this)">-</div>
+                                        <input type="number" id="pf_amount_of_positions"
+                                            name="pf_amount_of_position2" min="0" value="0">
+                                        <div onclick="increaseApplicants(this)">+</div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>
+                                        <select name="pf_type_jobs3" id="pf_job_type">
+                                            <option value="" disabled selected>เลือก</option>
+                                            <option value="พนักงาน">พนักงาน</option>
+                                            <option value="สหกิจ">สหกิจ</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select name="pos_id3" id="pos_id">
+                                            <option value="" disabled selected>เลือก</option>
+                                            <option value="1">Tester</option>
+                                            <option value="2">UX/UI</option>
+                                            <option value="3">Project Manager</option>
+                                            <option value="4">Designer</option>
+                                            <option value="5">Developer</option>
+                                            <option value="6">Business Analytics</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div onclick="decreaseApplicants(this)">-</div>
+                                        <input type="number" id="pf_amount_of_positions"
+                                            name="pf_amount_of_position3" min="0" value="0">
+                                        <div onclick="increaseApplicants(this)">+</div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>
+                                        <select name="pf_type_jobs4" id="pf_job_type">
+                                            <option value="" disabled selected>เลือก</option>
+                                            <option value="พนักงาน">พนักงาน</option>
+                                            <option value="สหกิจ">สหกิจ</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select name="pos_id4" id="pos_id">
+                                            <option value="" disabled selected>เลือก</option>
+                                            <option value="1">Tester</option>
+                                            <option value="2">UX/UI</option>
+                                            <option value="3">Project Manager</option>
+                                            <option value="4">Designer</option>
+                                            <option value="5">Developer</option>
+                                            <option value="6">Business Analytics</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div onclick="decreaseApplicants(this)">-</div>
+                                        <input type="number" id="pf_amount_of_positions"
+                                            name="pf_amount_of_position4" min="0" value="0">
+                                        <div onclick="increaseApplicants(this)">+</div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>
+                                        <select name="pf_type_jobs5" id="pf_job_type">
+                                            <option value="" disabled selected>เลือก</option>
+                                            <option value="พนักงาน">พนักงาน</option>
+                                            <option value="สหกิจ">สหกิจ</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select name="pos_id5" id="pos_id">
+                                            <option value="" disabled selected>เลือก</option>
+                                            <option value="1">Tester</option>
+                                            <option value="2">UX/UI</option>
+                                            <option value="3">Project Manager</option>
+                                            <option value="4">Designer</option>
+                                            <option value="5">Developer</option>
+                                            <option value="6">Business Analytics</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div onclick="decreaseApplicants(this)">-</div>
+                                        <input type="number" id="pf_amount_of_positions"
+                                            name="pf_amount_of_position5" min="0" value="0">
+                                        <div onclick="increaseApplicants(this)">+</div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>
+                                        <select name="pf_type_jobs6" id="pf_job_type">
+                                            <option value="" disabled selected>เลือก</option>
+                                            <option value="พนักงาน">พนักงาน</option>
+                                            <option value="สหกิจ">สหกิจ</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select name="pos_id6" id="pos_id">
+                                            <option value="" disabled selected>เลือก</option>
+                                            <option value="1">Tester</option>
+                                            <option value="2">UX/UI</option>
+                                            <option value="3">Project Manager</option>
+                                            <option value="4">Designer</option>
+                                            <option value="5">Developer</option>
+                                            <option value="6">Business Analytics</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div onclick="decreaseApplicants(this)">-</div>
+                                        <input type="number" id="pf_amount_of_positions"
+                                            name="pf_amount_of_position6" min="0" value="0">
+                                        <div onclick="increaseApplicants(this)">+</div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>
+                                        <select name="pf_type_jobs7" id="pf_job_type">
+                                            <option value="" disabled selected>เลือก</option>
+                                            <option value="พนักงาน">พนักงาน</option>
+                                            <option value="สหกิจ">สหกิจ</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select name="pos_id7" id="pos_id">
+                                            <option value="" disabled selected>เลือก</option>
+                                            <option value="1">Tester</option>
+                                            <option value="2">UX/UI</option>
+                                            <option value="3">Project Manager</option>
+                                            <option value="4">Designer</option>
+                                            <option value="5">Developer</option>
+                                            <option value="6">Business Analytics</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div onclick="decreaseApplicants(this)">-</div>
+                                        <input type="number" id="pf_amount_of_positions"
+                                            name="pf_amount_of_position7" min="0" value="0">
+                                        <div onclick="increaseApplicants(this)">+</div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>
+                                        <select name="pf_type_jobs8" id="pf_job_type">
+                                            <option value="" disabled selected>เลือก</option>
+                                            <option value="พนักงาน">พนักงาน</option>
+                                            <option value="สหกิจ">สหกิจ</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select name="pos_id8" id="pos_id">
+                                            <option value="" disabled selected>เลือก</option>
+                                            <option value="1">Tester</option>
+                                            <option value="2">UX/UI</option>
+                                            <option value="3">Project Manager</option>
+                                            <option value="4">Designer</option>
+                                            <option value="5">Developer</option>
+                                            <option value="6">Business Analytics</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div onclick="decreaseApplicants(this)">-</div>
+                                        <input type="number" id="pf_amount_of_positions"
+                                            name="pf_amount_of_position8" min="0" value="0">
+                                        <div onclick="increaseApplicants(this)">+</div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>
+                                        <select name="pf_type_jobs9" id="pf_job_type">
+                                            <option value="" disabled selected>เลือก</option>
+                                            <option value="พนักงาน">พนักงาน</option>
+                                            <option value="สหกิจ">สหกิจ</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select name="pos_id9" id="pos_id">
+                                            <option value="" disabled selected>เลือก</option>
+                                            <option value="1">Tester</option>
+                                            <option value="2">UX/UI</option>
+                                            <option value="3">Project Manager</option>
+                                            <option value="4">Designer</option>
+                                            <option value="5">Developer</option>
+                                            <option value="6">Business Analytics</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div onclick="decreaseApplicants(this)">-</div>
+                                        <input type="number" id="pf_amount_of_positions"
+                                            name="pf_amount_of_position9" min="0" value="0">
+                                        <div onclick="increaseApplicants(this)">+</div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>
+                                        <select name="pf_type_jobs10" id="pf_job_type">
+                                            <option value="" disabled selected>เลือก</option>
+                                            <option value="พนักงาน">พนักงาน</option>
+                                            <option value="สหกิจ">สหกิจ</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select name="pos_id10" id="pos_id">
+                                            <option value="" disabled selected>เลือก</option>
+                                            <option value="1">Tester</option>
+                                            <option value="2">UX/UI</option>
+                                            <option value="3">Project Manager</option>
+                                            <option value="4">Designer</option>
+                                            <option value="5">Developer</option>
+                                            <option value="6">Business Analytics</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div onclick="decreaseApplicants(this)">-</div>
+                                        <input type="number" id="pf_amount_of_positions"
+                                            name="pf_amount_of_position10" min="0" value="0">
                                         <div onclick="increaseApplicants(this)">+</div>
                                     </td>
                                     <td></td>
@@ -411,7 +663,7 @@
                         </table>
                         <button type="submit" style="background-color: red; color: white;"
                             onclick="submit()">สร้างฟอร์มและ QR Code</button>
-                </form>
+               {{-- </form>--}}
 
         </div>
 
