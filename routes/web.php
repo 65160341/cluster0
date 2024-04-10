@@ -11,6 +11,9 @@ use App\Http\Controllers\C_Information;
 use App\Http\Controllers\FormsController;
 use App\Http\Controllers\DashboardController;
 
+use Illuminate\Http\Request;
+use App\Http\Controllers\FormController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -112,3 +115,27 @@ Route::get('/contact', function () {
 });
 
 Route::post('/contact/save', [contactFormController::class, 'store']);
+
+
+// Route::get('/main', function () {
+    //     return view('main');
+    // });
+
+    // Route::get('/dashboard', function () {
+    //     return view('dashboard');
+    // });
+    // Route::get('/', [position_form_Controller::class, 'index']);
+    // Route::post('/store', [position_form_Controller::class, 'store'])->name ('stored_data');
+    // Route::get('/test', function () {
+    //     return view('maintest');
+    // });
+    // Route::get('/test2', function () {
+    //     return view('test2');
+    // });
+
+    Route::get('/', function () {
+        return redirect('/test');
+    });
+
+    Route::get('/test', [FormController::class, 'index'])->name('test.index');
+    Route::post('/test', [FormController::class, 'store'])->name('test.store');
