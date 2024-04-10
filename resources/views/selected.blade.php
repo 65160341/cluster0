@@ -351,40 +351,23 @@
                                 <tr class="text-center">
                                     <th scope="col">ชื่อ-นามสกุล</th>
                                     <th scope="col">
-                                        <div class="dropdown">
-                                            <button class="btn btn-white dropdown-toggle" type="button"
-                                                id="selectionStatusDropdown" data-bs-toggle="dropdown"
-                                                aria-expanded="false">
-                                                ลักษณะงาน
-                                            </button>
-                                            <ul class="dropdown-menu" aria-labelledby="selectionStatusDropdown">
-                                                <li><a class="dropdown-item" href="#">สหกิจศึกษา</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">สมัครงาน</a></li>
-                                            </ul>
+                                        <div class="dropdown shadow-sm">
+                                            <select class="form-select" aria-label="Default select example"
+                                                id="typeFilter">
+                                                <option value="" selected>ลักษณะงาน</option>
+                                                <option value="internship">สหกิจศึกษา</option>
+                                                <option value="job_application">สมัครงาน</option>
+                                            </select>
                                         </div>
                                     </th>
                                     <th scope="col">
-                                        <div class="dropdown">
-                                            <button class="btn btn-white dropdown-toggle" type="button"
-                                                id="selectionStatusDropdown" data-bs-toggle="dropdown"
-                                                aria-expanded="false">
-                                                ตำแหน่งงาน
-                                            </button>
-                                            <ul class="dropdown-menu" aria-labelledby="selectionStatusDropdown">
-                                                <li><a class="dropdown-item" href="#">Developer</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Programmer</a></li>
-                                                <li><a class="dropdown-item" href="#">Tester</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">System Analyst</a></li>
-                                                <li><a class="dropdown-item" href="#">Fullstack Developer</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Fronted Developer</a></li>
-                                                <li><a class="dropdown-item" href="#">Backend Developer</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Ui Design</a></li>
-                                            </ul>
+                                        <div class="dropdown shadow-sm">
+                                            <select class="form-select" aria-label="Default select example"
+                                                id="positionFilter">
+                                                <option value="">ตำแหน่งงาน</option>
+                                                <option value="Developer">Developer</option>
+                                                <option value="Programmer">Programmer</option>
+                                            </select>
                                         </div>
                                     </th>
                                     <th scope="col">วันที่สมัคร</th>
@@ -393,28 +376,30 @@
                                 </tr>
                             </thead>
                             @foreach ($user as $item)
-                                <tbody id="row_{{ $item->app_id }}">
+                                <tbody id="row_{{ $item->app_id }}" data-position="{{ $item->position->pos_name }}"
+                                    class="row-data">
                                     @if ($item->app_selected == 0)
                                         <tr>
-                                        <td>{{ $item->app_firstname . ' ' . $item->app_lastname }}</td>
-                                        <td></td>
-                                        <td>{{ $item->position->pos_name}}</td>
-                                        <td></td>
-                                        <td>
-                                            <button data-id="{{ $item->app_id }}"
-                                                class="userinfo btn btn-primary">view</button>
-                                        </td>
-                                        <td style="display: flex ; height: 95px ">
+                                            <td>{{ $item->app_firstname . ' ' . $item->app_lastname }}</td>
+                                            <td></td>
+                                            <td>{{ $item->position->pos_name }}</td>
+                                            <td></td>
+                                            <td>
+                                                <button data-id="{{ $item->app_id }}"
+                                                    class="userinfo btn btn-primary">view</button>
+                                            </td>
+                                            <td style="display: flex ; height: 95px ">
 
-                                            <button style="height: 38px ; margin-left: 10px"
-                                                class="btn btn-secondary hide-btn" data-id="{{ $item->app_id }}"
-                                                onclick="hideRow({{ $item->app_id }})"
-                                                {{ $item->app_status == 0 ? 'disabled' : 'enabled' }}>ซ่อน</button>
-                                            <button style="height: 38px; margin-left: 10px" class="btn btn-success"
-                                                onclick="showModal({{ $item->app_id }})"  {{ $item->app_selected == 1 ? 'disabled' : 'enabled' }}>คัดเลือก
-                                            </button>
-                                        </td>
-                                    </tr>
+                                                <button style="height: 38px ; margin-left: 10px"
+                                                    class="btn btn-secondary hide-btn" data-id="{{ $item->app_id }}"
+                                                    onclick="hideRow({{ $item->app_id }})"
+                                                    {{ $item->app_status == 0 ? 'disabled' : 'enabled' }}>ซ่อน</button>
+                                                <button style="height: 38px; margin-left: 10px"
+                                                    class="btn btn-success" onclick="showModal({{ $item->app_id }})"
+                                                    {{ $item->app_selected == 1 ? 'disabled' : 'enabled' }}>คัดเลือก
+                                                </button>
+                                            </td>
+                                        </tr>
                                     @endif
                                 </tbody>
                             @endforeach
@@ -513,6 +498,21 @@
                 modal.style.display = 'none';
             });
         });
+        document.addEventListener('DOMContentLoaded', function() {
+            var dropdownItems = document.querySelectorAll('.dropdown-item');
+            dropdownItems.forEach(function(item) {
+                item.addEventListener('click', function() {
+                    var selectedFilter = this.getAttribute('data-filter');
+                    filterData(selectedFilter);
+                });
+            });
+        });
+
+        function filterData(selectedFilter) {
+
+            console.log('Filtering data based on:', selectedFilter);
+
+        }
 
         function showModal(id) {
             swal({
@@ -530,11 +530,12 @@
                 })
                 .then((value) => {
                     if (value) {
-                       sendUserId(id);
+                        sendUserId(id);
 
                     }
                 });
         }
+
         function sendUserId(id) {
             console.log("Sending user ID:", id);
             var csrfToken = $('meta[name="csrf-token"]').attr('content');
@@ -552,6 +553,7 @@
                 }
             });
         }
+
         function hideRow(id) {
             var row = document.getElementById("row_" + id);
             if (row) {
@@ -561,6 +563,7 @@
                 console.error("Row with id " + id + " not found.");
             }
         }
+
         function sendIdToController(id) {
             var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
@@ -581,6 +584,7 @@
                 }
             });
         }
+
         function showData() {
             var rows = document.querySelectorAll("[id^='row']");
             rows.forEach(function(row) {
@@ -592,9 +596,30 @@
                 }
             });
         }
+
         function navigateToRoute(route) {
             window.location.href = route;
         }
+
+        document.getElementById('positionFilter').addEventListener('change', function() {
+            var selectedOption = this.value;
+            var rows = document.getElementsByClassName('row-data');
+
+            for (var i = 0; i < rows.length; i++) {
+                var position = rows[i].getAttribute('data-position');
+                var displayStyle = (selectedOption === "" || position === selectedOption) ? 'block' : 'none';
+                rows[i].style.display = displayStyle;
+            }
+        });
+        document.getElementById('typeFilter').addEventListener('change', function() {
+            var selectedOption = this.value;
+            var rows = document.getElementsByClassName('row-data');
+            for (var i = 0; i < rows.length; i++) {
+                var type = rows[i].getAttribute('data-position');
+                var displayStyle = (selectedOption === "" || type === selectedOption) ? 'table-row' : 'none';
+                rows[i].style.display = displayStyle;
+            }
+        });
     </script>
 </body>
 
