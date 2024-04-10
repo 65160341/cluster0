@@ -7,7 +7,7 @@
     <!-- หน้าจอ -->
     <div class="container-fluid content px-3 py-4">
         <div class="mb-3">
-            <div class="mb-3 d-flex align-items-center">
+            {{-- <div class="mb-3 d-flex align-items-center">
                 <h4 class="me-3">ปีที่รับสมัคร</h4>
                 <div class="dropdown shadow-sm">
                     <a class="btn btn-light btn-sm dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -22,6 +22,20 @@
                         <li><a class="dropdown-item" href="#">2/2565</a></li>
                         <li><a class="dropdown-item" href="#">1/2565</a></li>
                     </ul>
+                </div>
+            </div> --}}
+            <div class="row align-items-center mb-3">
+                <div class="col-auto">
+                    <span>ปีที่เปิดรับสมัคร</span>
+                </div>
+                <div class="col-auto">
+                    <select class="form-select shadow sm-1 mb-1 bg-body rounded" aria-label="Default select example"
+                        id="yearFilter">
+                        <option selected value="all">ปีที่รับสมัคร</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                    </select>
                 </div>
             </div>
             <div class="col-12 columnset">
@@ -81,11 +95,33 @@
                 columnDefs: [{
                     className: 'text-center',
                     targets: [0, 1, 2, 3, 4]
-                }, ],
+                }],
                 stateSave: true
             });
 
             // Filter the table based on the dropdown values
+            $('#yearFilter').on('change', function() {
+                var selectedYear = $(this).val(); // ปีที่รับสมัครที่ถูกเลือก
+                if (selectedYear === "all") {
+                    table
+                        .column(0)
+                        .search("")
+                        .order("asc")
+                        .draw();
+                } else {
+                    table
+                        .column(0)
+                        .search(selectedYear, true, false) // ค้นหาด้วยเฉพาะปี
+                        .order("asc")
+                        .draw();
+                }
+            });
+
+            // Filter the table based on the status dropdown
+            $('#statusFilter').on('change', function() {
+                var statusFilter = $(this).val();
+                table.column(4).search(statusFilter === 'all' ? '' : statusFilter, true, false).draw();
+            });
             $('.table-filter').on('change', function() {
                 var filterValue = $(this).val();
                 var columnIndex = $(this).closest('th').index();
@@ -95,36 +131,10 @@
                     table.column(columnIndex).search('^' + filterValue + '$', true, false).draw();
                 }
             });
-            $(".dropdown-menu a").click(function() {
-                var selectedYear = $(this).text(); // ปีที่รับสมัครที่ถูกเลือก
-                table.columns(0).search(selectedYear).draw();
-            });
         });
     </script>
 
     <script>
-        $(document).ready(function() {
-            $("#myInput").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $("#myTable tr").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-            });
-
-
-            // เพิ่มการจัดการเหตุการณ์เมื่อเลือกปีที่รับสมัคร
-            $(".dropdown-menu a").click(function() {
-                var selectedYear = $(this).text(); // ปีที่รับสมัครที่ถูกเลือก
-                $("#myTable tr").hide(); // ซ่อนทั้งหมดก่อน
-                $("#myTable tr").each(function() {
-                    // ตรวจสอบว่าปีที่รับสมัครของแถวนี้ตรงกับปีที่ถูกเลือกหรือไม่
-                    if ($(this).find("td:eq(0)").text().trim() === selectedYear) {
-                        $(this).show(); // แสดงแถวนี้
-                    }
-                });
-            });
-        });
-
         $('a.btn-success').click(function(e) {
             e.preventDefault(); // ป้องกันการโหลดหน้าใหม่
             var url = $(this).attr('information'); // URL ที่เรียก
