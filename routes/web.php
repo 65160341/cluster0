@@ -24,11 +24,11 @@ Route::controller(Authenticate::class)->group(function () {
     Route::post('/', 'login_save')->name('login.save');
 });
 
-Route::controller(Clicknext_page::class)->middleware('auth.sessions')->prefix('pages')->group(function () {
-        Route::get('index', 'index')->name('index');
-});
+// Route::controller(Clicknext_page::class)->middleware('auth.sessions')->group(function () {
+//         Route::get('/dashboard', 'dashboard')->name('dashboard');
+// });
 Route::middleware(['auth.sessions'])->group(function () {
-    Route::get('index', 'App\Http\Controllers\Clicknext_page@index')->name('index');
+    Route::get('/dashboard', 'App\Http\Controllers\Clicknext_page@dashboard')->name('dashboard');
 });
 
 

@@ -48,7 +48,7 @@
                                 <td>{{ $item->Testforms_status_se }}</td>
                                 <td>
                                     <form method="POST" action="{{ route('forms.destroy', $item->Testforms_id) }}">
-                                        <button class="btn btn-primary">ตรวจสอบ</button>
+                                        <a href="/formdetail" class="btn btn-primary">ตรวจสอบ</a>
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">ลบ</button>
@@ -71,7 +71,7 @@
                     className: 'text-center',
                     targets: [0, 1, 2, 3, 4]
                 }],
-                stateSave: true
+                stateSave: false
             });
             // Filter the table based on the dropdown values
             $('#yearFilter').on('change', function() {

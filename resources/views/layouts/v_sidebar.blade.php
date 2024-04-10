@@ -30,7 +30,7 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="/dashboard" class="sidebar-link">
                         <i class='bx bxs-dashboard'></i>
                         <span>แดชบอร์ด</span>
                     </a>
@@ -50,14 +50,14 @@
                             </li>
                             <li class="sidebar-item">
 
-                                <a href="#" class="sidebar-link"><i
+                                <a href="/forms" class="sidebar-link"><i
                                         class='bx bx-chevron-right'></i>ฟอร์มของฉัน</a>
                             </li>
                         </ul>
                     </div>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="/information" class="sidebar-link">
                         <i class='bx bxs-info-circle'></i>
                         <span>ข้อมูล</span>
                     </a>
@@ -79,7 +79,7 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">ออกจากระบบ</a></li>
+                                <li><a class="dropdown-item" href="/">ออกจากระบบ</a></li>
                             </ul>
                         </li>
                     </ul>

@@ -108,6 +108,15 @@ body {
     animation: fadeIn .25s ease;
 }
 
+.sidebar-nav .sidebar-link {
+    text-decoration: none; /* ลบเส้นใต้ */
+    color: inherit;
+}
+
+.sidebar-nav .sidebar-link:hover {
+    color: inherit;
+}
+
 @keyframes fadeIn {
     0% {
         opacity: 0;

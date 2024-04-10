@@ -30,7 +30,7 @@ class Authenticate extends Controller
 
             if ($user && $user->hr_password === $credentials['hr_password']) {
                 $request->session()->put('authenticated_username', $user->hr_username);
-                return redirect()->route('index');
+                return redirect()->route('dashboard');
             } else {
                 return redirect()->back()->withErrors(['error' => 'Invalid credentials']);
             }
