@@ -330,19 +330,6 @@
                                 <option value="{{ route('selected_information') }}" selected>คัดเลือกแล้ว</option>
                             </select>
                         </div>
-                        {{-- <div class="mb-3 d-flex align-items-center ms-auto"> <!-- เพิ่ม class ms-auto -->
-                            <div class="dropdown shadow-sm">
-                                <button class="btn btn-light btn-sm dropdown-toggle" type="button"
-                                    id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                    ข้อมูลทั้งหมด
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                                    <!-- เปลี่ยนตำแหน่งของ dropdown-menu ไปอยู่ท้ายสุด -->
-                                    <li><a class="dropdown-item" href="#">ข้อมูลที่เปิดเผย</a></li>
-                                    <li><a class="dropdown-item" href="#">ข้อมูลที่ซ่อนไว้</a></li>
-                                </ul>
-                            </div>
-                        </div> --}}
                     </div>
                     <div class="col-12 table-responsive">
                         <table class="table table-striped">
