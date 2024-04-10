@@ -33,7 +33,14 @@ public function store(Request $request){
    
         // สร้างข้อมูลใหม่ของ PositionForm
         // สร้างข้อมูลใหม่จากข้อมูลที่ส่งมาจากฟอร์ม
+        $countForm = Formtest::all();
+        $count = 1;
+        foreach($countForm as $item){
+            $count++;
+        }
         $formData = new Formtest();
+        $formData->form_round_count = $count;
+        $formData->form_round_year = Carbon::now()->year;
         $formData->form_date_start = $request->input('form_date_start');
         $formData->form_date_end = $request->input('form_date_end');
         $formData->form_detail = $request->input('pf_info');
@@ -42,9 +49,9 @@ public function store(Request $request){
         // $formData->save();
         $token = $request->input('_token');
         // สร้างข้อมูลสำหรับแต่ละแถวที่ส่งมาจากฟอร์มและบันทึกลงในฐานข้อมูล
-        $positions = $request->input('pos_id[data]');
-        $jobTypes = $request->input('pf_type_jobs[data]');
-        $amounts = $request->input('pf_amount_of_position[data]');
+        $positions = $request->input('pos_id[]');
+        $jobTypes = $request->input('pf_type_jobs[]');
+        $amounts = $request->input('pf_amount_of_position[]');
         // $positionForm = new PositionForm();
         $formData->pos_id = $positions;
         $formData->form_position_type = $jobTypes;
