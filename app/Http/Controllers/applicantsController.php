@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\applicantsModel;
+use App\Models\positionModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -46,8 +47,8 @@ class applicantsController extends Controller
         $resume = $request -> input("resume") ;
 
         $applicantsModel = new applicantsModel ;
-
-        //$applicantsModel -> pos_id = $job ;
+        
+        //*$applicantsModel -> pos_id = $job ;
         $applicantsModel -> app_firstname = $name ;
         $applicantsModel -> app_lastname = $surname ;
 

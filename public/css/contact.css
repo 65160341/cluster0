@@ -55,6 +55,7 @@ textarea {
 }
 input[type='radio'] {
     display: inline;
+    margin-left: 20px;
 }
 
 input#eng[type="text"] {
@@ -87,8 +88,10 @@ input#com[type="text"] {
 }
 
 button {
+    display: inline-block;
+    text-align: right;
+    margin-left: 20px;
     background-color: red;
-    float:inline-end  ;
     margin-top: 10px;
     color: white;
     border: none;

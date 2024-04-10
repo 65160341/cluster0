@@ -19,7 +19,7 @@
             @csrf
             <div class="form-group">
                 <label for="province">ตำแหน่งงาน <span class="required-asterisk">*</span> </label><!-- link ข้อมูล database -->
-                <label for="position"></label>
+                <label for="position"> Developer </label>
             </div>
 
             <div class="form-group"> <!-- กรอกชื่อ -->

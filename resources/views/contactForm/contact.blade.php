@@ -59,12 +59,13 @@
 
             <div>
                 <label for="Marital_status">สถานภาพสมรส <span class="required-asterisk">*</span></label>
+                <br>
                 <input type="radio" id="single" name="Marital_status" value="single">
                 <label for="single">โสด</label><br>
                 <input type="radio" id="Married" name="Marital_status" value="Married">
                 <label for="Married">สมรส</label><br>
-                <input type="radio" id="divorce" name="Marital_status" value="divorce">
-                <label for="divorce">หย่า</label>
+                <input type="radio" id="divorce" name="Marital_status" value="divorce">
+                <label for="divorce">หย่า</label>
             </div>
             <br>
 
@@ -294,9 +295,10 @@
                 <textarea id="com" name="com" placeholder="สามารถเขียนภาษา Java ได้ดี "></textarea>
             </div>
             <br>
-
-            <button type="submit" name="action" value="save_session" onclick="return validateForm()">บันทึก</button>
+            
             <button type="submit" name="action" value="save_database">ส่ง</button>
+            <button type="submit" name="action" value="save_session" onclick="return validateForm()">บันทึก</button>
+            
             <br>
             <br>
             <br>
@@ -452,6 +454,8 @@
         localStorage.setItem('houregis_country', houregis_country);
         localStorage.setItem('houregis_postal', houregis_postal);
         localStorage.setItem('houregis_home_phone_number', houregis_home_phone_number);
+
+        alert("ฟอร์มของคุณถูกบันทึกเรียบร้อย") ;
 
         
     }

@@ -21,8 +21,13 @@
             <div class="form-group">
                 <label for="province">ตำแหน่งงาน <span class="required-asterisk">*</span> </label>
                 <select name="job" id="worktest" placeholder="เลือกตำแหน่งงาน" > <!-- link ข้อมูล database -->
-                    <option value="jobname">Devlopment</option>
-                    <option value="jobname">jobname</option>
+                    <option value="jobname">Developer</option>
+                    <option value="jobname">Senior Programmer</option>
+                    <option value="jobname">Application Developer</option>
+                    <option value="jobname">ios Developer</option>
+                    <option value="jobname">Java Developer</option>
+                    <option value="jobname">Front-end Developer</option>
+                    <option value="jobname">Test Engineer</option>
                     
                 </select>
             </div>
