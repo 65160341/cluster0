@@ -66,7 +66,7 @@ class applicantsController extends Controller
         //$applicantsModel -> updated_at = $timestamps ;
 
         $applicantsModel -> save();
-        return view('main');
+        return view('form.form1');
         
     }
 

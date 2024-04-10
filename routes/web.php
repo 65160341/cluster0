@@ -33,13 +33,6 @@ use Illuminate\Support\Facades\Route;
 //     echo "<h1>test</h1><a href='" . url('/') . "'>HOME " . url('/') . "</a>";
 // });
 
-Route::get('/main', function () {
-    return view('main');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
 
 Route::get('/form', [applicantsController::class, 'index']);
 Route::post('/form', [applicantsController::class, 'store']);
