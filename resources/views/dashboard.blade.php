@@ -68,7 +68,6 @@
 
         </div>
 
-
         <script>
             var ctx = document.getElementById('chart').getContext('2d');
             var userChart = new Chart(ctx, {
