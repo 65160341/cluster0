@@ -5,29 +5,30 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\PositionForm;
 use App\Models\Positions;
-use App\Models\Form;
+use App\Models\Formtest;
 use Carbon\Carbon;
 class position_form_controller extends Controller
 {// ดึงข้อมูลทั้งหมดจากตาราง position_form
     public function index()
-{
-    $positionForms = PositionForm::with(['Form', 'Positions'])->get();
-    return view('creatform', compact('positionForms'));
-}
-    // แสดงฟอร์มสำหรับเพิ่มข้อมูล
-    public function create()
     {
-        return view('creatform');
+    //    return view('maintest', compact(''));
+       return view('maintest');
+    
     }
-    public function createform()
-    {
-    $positionForms = position_form::all(); // ดึงข้อมูลจากฐานข้อมูล
-    return view('creatform', compact('positionForms'));
-}
+    // // แสดงฟอร์มสำหรับเพิ่มข้อมูล
+    // public function create()
+    // {
+    //     return view('creatform');
+    // }
+    // public function createform()
+    // {
+    // $positionForms = position_form::all(); // ดึงข้อมูลจากฐานข้อมูล
+    // return view('creatform', compact('positionForms'));
+    // }
 
 public function store(Request $request){
     // Validate ข้อมูลตามต้องการ
-    $PositionForm = new PositionForm();
+    $PositionForm = new Formtest();
     $PositionForm->pf_type_jobs = $request->input('pf_type_jobs[]'); // แก้ชื่อตามที่ต้องการ
     $PositionForm->pf_amount_of_position = $request->input('pf_amount_of_position[]'); // แก้ชื่อตามที่ต้องการ
     $PositionForm->pos_id = $request->input('pos_id[]');

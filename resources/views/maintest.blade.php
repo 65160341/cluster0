@@ -317,8 +317,6 @@
                 </div>
             </nav>
             <main class="content px-3 py-4">
-
-
                 {{-- <label for="applicationRound">รอบการรับสมัคร:</label>
                         <input type="text" id="form_roundcount" value="" name="form_roundcount" placeholder="ระบุรอบ/ปี เช่น รอบที่ 1/2566">
 
@@ -329,12 +327,13 @@
 
                         <label for="additionalInfo">รายละเอียดเพิ่มเติม:</label>
                         <input type="text" id="pf_info" value="" name="pf_info" placeholder="กรอกรายละเอียดเพิ่มเติม"> --}}
-                <form action="{{ Route('stored_data') }}" method="POST">
+                {{-- <form action="{{ Route('stored_data') }}" method="POST"> --}}
+                <form action="{{ route('test.store') }}" method="POST">
                     <div style="display: flex; flex-direction: column;">
                         @php
                             // เรียกข้อมูลรอบการรับสมัครล่าสุด
-                            $latestFormRound = \App\Models\PositionForm::orderBy('form_roundcount', 'desc')->value(
-                                'form_roundcount',
+                            $latestFormRound = \App\Models\Formtest::orderBy('form_round_year', 'desc')->value(
+                                'form_round_year',
                             );
 
                             // ตรวจสอบว่ามีข้อมูลในฐานข้อมูลหรือไม่
@@ -362,11 +361,8 @@
                         <input type="text" id="pf_info" value="" name="pf_info"
                             placeholder="กรอกรายละเอียดเพิ่มเติม">
                     </div>
-
                     <div>
-
-                        <div onclick="addRow()">เพิ่มข้อมูล</div>
-
+                        <div onclick="addRow()" class="btn btn-success">เพิ่มข้อมูล</div>
                         @csrf
                         <table id="dataTable">
                             <thead>
@@ -384,8 +380,8 @@
                                     <td>
                                         <select name="pf_type_jobs[]" id="pf_type_jobs">
                                             <option value="" disabled selected>เลือก</option>
-                                            <option value="พนักงาน">พนักงาน</option>
-                                            <option value="สหกิจ">สหกิจ</option>
+                                            <option value="0">พนักงาน</option>
+                                            <option value="1">สหกิจ</option>
                                         </select>
                                     </td>
                                     <td>
@@ -400,10 +396,10 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <div onclick="decreaseApplicants(this)">-</div>
+                                        {{-- <div onclick="decreaseApplicants(this)">-</div> --}}
                                         <input type="number" id="pf_amount_of_positions"
                                             name="pf_amount_of_position[]" min="0" value="0">
-                                        <div onclick="increaseApplicants(this)">+</div>
+                                        {{-- <div onclick="increaseApplicants(this)">+</div> --}}
                                     </td>
                                     <td></td>
                                 </tr>
@@ -430,11 +426,6 @@
                 }
             }
         </script>
-
-
-
-
-
 
         </main>
     </div>
@@ -499,7 +490,7 @@
                 cell3.innerHTML =
                     '<select name="pos_id[]" class="position"><option value="" disabled selected>เลือก</option><option value="1">Tester</option><option value="2">UX/UI</option><option value="3">Project Manager</option><option value="4">Designer</option><option value="5">Developer</option><option value="6">Business Analytics</option></select>';
                 cell4.innerHTML =
-                    '<div onclick="decreaseApplicants(this)">-</div><input type="number" min="0" name="pf_amount_of_position[]" value="0"><div onclick="increaseApplicants(this)">+</div>';
+                    '<input type="number" min="0" name="pf_amount_of_position[]" value="0">';
                 cell5.innerHTML = '';
 
                 // เพิ่มโค้ดสำหรับการส่งข้อมูลไปยัง Laravel Controller เพื่อบันทึกลงในฐานข้อมูล

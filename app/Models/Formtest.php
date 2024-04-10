@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Form extends Model
+class Formtest extends Model
 {
     use HasFactory;
 
@@ -18,12 +18,17 @@ class Form extends Model
         'form_round_count',
         'form_round_year',
         'form_detail',
-        'pos_id ',
+        'pos_id',
         'form_position_type',
         'form_amount_of_postion',
         'form_date_start',
         'form_date_end',
-        'form_status',
+        'form_status'
     ];
+
+    public function positions()
+    {
+        return $this->belongsTo(Positions::class, 'pos_id');
+    }
 
 }

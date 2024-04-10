@@ -3,7 +3,7 @@
 use App\Http\Controllers\Authenticate;
 use App\Http\Controllers\Clicknext_page;
 use Illuminate\Http\Request;
-use App\Http\Controllers\position_form_Controller;
+use App\Http\Controllers\FormController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,18 +32,25 @@ use Illuminate\Support\Facades\Route;
 //     echo "<h1>test</h1><a href='" . url('/') . "'>HOME " . url('/') . "</a>";
 // });
 
-Route::get('/main', function () {
-    return view('main');
+// Route::get('/main', function () {
+//     return view('main');
+// });
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// });
+// Route::get('/', [position_form_Controller::class, 'index']);
+// Route::post('/store', [position_form_Controller::class, 'store'])->name ('stored_data');
+// Route::get('/test', function () {
+//     return view('maintest');
+// });
+// Route::get('/test2', function () {
+//     return view('test2');
+// });
+
+Route::get('/', function () {
+    return redirect('/test');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
-Route::get('/', [position_form_Controller::class, 'index']);
-Route::post('/store', [position_form_Controller::class, 'store'])->name ('stored_data');
-Route::get('/test', function () {
-    return view('maintest');
-});
-Route::get('/test2', function () {
-    return view('test2');
-});
+Route::get('/test', [FormController::class, 'index'])->name('test.index');
+Route::post('/test', [FormController::class, 'store'])->name('test.store');

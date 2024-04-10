@@ -20,7 +20,7 @@ class Positions extends Model
         'pos_url',
     ];
     public function positions()
-{
-    return $this->belongsTo(Positions::class, 'pos_id');
-}
+    {
+        return $this->belongsTo(Positions::class, 'pos_id');
+    }
 }
