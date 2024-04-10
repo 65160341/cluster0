@@ -40,14 +40,22 @@
                     <tbody>
                         @foreach ($forms_Pos as $item)
                             <tr>
-                                <td>{{ $item->form->form_round_count.'/'.$item->form->form_round_year}}</td>
+                                {{-- <td>{{ $item->form->form_round_count.'/'.$item->form->form_round_year}}</td>
                                 <td>{{ $item->fp_detail }}</td>
                                 <td>{{ $item->form->form_date_start }}</td>
                                 <td>{{ $item->form->form_date_end }}</td>
-                                <td>{{ $item->fp_status }}</td>
+                                <td>{{ $item->fp_status }}</td> --}}
+                                <td>{{ $item->Testforms_id}}</td>
+                                <td>{{ $item->Testforms_roundcount	 }}</td>
+                                <td>{{ $item->Testforms_detail }}</td>
+                                <td>{{ $item->Testforms_status }}</td>
+                                <td>{{ $item->Testforms_status_se }}</td>
                                 <td>
+                                    <form method="POST" action="{{ route('forms.delete', ['id' => $item])}}"></form>
                                     <button class="btn btn-primary">ตรวจสอบ</button>
-                                    <button class="btn btn-danger">ลบ</button>
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">ลบ</button>
                                 </td>
                             </tr>
                         @endforeach
