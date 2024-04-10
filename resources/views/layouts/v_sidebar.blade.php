@@ -30,7 +30,7 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="{{ url('dashboard') }}" class="sidebar-link">
+                    <a href="{{ url('/dashboard') }}" class="sidebar-link">
                         <i class='bx bxs-dashboard'></i>
                         <span>แดชบอร์ด</span>
                     </a>
@@ -44,19 +44,19 @@
                     <div id="auth" class="sidebar-dropdown collapse">
                         <ul class="list-unstyled">
                             <li class="sidebar-item">
-                                <a href="{{ url('createform') }}" class="sidebar-link"><i
+                                <a href="{{ url('/createform') }}" class="sidebar-link"><i
                                         class='bx bx-chevron-right'></i>สร้างฟอร์มรับสมัคร</a>
                             </li>
                             <li class="sidebar-item">
 
-                                <a href="{{ url('forms') }}" class="sidebar-link"><i
+                                <a href="{{ url('/forms') }}" class="sidebar-link"><i
                                         class='bx bx-chevron-right'></i>ฟอร์มของฉัน</a>
                             </li>
                         </ul>
                     </div>
                 </li>
                 <li class="sidebar-item">
-                    <a href="{{ url('information') }}" class="sidebar-link">
+                    <a href="{{ url('/information') }}" class="sidebar-link">
                         <i class='bx bxs-info-circle'></i>
                         <span>ข้อมูล</span>
                     </a>

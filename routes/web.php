@@ -28,8 +28,8 @@ use App\Http\Controllers\MailController;
 
 
 Route::controller(Authenticate::class)->group(function () {
-    Route::get('/', 'login');
-    Route::post('/login_save', [Authenticate::class, 'login_save']);
+    Route::get('/', 'login')->name('login');
+    Route::post('/login_save',  [Authenticate::class, 'login_save']);
 });
 
 // Route::controller(Clicknext_page::class)->middleware('auth.sessions')->group(function () {
@@ -139,4 +139,3 @@ Route::get('/forms', [FormController::class, 'indexMyform'])->name('forms.index'
 Route::get('/formdetail/{form_id}', [FormController::class, 'show'])->name('formdetail.show');
 Route::get('/forms/{id}/edit', [FormController::class, 'edit'])->name('forms.edit');
 Route::post('/forms/{id}/update', [FormController::class, 'update'])->name('forms.update');
-Route::delete('/form-positions/{positionId}', [FormController::class, 'deleteFormPosition'])->name('formpositions.delete');
