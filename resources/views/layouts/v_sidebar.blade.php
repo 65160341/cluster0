@@ -71,7 +71,7 @@
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="Unknown_person.jpg" class="avatar img-fluid" alt="">Username
+                                <img src="https://icons.veryicon.com/png/o/education-technology/education-cloud/username-1.png" class="avatar img-fluid" alt="">  Username
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">โปรไฟล์</a></li>
