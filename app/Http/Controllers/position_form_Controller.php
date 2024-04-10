@@ -28,9 +28,9 @@ class position_form_controller extends Controller
 public function store(Request $request){
     // Validate ข้อมูลตามต้องการ
     $PositionForm = new PositionForm();
-    $PositionForm->pf_type_jobs = $request->input('pf_type_jobs'); // แก้ชื่อตามที่ต้องการ
-    $PositionForm->pf_amount_of_position = $request->input('pf_amount_of_position'); // แก้ชื่อตามที่ต้องการ
-    $PositionForm->pos_id = $request->input('pos_id');
+    $PositionForm->pf_type_jobs = $request->input('pf_type_jobs[]'); // แก้ชื่อตามที่ต้องการ
+    $PositionForm->pf_amount_of_position = $request->input('pf_amount_of_position[]'); // แก้ชื่อตามที่ต้องการ
+    $PositionForm->pos_id = $request->input('pos_id[]');
 
     // คำนวณเลขลำดับใหม่
     $lastRoundCount = PositionForm::orderBy('form_roundcount', 'desc')->first();

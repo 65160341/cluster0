@@ -216,6 +216,7 @@
     th {
         background-color: #f2f2f2;
         border-top: 1px solid #ddd;
+        text-align: center;
         /* เพิ่มเส้นขอบด้านบนให้กับหัวคอลัมน์ */
     }
 

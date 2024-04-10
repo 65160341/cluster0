@@ -382,14 +382,14 @@
                                 <tr>
                                     <td>1</td>
                                     <td>
-                                        <select name="pf_type_jobs" id="pf_job_type">
+                                        <select name="pf_type_jobs[]" id="pf_type_jobs">
                                             <option value="" disabled selected>เลือก</option>
                                             <option value="พนักงาน">พนักงาน</option>
                                             <option value="สหกิจ">สหกิจ</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select name="pos_id" id="pos_id">
+                                        <select name="pos_id[]" id="pos_id">
                                             <option value="" disabled selected>เลือก</option>
                                             <option value="1">Tester</option>
                                             <option value="2">UX/UI</option>
@@ -402,7 +402,7 @@
                                     <td>
                                         <div onclick="decreaseApplicants(this)">-</div>
                                         <input type="number" id="pf_amount_of_positions"
-                                            name="pf_amount_of_position" min="0" value="0">
+                                            name="pf_amount_of_position[]" min="0" value="0">
                                         <div onclick="increaseApplicants(this)">+</div>
                                     </td>
                                     <td></td>
