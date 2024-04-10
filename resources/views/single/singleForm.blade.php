@@ -15,11 +15,11 @@
         <div> 
             <hr width="90%" color="Black" />
         </div>
-        <form action="{{ route('application.submit') }}" method="POST">
+        <form action="/form" method="POST">
             @csrf
             <div class="form-group">
                 <label for="province">ตำแหน่งงาน <span class="required-asterisk">*</span> </label><!-- link ข้อมูล database -->
-                </select>
+                <label for="position"></label>
             </div>
 
             <div class="form-group"> <!-- กรอกชื่อ -->

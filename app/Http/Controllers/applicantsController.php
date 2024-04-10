@@ -47,7 +47,7 @@ class applicantsController extends Controller
 
         $applicantsModel = new applicantsModel ;
 
-        //$applicantsModel -> u_tit = $job ;
+        //$applicantsModel -> pos_id = $job ;
         $applicantsModel -> app_firstname = $name ;
         $applicantsModel -> app_lastname = $surname ;
 
