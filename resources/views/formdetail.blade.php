@@ -271,19 +271,18 @@
             $('#qrCodeModal').modal('show');
         });
     </script>
-    <script>
-        // Assume you have a function to generate QR code without position
-        function generateQRCodeNoPosition(data) {
-            // Your QR code generation logic here
-            return 'data:image/png;base64,...'; // Replace with your actual QR code image data
-        }
+<script>
+    // Assume you have a function to generate QR code
+    function generateQRCode(data) {
+        // Your QR code generation logic here
+        return 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/QR_icon.svg/1024px-QR_icon.svg.png'; // Replace with the actual URL of your QR code image
+    }
 
-        // Add click event listener to the QR code button without position
-        $('button.btn-qr-code-no-position').on('click', function() {
-            var data = 'Some data to be encoded in the QR code';
-            var qrCodeImageSrc = generateQRCodeNoPosition(data);
-            $('#qrCodeContainerNoPosition').html('<img src="' + qrCodeImageSrc + '" alt="ตำแหน่งงานทั่วไป">');
-            $('#qrCodeModalNoPosition').modal('show');
-        });
-    </script>
+    // Add click event listener to the QR code button
+    $('.btn-qr-code').click(function() {
+        var data = 'Some data to be encoded in the QR code';
+        var qrCodeImageSrc = generateQRCode(data);
+        $('#qrCodeContainer').html('<img src="' + qrCodeImageSrc + '" alt="QR Code">');
+    });
+</script>
 @endsection
