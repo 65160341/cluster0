@@ -93,12 +93,15 @@
                             <th width="200px" data-orderable="false">
                                 <select class="table-filter">
                                     <option selected value="all">ตำแหน่งงาน</option>
-                                    <option value="DEV">DEV</option>
-                                    <option value="Soft En">Soft En</option>
-                                    <option value="Web Design">Web Design</option>
-                                    <option value="Back End Dev">Back End Dev</option>
-                                    <option value="Full Stack">Full Stack</option>
-                                    <option value="Admin">Admin</option>
+                                    <option value="Frontend Developer">Frontend Developer</option>
+                                    <option value="Unity Developer">Unity Developer</option>
+                                    <option value="Tester">Tester</option>
+                                    <option value="Graphic Design">Graphic Design</option>
+                                    <option value="Backend Developer">Backend Developer</option>
+                                    <option value="Ui Design">Ui Design</option>
+                                    <option value="3D Model">3D Model</option>
+                                    <option value="BA/Project Co.">BA/Project Co.</option>
+                                    <option value="Digital Marketing">Digital Marketing</option>
                                 </select>
                             </th>
                             <th width="200px">จำนวนการรับสมัคร</th>
@@ -122,82 +125,28 @@
                                 <button class="btn btn-link" style="color: #E8042C">ลบ</button>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="align-middle">2</td>
-                            <td class="align-middle">สมัครงาน</td>
-                            <td class="align-middle">Soft En</td>
-                            <td class="align-middle">30</td>
-                            <td class="align-middle">
-                                <button type="button" class="btn btn-qr-code" style="font-size: 25px">
-                                    <i class='bx bx-qr-scan'></i>
-                                </button>
-                            </td>
-                            <td class="align-middle">
-                                <button class="btn btn-link" style="color: #00B187">แก้ไข</button>
-                                <button class="btn btn-link" style="color: #E8042C">ลบ</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle">3</td>
-                            <td class="align-middle">สหกิจศึกษา</td>
-                            <td class="align-middle">Web Design</td>
-                            <td class="align-middle">17</td>
-                            <td class="align-middle">
-                                <button type="button" class="btn btn-qr-code" style="font-size: 25px">
-                                    <i class='bx bx-qr-scan'></i>
-                                </button>
-                            </td>
-                            <td class="align-middle">
-                                <button class="btn btn-link" style="color: #00B187">แก้ไข</button>
-                                <button class="btn btn-link" style="color: #E8042C">ลบ</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle">4</td>
-                            <td class="align-middle">สหกิจศึกษา</td>
-                            <td class="align-middle">Back End Dev</td>
-                            <td class="align-middle">10</td>
-                            <td class="align-middle">
-                                <button type="button" class="btn btn-qr-code" style="font-size: 25px">
-                                    <i class='bx bx-qr-scan'></i>
-                                </button>
-                            </td>
-                            <td class="align-middle">
-                                <button class="btn btn-link" style="color: #00B187">แก้ไข</button>
-                                <button class="btn btn-link" style="color: #E8042C">ลบ</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle">5</td>
-                            <td class="align-middle">สมัครงาน</td>
-                            <td class="align-middle">Full Stack</td>
-                            <td class="align-middle">90</td>
-                            <td class="align-middle">
-                                <button type="button" class="btn btn-qr-code" style="font-size: 25px">
-                                    <i class='bx bx-qr-scan'></i>
-                                </button>
-                            </td>
-                            <td class="align-middle">
-                                <button class="btn btn-link" style="color: #00B187">แก้ไข</button>
-                                <button class="btn btn-link" style="color: #E8042C">ลบ</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle">6</td>
-                            <td class="align-middle">สหกิจศึกษา</td>
-                            <td class="align-middle">Admin</td>
-                            <td class="align-middle">13</td>
-                            <td class="align-middle">
-                                <button type="button" class="btn btn-qr-code" style="font-size: 25px">
-                                    <i class='bx bx-qr-scan'></i>
-                                </button>
-                            </td>
-                            <td class="align-middle">
-                                <button class="btn btn-link" style="color: #00B187">แก้ไข</button>
-                                <button class="btn btn-link" style="color: #E8042C">ลบ</button>
-                            </td>
-                        </tr>
-
+                        @foreach ($forms as $item)
+                            <tr>
+                                <td>{{ $item->form_round_count.'/'.$item->form_round_year }}</td>
+                                <td>{{ $item->form_detail }}</td>
+                                <td>{{ $item->form_date_start }}</td>
+                                <td>{{ $item->form_date_end }}</td>
+                                <td>
+                                    @if ($item->form_status == 0)
+                                    <font style="color:#E8042C">ปิดรับสมัคร</font>
+                                    @elseif ($item->form_status == 1)
+                                    <font style="color:#00B187">เปิดรับสมัคร</font>
+                                    @endif
+                                </td>
+                                <td>
+                                    <form method="POST" action="{{ route('forms.destroy', $item->form_id) }}">                                        <a href="/formdetail" class="btn btn-primary">ตรวจสอบ</a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">ลบ</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

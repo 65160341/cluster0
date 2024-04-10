@@ -1,17 +1,20 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\applicantsController;
 use App\Http\Controllers\Authenticate;
 use App\Http\Controllers\C_student;
 use App\Http\Controllers\Clicknext_page;
-use App\Http\Controllers\applicantsController;
+
 use App\Http\Controllers\contactFormController;
 use App\Http\Controllers\MailController;
-use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\C_Information;
 use App\Http\Controllers\FormsController;
 use App\Http\Controllers\DashboardController;
 
-use Illuminate\Http\Request;
+
 use App\Http\Controllers\FormController;
 
 /*
@@ -74,12 +77,6 @@ Route::get('/information', function () {
 
 Route::get('/information', [C_Information::class, 'information']);
 
-Route::get('/forms', [FormsController::class, 'index'])->name('forms.index');
-Route::get('/forms{id}/edit', [FormsController::class, 'edit'])->name('forms.edit');
-Route::post('/forms{id}/update', [FormsController::class, 'update'])->name('forms.update');
-Route::delete('/forms/{id}', [FormsController::class, 'destroy'])->name('forms.destroy');
-
-
 // Route::get('/selected', function () {
 //     return view('selected');
 // });
@@ -137,5 +134,9 @@ Route::post('/contact/save', [contactFormController::class, 'store']);
     //     return redirect('/test');
     // });
 
-    Route::get('/test', [FormController::class, 'index'])->name('test.index');
-    Route::post('/test', [FormController::class, 'store'])->name('test.store');
+Route::get('/createform', [FormController::class, 'indexCreate'])->name('createform.index');
+Route::post('/formStore', [FormController::class, 'formStore'])->name('form.store');
+Route::delete('/forms/{id}', [FormController::class, 'destroy'])->name('forms.destroy');
+Route::get('/forms', [FormController::class, 'indexMyform'])->name('forms.index');
+Route::get('/forms{id}/edit', [FormController::class, 'edit'])->name('forms.edit');
+Route::post('/forms{id}/update', [FormController::class, 'update'])->name('forms.update');

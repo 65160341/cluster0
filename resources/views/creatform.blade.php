@@ -1,514 +1,423 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.v_sidebar')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบรับสมัครพนักงงาน</title>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    {{-- <link rel="stylesheet" href="styleTest.css"> --}}
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Poppins:wght@300;400;500;600;700&display=swap');
+@section('content')
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-        ::after,
-        ::before {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+    ::after,
+    ::before {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+
+    header .sidebar-logo .header-text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidebar-logo img {
+        width: 150px;
+        /* ปรับขนาดภาพ */
+        height: 110%;
+        object-fit: cover;
+        /* ปรับขนาดภาพให้พอดีกับขนาดที่กำหนด */
+    }
+
+    /* ปรับตำแหน่งของ logo */
+    .sidebar-logo {
+        margin: 20px auto;
+        /* ตำแหน่งตามต้องการ */
+    }
+
+    /* แก้ไขมา */
+    a {
+        text-decoration: none;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .wrapper {
+        display: flex;
+    }
+
+    .main {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        width: 100%;
+        overflow: hidden;
+        transition: all 0.35s ease-in-out;
+        background-color: #d5d5d5;
+        min-width: 0;
+    }
+
+    #sidebar {
+        width: 70px;
+        min-width: 70px;
+        z-index: 1000;
+        transition: all .25s ease-in-out;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #sidebar.expand {
+        width: 260px;
+        min-width: 260px;
+    }
+
+    .toggle-btn {
+        background-color: transparent;
+        cursor: pointer;
+        border: 0;
+        padding: 1rem 1.5rem;
+    }
+
+    .toggle-btn i {
+        font-size: 1.5rem;
+        color: #000000;
+    }
+
+    .sidebar-logo {
+        margin: auto 0;
+    }
+
+    .sidebar-logo a {
+        color: #ff0000;
+        font-size: 1.15rem;
+        font-weight: 600;
+    }
+
+    #sidebar:not(.expand) .sidebar-logo,
+    #sidebar:not(.expand) a.sidebar-link span {
+        display: none;
+    }
+
+    #sidebar.expand .sidebar-logo,
+    #sidebar.expand a.sidebar-link span {
+        animation: fadeIn .25s ease;
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
         }
 
-
-        header .sidebar-logo .header-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .sidebar-logo img {
-            width: 150px;
-            /* ปรับขนาดภาพ */
-            height: 110%;
-            object-fit: cover;
-            /* ปรับขนาดภาพให้พอดีกับขนาดที่กำหนด */
-        }
-
-        /* ปรับตำแหน่งของ logo */
-        .sidebar-logo {
-            margin: 20px auto;
-            /* ตำแหน่งตามต้องการ */
-        }
-
-        /* แก้ไขมา */
-        a {
-            text-decoration: none;
-        }
-
-        li {
-            list-style: none;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .wrapper {
-            display: flex;
-        }
-
-        .main {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            width: 100%;
-            overflow: hidden;
-            transition: all 0.35s ease-in-out;
-            background-color: #d5d5d5;
-            min-width: 0;
-        }
-
-        #sidebar {
-            width: 70px;
-            min-width: 70px;
-            z-index: 1000;
-            transition: all .25s ease-in-out;
-            background-color: #ffffff;
-            display: flex;
-            flex-direction: column;
-        }
-
-        #sidebar.expand {
-            width: 260px;
-            min-width: 260px;
-        }
-
-        .toggle-btn {
-            background-color: transparent;
-            cursor: pointer;
-            border: 0;
-            padding: 1rem 1.5rem;
-        }
-
-        .toggle-btn i {
-            font-size: 1.5rem;
-            color: #000000;
-        }
-
-        .sidebar-logo {
-            margin: auto 0;
-        }
-
-        .sidebar-logo a {
-            color: #ff0000;
-            font-size: 1.15rem;
-            font-weight: 600;
-        }
-
-        #sidebar:not(.expand) .sidebar-logo,
-        #sidebar:not(.expand) a.sidebar-link span {
-            display: none;
-        }
-
-        #sidebar.expand .sidebar-logo,
-        #sidebar.expand a.sidebar-link span {
-            animation: fadeIn .25s ease;
-        }
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        .sidebar-nav {
-            padding: 2rem 0;
-            flex: 1 1 auto;
-        }
-
-        a.sidebar-link {
-            padding: .625rem 1.625rem;
-            color: #000000;
-            display: block;
-            font-size: 0.9rem;
-            white-space: nowrap;
-            border-left: 3px solid transparent;
-        }
-
-        .sidebar-link i,
-        .dropdown-item i {
-            font-size: 1.1rem;
-            margin-right: .75rem;
-        }
-
-        a.sidebar-link:hover {
-            background-color: red;
-            border-left: 3px solid #3b7ddd;
-        }
-
-        .sidebar-item {
-            position: relative;
-        }
-
-        #sidebar:not(.expand) .sidebar-item .sidebar-dropdown {
-            position: absolute;
-            top: 0;
-            left: 70px;
-            background-color: #0e2238;
-            padding: 0;
-            min-width: 15rem;
-            display: none;
-        }
-
-        #sidebar:not(.expand) .sidebar-item:hover .has-dropdown+.sidebar-dropdown {
-            display: block;
-            max-height: 15em;
-            width: 100%;
+        100% {
             opacity: 1;
         }
+    }
 
-        #sidebar.expand .sidebar-link[data-bs-toggle="collapse"]::after {
-            border: solid;
-            border-width: 0 .075rem .075rem 0;
-            content: "";
-            display: inline-block;
-            padding: 2px;
-            position: absolute;
-            right: 1.5rem;
-            top: 1.4rem;
-            transform: rotate(-135deg);
-            transition: all .2s ease-out;
-        }
+    .sidebar-nav {
+        padding: 2rem 0;
+        flex: 1 1 auto;
+    }
 
-        #sidebar.expand .sidebar-link[data-bs-toggle="collapse"].collapsed::after {
-            transform: rotate(45deg);
-            transition: all .2s ease-out;
-        }
+    a.sidebar-link {
+        padding: .625rem 1.625rem;
+        color: #000000;
+        display: block;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        border-left: 3px solid transparent;
+    }
 
-        .navbar {
-            background-color: #ff0000;
-            box-shadow: 0 0 2rem 0 rgba(33, 37, 41, .1);
-        }
+    .sidebar-link i,
+    .dropdown-item i {
+        font-size: 1.1rem;
+        margin-right: .75rem;
+    }
 
-        .navbar-expand .navbar-collapse {
-            min-width: 200px;
-        }
+    a.sidebar-link:hover {
+        background-color: red;
+        border-left: 3px solid #3b7ddd;
+    }
 
-        .avatar {
-            height: 40px;
-            width: 40px;
-        }
+    .sidebar-item {
+        position: relative;
+    }
 
-        .sidebar-item.active a.sidebar-link {
-            background-color: red;
-            color: white;
-            border-left: 3px solid #3b7ddd;
-        }
-        #applicationPeriod {
-            margin-left: auto; /* ระยะห่างระหว่าง input text กับปฏิทิน */
-        }
-        .add-form {
-            color: rgb(255, 255, 255);
-            background-color: #870000;
-            background-size: 10px;
-        }
-        table {
-    border-collapse: collapse;
-    margin-right: 40px;
-    margin-bottom: 60px;
-    width: 100%; /* เพิ่มให้ตารางเต็มความกว้าง */
-}
+    #sidebar:not(.expand) .sidebar-item .sidebar-dropdown {
+        position: absolute;
+        top: 0;
+        left: 70px;
+        background-color: #0e2238;
+        padding: 0;
+        min-width: 15rem;
+        display: none;
+    }
 
-th, td {
-    padding: 10px; /* เพิ่มช่องว่างของเนื้อหาในเซลล์ */
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-}
+    #sidebar:not(.expand) .sidebar-item:hover .has-dropdown+.sidebar-dropdown {
+        display: block;
+        max-height: 15em;
+        width: 100%;
+        opacity: 1;
+    }
 
-th {
-    background-color: #f2f2f2;
-    border-top: 1px solid #ddd; /* เพิ่มเส้นขอบด้านบนให้กับหัวคอลัมน์ */
-}
-.popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            z-index: 999;
-        }
+    #sidebar.expand .sidebar-link[data-bs-toggle="collapse"]::after {
+        border: solid;
+        border-width: 0 .075rem .075rem 0;
+        content: "";
+        display: inline-block;
+        padding: 2px;
+        position: absolute;
+        right: 1.5rem;
+        top: 1.4rem;
+        transform: rotate(-135deg);
+        transition: all .2s ease-out;
+    }
 
-        .popup h2 {
-            color: #333;
-            margin-bottom: 20px;
-        }
+    #sidebar.expand .sidebar-link[data-bs-toggle="collapse"].collapsed::after {
+        transform: rotate(45deg);
+        transition: all .2s ease-out;
+    }
 
-        .popup input[type="text"],
-        .popup select {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+    .navbar {
+        background-color: #ff0000;
+        box-shadow: 0 0 2rem 0 rgba(33, 37, 41, .1);
+    }
 
-        .popup button {
-            padding: 10px 20px;
-            margin-right: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .cancel-button {
-            background-color: #860202;
-            color: white;
-        }
+    .navbar-expand .navbar-collapse {
+        min-width: 200px;
+    }
 
-        .confirm-button {
-            background-color: #00FF00;
-            color: white;
-        }
+    .avatar {
+        height: 40px;
+        width: 40px;
+    }
 
-        /* CSS สำหรับไอคอนเครื่องหมายถูก */
-        .icon {
-            color: #00FF00;
-            font-size: 24px;
-            vertical-align: middle;
-            margin-right: 5px;
-        }
+    .sidebar-item.active a.sidebar-link {
+        background-color: red;
+        color: white;
+        border-left: 3px solid #3b7ddd;
+    }
 
+    table {
+        border-collapse: collapse;
+        margin-right: 40px;
+        margin-bottom: 60px;
+        width: 100%;
+        /* เพิ่มให้ตารางเต็มความกว้าง */
+    }
 
-        @media (min-width: 768px) {}
-    </style>
-</head>
+    th,
+    td {
+        padding: 10px;
+        /* เพิ่มช่องว่างของเนื้อหาในเซลล์ */
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
 
+    th {
+        background-color: #f2f2f2;
+        border-top: 1px solid #ddd;
+        /* เพิ่มเส้นขอบด้านบนให้กับหัวคอลัมน์ */
+    }
+
+    @media (min-width: 768px) {}
+</style>
 <body>
-    <div class="wrapper">
-        <aside id="sidebar">
-            <div class="d-flex">
-                <button class="toggle-btn" type="button">
-                    <i class='bx bx-menu'></i>
-                </button>
 
-                <div class="sidebar-logo">
-                    <span class="image">
-                        <img src="https://blog.clicknext.com/wp-content/themes/clicknext_blog2/assets/images/clicknext-logo.png"
-                            alt="logo">
-                    </span>
-                </div>
-            </div>
-            <ul class="sidebar-nav">
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class='bx bxs-dashboard'></i>
-                        <span>แดชบอร์ด</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#auth"
-                        aria-expanded="false" aria-controls="auth">
-                        <i class='bx bxs-food-menu'></i>
-                        <span>ฟอร์ม</span>
-                    </a>
-                    <div id="auth" class="sidebar-dropdown collapse">
-                        <ul class="list-unstyled">
-                            <li class="sidebar-item">
-
-                                <a href="#" class="sidebar-link" style="color: #ff0000;">
-                                    <i class='bx bx-chevron-right'></i>สร้างฟอร์มรับสมัคร</a>
-
-                            </li>
-                            <li class="sidebar-item">
-
-                                <a href="#" class="sidebar-link"><i
-                                        class='bx bx-chevron-right'></i>ฟอร์มของฉัน</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class='bx bxs-info-circle'></i>
-                        <span>ข้อมูล</span>
-                    </a>
-                </li>
-            </ul>
-            <div class="sidebar-footer">
-                <a href="#" class="sidebar-link">
-                    <i class='bx bx-log-out'></i>
-                    <span>ออกจากระบบ</span>
-                </a>
-            </div>
-        </aside>
-        <div class="main">
-            <nav class="navbar navbar-expand-lg px-4 py-3">
-                <div class="collapse navbar-collapse">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="Unknown_person.jpg" class="avatar img-fluid" alt="">Username
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">โปรไฟล์</a></li>
-                                <li><a class="dropdown-item" href="#">ตั้งค่า</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">ออกจากระบบ</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
             <main class="content px-3 py-4">
-
-
-                        {{-- <label for="applicationRound">รอบการรับสมัคร:</label>
-                        <input type="text" id="form_roundcount" value="" name="form_roundcount" placeholder="ระบุรอบ/ปี เช่น รอบที่ 1/2566">
-
-
-                        <label for="applicationPeriod">ระยะเวลาการรับสมัคร:</label>
-                        <input type="date" id="form_date_end" value="" name="form_date_end" class="form-control" placeholder="เลือกวันที่">
-
-
-                        <label for="additionalInfo">รายละเอียดเพิ่มเติม:</label>
-                        <input type="text" id="pf_info" value="" name="pf_info" placeholder="กรอกรายละเอียดเพิ่มเติม"> --}}
-
-                        <label for="applicationRound">รอบการรับสมัคร:</label>
-                        <input type="text" id="form_roundcount" value="" name="form_roundcount" placeholder="ระบุรอบ/ปี เช่น รอบที่ 1/2566">
-                        <label for="applicationPeriod">ระยะเวลาการรับสมัคร:</label>
-                        <label for="dateStart">เวลาเริ่มต้น</label>
-                        <input type="date" id="form_date_start" value="" name="form_date_strat" class="form-control" placeholder="เลือกวันที่เริ่ม">
-                        <label for="dateEnd">เวลาเริ่มต้น</label>
-                        <input type="date" id="form_date_end" value="" name="form_date_end" class="form-control" placeholder="เลือกวันที่สิ้นสุด">
-                        <label for="additionalInfo">รายละเอียดเพิ่มเติม:</label>
-                        <input type="text" id="pf_info" value="" name="pf_info" placeholder="กรอกรายละเอียดเพิ่มเติม">
-                         <button class="add-form" onclick="toggleConfirmationPopup()" >+ เพิ่มรายการรับสมัคร</button>
-                        <div class="popup" id="popup">
-                            <form action="/store" method="post" enctype="multipart/form-data" onsubmit="return confirmForm()">
-                                @csrf
-                                <h2>เพิ่มรายการรับสมัคร</h2>
-                                <!-- โปรดทราบว่าฉันได้เปลี่ยนชื่อของฟิลด์เป็นแบบ array ตามที่คุณต้องการ -->
-                                <label for="jobType[]" >ลักษณะงาน:</label>
-                                <select id="pf_type_jobs" name="jobType[]" >
-                                    <option value="พนักงาน">พนักงาน</option>
-                                    <option value="สหกิจ">สหกิจ</option>
-                                </select>
-                                <label for="position[]">ตำแหน่งงาน:</label>
-                                <select id="pos_id" name="position[]" >
-                                    <option value=1>ไม่ระบุตำแหน่งงาน</option>
-                                    <option value=2>Tester</option>
-                                    <option value=3>UX/UI</option>
-                                    <option value=4>Project Manager</option>
-                                    <option value=5>Designer</option>
-                                    <option value=6>Developer</option>
-                                    <option value=7>Business Analytics</option>
-                                </select>
-                                <label for="numOfApplicants[]">จำนวนการรับสมัคร:</label>
-                                <input type="text" value="" id="pf_amount_of_position" name="numOfApplicants[]">
-                                <button type="button" class="cancel-button" onclick="togglePopup()">ยกเลิก</button>
-                                <button type="submit" class="confirm-button"onclick="toggleConfirmationPopup()()">ยืนยัน</button>
-                            </form>
+                <form action="{{ route('form.store') }}" method="POST">
+                    <div style="display: flex; flex-direction: column;" class="col-auto mb-3">
+                        @php
+                            // เรียกข้อมูลรอบการรับสมัครล่าสุด
+                            $latestFormRound = App\Models\formsModel::orderBy('form_round_count', 'desc')->value(
+                                'form_round_count'
+                            );
+                    
+                            // ตรวจสอบว่ามีข้อมูลในฐานข้อมูลหรือไม่
+                            if (!$latestFormRound) {
+                                // หากไม่มีข้อมูล กำหนดค่าให้เป็น '1/ปีปัจจุบัน'
+                                $latestFormRound = '1/' . Carbon\Carbon::now()->year;
+                            }else {
+                                $latestFormRound = ($latestFormRound + 1).'/'. Carbon\Carbon::now()->year;
+                            }
+                        @endphp
+                    
+                        <div style="display: flex; align-items: center;">
+                            <label for="applicationRound" style="margin-left: 10px; margin-right: 10px">รอบการรับสมัคร : </label>
+                            <span>{{ $latestFormRound }}</span>
+                            <label for="applicationPeriod" style="margin-left: 10px; margin-right: 10px">ระยะเวลาการรับสมัคร</label>
+                            <label for="dateStart" style="margin-left: 10px; margin-right: 10px">เวลาเริ่มต้น : </label>
+                            <input type="date" id="form_date_start" value="" name="form_date_start" class="form-control-sm" placeholder="เลือกวันที่เริ่ม" style="margin-right: 10px;">
+                            <label for="dateEnd" style="margin-left: 10px; margin-right: 10px">เวลาสิ้นสุด : </label>
+                            <input type="date" id="form_date_end" value="" name="form_date_end" class="form-control-sm" placeholder="เลือกวันที่สิ้นสุด" style="margin-right: 10px;">
+                        </div>
+                        <div class="col-auto">
+                            <span for="additionalInfo">รายละเอียดเพิ่มเติม:</span>
+                            <input type="text" id="pf_info" value="" name="pf_info"
+                                    placeholder="กรอกรายละเอียดเพิ่มเติม" class="form-control">
+                        </div>
                     </div>
-<div>
-    <table>
-        <thead>
-            <tr>
-                <th>ลำดับ</th>
-                <th>ลักษณะงาน</th>
-                <th>ตำแหน่งงาน</th>
-                <th>จำนวนการรับสมัคร</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($positionForms  as $key => $item)
-            <tr>
-                <td>{{ $key + 1 }}</td>
-                <td>{{ $item['pf_type_jobs'] }}</td>
-                <td>{{ $item['pos_id'] }}</td>
-                <td>{{ $item['pf_amount_of_position'] }}</td>
-                <td>
-                    <button style="background-color: green; color: white;">แก้ไข</button>
-                    <button style="background-color: red; color: white;">ลบ</button>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
+                    <div>
+                        {{-- <div onclick="addRow()" class="btn btn-success">เพิ่มข้อมูล</div> --}}
+                        @csrf
+                        <table id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th>ลำดับ</th>
+                                    <th>ลักษณะงาน</th>
+                                    <th>ตำแหน่งงาน</th>
+                                    <th>จำนวนการรับสมัคร</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>
+                                        <select name="pf_type_jobs[]" id="pf_type_jobs">
+                                            <option value="" disabled selected>เลือก</option>
+                                            <option value="0">พนักงาน</option>
+                                            <option value="1">สหกิจ</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select name="pos_id[]" id="pos_id">
+                                            <option value="" disabled selected>เลือก</option>
+                                            <option value="1">Frontend Developer</option>
+                                            <option value="2">Unity Developer</option>
+                                            <option value="3">Tester</option>
+                                            <option value="4">Graphic Design</option>
+                                            <option value="5">Backend Developer</option>
+                                            <option value="6">Ui Design</option>
+                                            <option value="7">3D Model</option>
+                                            <option value="8">BA/Project Co.</option>
+                                            <option value="9">Digital Marketing</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="number" id="pf_amount_of_positions"
+                                            name="pf_amount_of_position[]" min="0" value="0">
+                                    </td>
+                                    <td>
+                                        <button type="button" onclick="addRow()" class="btn btn-success">เพิ่มข้อมูล</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button type="submit" style="background-color: red; color: white;"
+                            onclick="submit()">สร้างฟอร์มและ QR Code</button>
+                </form>
 
-<button style="background-color: red; color: white;" onclick="submit()">สร้างฟอร์มและ QR Code</button>
-
-
-
-
-            </main>
         </div>
+
+        <script>
+            function increaseApplicants() {
+                var input = document.querySelector('input[type="number"]');
+                var currentValue = parseInt(input.value);
+                input.value = currentValue + 1;
+            }
+
+            function decreaseApplicants() {
+                var input = document.querySelector('input[type="number"]');
+                var currentValue = parseInt(input.value);
+                if (currentValue > 0) {
+                    input.value = currentValue - 1;
+                }
+            }
+        </script>
+
+        </main>
+    </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    const hamBurger = document.querySelector(".toggle-btn");
+    <script>
+        const hamBurger = document.querySelector(".toggle-btn");
 
-    hamBurger.addEventListener("click", function() {
-        document.querySelector("#sidebar").classList.toggle("expand");
-    });
+        hamBurger.addEventListener("click", function() {
+            document.querySelector("#sidebar").classList.toggle("expand");
+        });
 
-    function togglePopup() {
-    var popup = document.getElementById("popup");
-    if (popup.style.display === "block") {
-        popup.style.display = "none";
-    } else {
-        popup.style.display = "block";
-    }
-}
+        function collectFormData() {
+            var formData = {
+                jobType: [],
+                position: [],
+                numOfApplicants: []
+            };
 
-    function confirmForm() {
-        togglePopup(); // ปิด popup เมื่อยืนยัน
-        toggleConfirmationPopup(); // เปิด popup
-    }
+            // เก็บข้อมูลจากฟอร์ม
+            var jobTypes = document.getElementsByName('pf_job_Type[]');
+            var positions = document.getElementsByName('pos_id[]');
+            var numOfApplicants = document.getElementsByName('pf_amount_of_position[]');
 
-    function toggleConfirmationPopup() {
-        var confirmationPopup = document.getElementById("popup");
-        if (confirmationPopup.style.display === "block") {
-            confirmationPopup.style.display = "none";
-        } else {
-            confirmationPopup.style.display = "block";
+            // วนลูปเพื่อเก็บข้อมูลจากแต่ละฟิลด์
+            for (var i = 0; i < jobTypes.length; i++) {
+                formData.jobType.push(jobTypes[i].value);
+                formData.position.push(positions[i].value);
+                formData.numOfApplicants.push(numOfApplicants[i].value);
+            }
+
+            return formData;
         }
-    }
-    function collectFormData() {
-    var formData = {
-        jobType: [],
-        position: [],
-        numOfApplicants: []
-    };
 
-    // เก็บข้อมูลจากฟอร์ม
-    var jobTypes = document.getElementsByName('jobType[]');
-    var positions = document.getElementsByName('position[]');
-    var numOfApplicants = document.getElementsByName('numOfApplicants[]');
+        function increaseApplicants(button) {
+            var input = button.parentNode.querySelector('input[type="number"]');
+            var currentValue = parseInt(input.value);
+            input.value = currentValue + 1;
+        }
 
-    // วนลูปเพื่อเก็บข้อมูลจากแต่ละฟิลด์
-    for (var i = 0; i < jobTypes.length; i++) {
-        formData.jobType.push(jobTypes[i].value);
-        formData.position.push(positions[i].value);
-        formData.numOfApplicants.push(numOfApplicants[i].value);
-    }
+        function decreaseApplicants(button) {
+            var input = button.parentNode.querySelector('input[type="number"]');
+            var currentValue = parseInt(input.value);
+            if (currentValue > 0) {
+                input.value = currentValue - 1;
+            }
+        }
 
-    return formData;
-}
+        function addRow() {
+            var table = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+            var rowCount = table.rows.length;
+            if (rowCount < 10) {
+                var newRow = table.insertRow(rowCount);
+                var cell1 = newRow.insertCell(0);
+                var cell2 = newRow.insertCell(1);
+                var cell3 = newRow.insertCell(2);
+                var cell4 = newRow.insertCell(3);
+                var cell5 = newRow.insertCell(4);
+                cell1.innerHTML = rowCount + 1;
+                cell2.innerHTML =
+                    '<select name="pf_type_jobs[]" id="pf_type_jobs"><option value="" disabled selected>เลือก</option><option value="0">พนักงาน</option><option value="1">สหกิจ</option></select>';
+                cell3.innerHTML =
+                    '<select name="pos_id[]" id="pos_id"><option value="" disabled selected>เลือก</option><option value="1">Frontend Developer</option><option value="2">Unity Developer</option><option value="3">Tester</option><option value="4">Graphic Design</option><option value="5">Backend Developer</option><option value="6">Ui Design</option><option value="7">3D Model</option><option value="8">BA/Project Co.</option><option value="9">Digital Marketing</option></select>';
+                cell4.innerHTML =
+                    '<input type="number" id="pf_amount_of_positions" name="pf_amount_of_position[]" min="0" value="0">';
+                cell5.innerHTML = '<button type="button" onclick="deleteRow(this)" class="btn btn-danger">ลบ</button>';
 
-</script>
+                // เพิ่มโค้ดสำหรับการส่งข้อมูลไปยัง Laravel Controller เพื่อบันทึกลงในฐานข้อมูล
+                var jobTypeSelect = newRow.querySelector('.job-type');
+                var positionSelect = newRow.querySelector('.position');
+                jobTypeSelect.addEventListener('change', function() {
+                    // อื่น ๆ ที่คุณต้องการทำเมื่อเลือกตำแหน่ง
+                });
+                positionSelect.addEventListener('change', function() {
+                    // อื่น ๆ ที่คุณต้องการทำเมื่อเลือกตำแหน่ง
+                });
+            } else {
+                alert('ไม่สามารถเพิ่มแถวได้เพิ่มแล้ว 10 แถว');
+            }
+        }
+        function deleteRow(button) {
+        // Get the reference to the table row
+        var row = button.parentNode.parentNode;
+        // Remove the row from the table
+        row.parentNode.removeChild(row);
+        }
+    </script>
 
     </script>
 </body>
 
 </html>
+
+@endsection

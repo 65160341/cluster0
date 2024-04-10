@@ -3,49 +3,102 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Formtest;
-use App\Models\PosittionTest;
+use App\Models\formsModel;
+use App\Models\formPositionsModel;
 use Carbon\Carbon;
 
 class FormController extends Controller{
-// ดึงข้อมูลทั้งหมดจากตาราง position_form
-public function index(){
-   return view('maintest');
+    // ดึงข้อมูลทั้งหมดจากตาราง position_form
+    public function indexCreate(){
+        return view('creatform');
 
-}
-
-public function store(Request $request){
-    $countForm = Formtest::all();
-    $count = 1;
-    foreach($countForm as $item){
-        $count++;
     }
-    $positionData = new PosittionTest();
-    $formData = new Formtest();
-    $formData->form_round_count = $count;
-    $formData->form_round_year = Carbon::now()->year;
-    $formData->form_date_start = $request->input('form_date_start');
-    $formData->form_date_end = $request->input('form_date_end');
-    $formData->form_detail = $request->input('pf_info');
 
-    $token = $request->input('_token');
-    // สร้างข้อมูลสำหรับแต่ละแถวที่ส่งมาจากฟอร์มและบันทึกลงในฐานข้อมูล
-    $positions = $request->input('pos_id')['0'];
-    $jobTypes = $request->input('pf_type_jobs')['0'];
-    $amounts = $request->input('pf_amount_of_position')['0'];
-    // $positionForm = new PositionForm();
-    $formData->pos_id = $positions;
-    $formData->form_position_type = $jobTypes;
-    $formData->form_amount_of_postion = $amounts;
+    public function indexMyform()
+    {
+        $forms = FormsModel::all();
+        $forms_Pos = formPositionsModel::all();
+        return view('myform', compact('forms', 'forms_Pos'));
+    }
 
-    $positionData->pos_id = $positions;
-    $positionData->job_type = $jobTypes;
-    $positionData->amount_of_postion = $amounts;
-    // บันทึกข้อมูล PositionForm
-    $positionData->save();
-    $formData->save();
+    public function viewFormDeteil()
+    {
+        $forms_Pos = formPositionsModel::all();
+        return view('formdetail', compact('forms_Pos'));
+    }
 
+    public function formStore(Request $request) {
+        // Get the count of existing forms
+        $countForms = formsModel::count();
+        $count = $countForms + 1;
+    
+        // Get form input data
+        $dateStart = $request->input('form_date_start');
+        $dateEnd = $request->input('form_date_end');
+        $info = $request->input('pf_info');
+    
+        // Create a new instance of formsModel
+        $formData = new formsModel();
+        $formData->form_round_count = $count;
+        $formData->form_round_year = Carbon::now()->year;
+        $formData->form_date_start = $dateStart;
+        $formData->form_date_end = $dateEnd;
+        $formData->form_detail = $info;
+        $formData->save(); // Save the form first to get its ID
+    
+        // Iterate through each position submitted
+        foreach($request->pos_id as $key => $position) {
+            // Create new instance of formPositionsModel
+            $positionData = new formPositionsModel();
+    
+            // Fill in position data
+            $positionData->form_id = $formData->form_id; // Assign form_id from the saved form
+            $positionData->pos_id = $position;
+            $positionData->fp_amount_of_postion = $request->pf_amount_of_position[$key];
+            $positionData->fp_position_type = $request->pf_type_jobs[$key];
+    
+            // Save the position data
+            $positionData->save();
+        } 
+    
+        // Redirect back to index page
+        return redirect()->route('createform.index');
+    }
 
-return redirect()->route('test.index'); // เมื่อบันทึกเสร็จสิ้น กลับไปยังหน้าที่ต้องการ
-}
+    public function edit(Form_PositionsModel $id)
+    {
+        return view('#', compact('id'));
+    }
+
+    public function update(Request $request, Form_PositionsModel $id)
+    {
+        $data = $request->validata([
+            'fp_position_type' => 'reduest',
+            'pos_id' => 'reduest',
+            'fp_amount_of_postion' => 'reduest|numeric'
+        ]);
+
+        $id->update($data);
+
+        return redirect(route('forms.index'))->with('succes', ('Form update succesffully'));
+    }
+
+    public function destroy($id) {
+        // Find the form record
+        $form = formsModel::findOrFail($id);
+
+        // Find the associated position records
+        $positions = formPositionsModel::where('form_id', $id)->get();
+
+        // Delete the associated position records
+        foreach ($positions as $position) {
+            $position->delete();
+        }
+
+        // Delete the form record
+        $form->delete();
+
+        return redirect()->route('forms.index')->with('success', 'Form and associated positions deleted successfully.');
+    }
+    
 }
