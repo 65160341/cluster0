@@ -133,9 +133,9 @@ Route::post('/contact/save', [contactFormController::class, 'store']);
     //     return view('test2');
     // });
 
-    Route::get('/', function () {
-        return redirect('/test');
-    });
+    // Route::get('/', function () {
+    //     return redirect('/test');
+    // });
 
     Route::get('/test', [FormController::class, 'index'])->name('test.index');
     Route::post('/test', [FormController::class, 'store'])->name('test.store');
