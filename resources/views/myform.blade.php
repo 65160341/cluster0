@@ -54,7 +54,7 @@
                                 </td>
                                 <td>
                                     <form method="POST" action="{{ route('forms.destroy', $item->form_id) }}">                                        
-                                        <a href="/formdetail" class="btn btn-primary">ตรวจสอบ</a>
+                                        <a href="{{ route('formdetail.show', $item->form_id) }}" class="btn btn-primary">ตรวจสอบ</a>
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">ลบ</button>

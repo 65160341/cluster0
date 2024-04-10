@@ -4,18 +4,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\applicantsController;
 use App\Http\Controllers\Authenticate;
+use App\Http\Controllers\C_Information;
 use App\Http\Controllers\C_student;
 use App\Http\Controllers\Clicknext_page;
-
 use App\Http\Controllers\contactFormController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FormController;
 use App\Http\Controllers\MailController;
 
-use App\Http\Controllers\C_Information;
-use App\Http\Controllers\FormsController;
-use App\Http\Controllers\DashboardController;
 
 
-use App\Http\Controllers\FormController;
 
 /*
 |--------------------------------------------------------------------------
@@ -138,5 +136,6 @@ Route::get('/createform', [FormController::class, 'indexCreate'])->name('createf
 Route::post('/formStore', [FormController::class, 'formStore'])->name('form.store');
 Route::delete('/forms/{id}', [FormController::class, 'destroy'])->name('forms.destroy');
 Route::get('/forms', [FormController::class, 'indexMyform'])->name('forms.index');
-Route::get('/forms{id}/edit', [FormController::class, 'edit'])->name('forms.edit');
-Route::post('/forms{id}/update', [FormController::class, 'update'])->name('forms.update');
+Route::get('/formdetail/{form_id}', [FormController::class, 'show'])->name('formdetail.show');
+Route::get('/forms/{id}/edit', [FormController::class, 'edit'])->name('forms.edit');
+Route::post('/forms/{id}/update', [FormController::class, 'update'])->name('forms.update');

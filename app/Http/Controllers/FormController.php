@@ -17,15 +17,23 @@ class FormController extends Controller{
     public function indexMyform()
     {
         $forms = FormsModel::all();
-        $forms_Pos = formPositionsModel::all();
-        return view('myform', compact('forms', 'forms_Pos'));
+        return view('myform', compact('forms'));
     }
 
-    public function viewFormDeteil()
+    public function show($form_id)
     {
+        // Retrieve the form details from the database based on the $form_id
+        $form = \App\Models\formsModel::findOrFail($form_id);
         $forms_Pos = formPositionsModel::all();
-        return view('formdetail', compact('forms_Pos'));
+        // Pass the form details to the view
+        return view('formdetail', compact('form', 'forms_Pos'));
     }
+
+    // public function viewFormDeteil()
+    // {
+    //     $forms_Pos = formPositionsModel::all();
+    //     return view('formdetail', compact('forms_Pos'));
+    // }
 
     public function formStore(Request $request) {
         // Get the count of existing forms
