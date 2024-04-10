@@ -15,12 +15,9 @@ class contactFormController extends Controller
 
             return redirect('/contact');
 
-        } elseif ($action === 'save_database') {
+        } elseif ($action === 'save_database') { //database
             
-            $data = $request->all();
             
-
-            return response()->json(['message' => 'บันทึกข้อมูลลงในฐานข้อมูลเรียบร้อยแล้ว'], 200);
         } else {
             
             return response()->json(['error' => 'ไม่พบการร้องขอที่ถูกต้อง'], 400);

@@ -398,8 +398,6 @@
     }//เพิ่มข้อมูล
     function storageFunction() {
         
-
-
         const name = nameInput.value ;
         const surname = surnameInput.value ;
         const nickname = nicknameInput.value ;
@@ -459,11 +457,32 @@
     }
 
     function loadData() {
-    const storedName = localStorage.getItem('name');
-    const storedSurname = localStorage.getItem('surname');
+    
+        const storedName = localStorage.getItem('name');
+        const storedSurname = localStorage.getItem('surname');
+        const storedNickname = localStorage.getItem('nickname');
+        const storedBirthday = localStorage.getItem('birthday');
+        const storedEthnicity = localStorage.getItem('ethnicity');
+        const storednationality = localStorage.getItem('nationality');
+        const storedreligion = localStorage.getItem('religion');
 
-    nameInput.value = storedName;
-    surnameInput.value = storedSurname;
+        const storedhouse_number = localStorage.getItem('house_number');
+        const storedalley = localStorage.getItem('alley');
+        const storedroad = localStorage.getItem('road');
+        const storedsubdistrict = localStorage.getItem('subdistrict');
+        const storeddistrict = localStorage.getItem('district');
+        const storedprovince = localStorage.getItem('province');
+        const storedcountry = localStorage.getItem('country');
+        const storedpostal = localStorage.getItem('postal');
+        const storedhome_phone_number = localStorage.getItem('home_phone_number');
+
+        nameInput.value = storedName;
+        surnameInput.value = storedSurname;
+        nicknameInput.value = storedNickname;
+        birthdayInput.value = storedBirthday;
+        ethnicityInput.value = storedEthnicity;
+        nationalityInput.value = storednationality;
+        religionInput.value = storedreligion;
     
 }
 
