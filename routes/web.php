@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Authenticate;
+use App\Http\Controllers\C_student;
 use App\Http\Controllers\Clicknext_page;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\C_Information;
@@ -39,6 +40,9 @@ Route::middleware(['auth.sessions'])->group(function () {
 
 Route::get('/main', function () {
     return view('main');
+})->name('main');
+Route::get('/information', function () {
+    return view('information');
 });
 
 Route::get('/myform', function () {
@@ -71,3 +75,18 @@ Route::get('/forms', [FormsController::class, 'index'])->name('forms.index');
 Route::get('/forms{id}/edit', [FormsController::class, 'edit'])->name('forms.edit');
 Route::post('/forms{id}/update', [FormsController::class, 'update'])->name('forms.update');
 Route::delete('/forms/{id}', [FormsController::class, 'destroy'])->name('forms.destroy');
+
+
+Route::get('/selected', function () {
+    return view('selected');
+});
+
+
+Route::get('/selected', [C_student::class, 'selected'])->name('selected');
+
+Route::get('/information', [C_student::class, 'information']);
+Route::get('/update-selected/{id}', [C_student::class, 'update_selected']);
+Route::get('/selected-information', [C_student::class, 'show_selected'])->name('selected_information');
+Route::get('/update/{id}', [C_student::class, 'update_status']);
+Route::get('/hidden-data',  [C_student::class, 'showHiddenData'])->name('hidden_data');
+Route::get('/public-data',  [C_student::class, 'showPublicData'])->name('public_data');

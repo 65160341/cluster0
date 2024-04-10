@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบรับสมัครพนักงงาน</title>
+    <title>แสดงผลผู้สมัครที่คัดเลือก</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    {{-- <link rel="stylesheet" href="styleTest.css"> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css?family=Poppins:wght@300;400;500;600;700&display=swap');
 
@@ -63,7 +63,7 @@
             width: 100%;
             overflow: hidden;
             transition: all 0.35s ease-in-out;
-            background-color: #F3F5F6;
+            background-color: #d5d5d5;
             min-width: 0;
         }
 
@@ -145,7 +145,7 @@
         }
 
         a.sidebar-link:hover {
-            background-color: #E8042C;
+            background-color: red;
             border-left: 3px solid #3b7ddd;
         }
 
@@ -189,7 +189,7 @@
         }
 
         .navbar {
-            background-color: #E8042C;
+            background-color: #ff0000;
             box-shadow: 0 0 2rem 0 rgba(33, 37, 41, .1);
         }
 
@@ -207,6 +207,34 @@
             color: white;
             border-left: 3px solid #3b7ddd;
         }
+
+
+        /* หน้า Model Title  */
+        .modal-content {
+            text-align: center;
+        }
+
+        .modal-header img {
+            display: block;
+            margin: auto;
+        }
+
+        .modal-body p {
+            text-align: center;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .modal-footer .btn {
+            margin: 0;
+        }
+
+
+
+        /* ================  */
 
         @media (min-width: 768px) {}
     </style>
@@ -276,7 +304,8 @@
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="Unknown_person.jpg" class="avatar img-fluid" alt="">Username
+                                <img src="https://cdn-icons-png.freepik.com/512/149/149071.png" class="avatar img-fluid"
+                                    alt="">Username
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">โปรไฟล์</a></li>
@@ -290,67 +319,150 @@
                     </ul>
                 </div>
             </nav>
-            <!-- <main class="content px-3 py-4">
+            <main class="content px-3 py-4">
                 <div class="container-fluid">
-                    <div class="mb-3">
-                        <h4><label for="ปีที่เปิดรับสมัคร">ปีที่เปิดรับสมัคร</label></h4>
-                        <div class="row">
-                            <div class="col-12">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">รอบการคัดเลือก</th>
-                                            <th scope="col">รายละเอียด</th>
-                                            <th scope="col">วันที่เปิดรับ</th>
-                                            <th scope="col">วันที่สิ้นสุด</th>
-                                            <th scope="col">สถานะ</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1 / 2567</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>เปิดรับสมัคร</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td>เปิดรับสมัคร</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td colspan="2">Larry the Bird</td>
-                                            <td>@twitter</td>
-                                            <td>ปิดรับสมัคร</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">4</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td>ปิดรับสมัคร</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                    <div class="mb-3 d-flex align-items-center">
+                        <h4 class="me-3">สถานะการคัดเลือก : </h4>
+                        <div class="dropdown shadow-sm">
+                            <select class="form-select" aria-label="Default select example"
+                                onchange="navigateToRoute(this.value)">
+                                <option value="{{ route('selected') }}">ยังไม่ได้คัดเลือก</option>
+                                <option value="{{ route('selected_information') }}" selected>คัดเลือกแล้ว</option>
+                            </select>
                         </div>
                     </div>
-                </div>
-            </main> -->
+                    <div class="col-12 table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr class="text-center">
+                                    <th scope="col">ชื่อ-นามสกุล</th>
+                                    <th scope="col">
+                                        <div class="dropdown shadow-sm">
+                                            <select class="form-select" aria-label="Default select example"
+                                                id="typeFilter">
+                                                <option value="" selected>ลักษณะงาน</option>
+                                                <option value="internship">สหกิจศึกษา</option>
+                                                <option value="job_application">สมัครงาน</option>
+                                            </select>
+                                        </div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="dropdown shadow-sm">
+                                            <select class="form-select" aria-label="Default select example"
+                                                id="positionFilter">
+                                                <option value="">ตำแหน่งงาน</option>
+                                                <option value="Developer">Developer</option>
+                                                <option value="Programmer">Programmer</option>
+                                            </select>
+                                        </div>
+                                    </th>
+                                    <th scope="col">วันที่ตอบรับ</th>
+                                    <th scope="col">สถานะ</th>
+                                    <th scope="col">ฟอร์ม</th>
+                                </tr>
+                            </thead>
+                            @foreach ($user as $item)
+                            <tbody id="row_{{ $item->app_id }}" data-position="{{ $item->position->pos_name }}"
+                                    class="row-data">
+                            @if ($item->app_selected == 1)
+                            <tr>
+                                <td>{{ $item->app_firstname . ' ' . $item->app_lastname }}</td>
+                                <td></td>
+                                <td>{{ $item->position->pos_name  }}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                             </tr>
+                            @endif
+                            </tbody>
+                            @endforeach
+                        </table>
+                        <a class="btn btn-primary" href="/selected" role="button">กลับไปหน้าคัดเลือก</a>
+                    </div>
+            </main>
+
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+
         const hamBurger = document.querySelector(".toggle-btn");
 
         hamBurger.addEventListener("click", function() {
             document.querySelector("#sidebar").classList.toggle("expand");
         });
-    </script>
-</body>
 
-</html>
+        const viewButtons = document.querySelectorAll(".userinfo");
+
+        viewButtons.forEach(button => {
+            button.addEventListener("click", function() {
+                // เมื่อคลิกปุ่ม "view" ดึงข้อมูล ID ของรายการที่เกี่ยวข้อง
+                const userId = this.getAttribute("data-id");
+
+                // แสดงข้อความ ID ของผู้ใช้
+                alert("ID ของผู้ใช้: " + userId);
+
+                // สามารถดำเนินการโหลดข้อมูลผู้ใช้และแสดงในโมดัลหรือหน้าใหม่ต่อไปได้
+                // showModalWithUserInfo(userId);  // หรืออื่น ๆ
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const selectButtons = document.querySelectorAll('.btn-success');
+            const modal = document.querySelector('.modal');
+            const closeModalButtons = document.querySelectorAll('.btn-close, [data-bs-dismiss="modal"]');
+            const confirmButton = document.getElementById('confirmButton'); // ดำเนินการเปลี่ยนนี้
+
+            selectButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // แสดงหน้า Modal เมื่อคลิกปุ่ม "คัดเลือก"
+                    modal.style.display = 'block';
+                    // กำหนดข้อความใน Modal title ตามที่ต้องการ
+                    document.querySelector('.modal-title').innerText = 'Modal title';
+                });
+            });
+
+            // เพิ่มการปิด Modal เมื่อคลิกที่ปุ่มปิดหรือพื้นหลังภายนอก Modal
+            closeModalButtons.forEach(closeButton => {
+                closeButton.addEventListener('click', function() {
+                    modal.style.display = 'none';
+                });
+            });
+
+            // เพิ่มการแสดงข้อความ "คัดเลือกเสร็จสิ้น" เมื่อกดปุ่มยืนยัน
+            confirmButton.addEventListener('click', function() {
+                // ทำสิ่งที่คุณต้องการเมื่อกดปุ่มยืนยันที่นี่
+                alert('คัดเลือกเสร็จสิ้น');
+                // ปิด Modal หลังจากที่ทำการยืนยัน
+                modal.style.display = 'none';
+            });
+        });
+        function navigateToRoute(route) {
+            window.location.href = route;
+        }
+         document.getElementById('positionFilter').addEventListener('change', function() {
+            var selectedOption = this.value;
+            var rows = document.getElementsByClassName('row-data');
+
+            for (var i = 0; i < rows.length; i++) {
+                var position = rows[i].getAttribute('data-position');
+                var displayStyle = (selectedOption === "" || position === selectedOption) ? 'block' : 'none';
+                rows[i].style.display = displayStyle;
+            }
+        });
+        document.getElementById('typeFilter').addEventListener('change', function() {
+            var selectedOption = this.value;
+            var rows = document.getElementsByClassName('row-data');
+            for (var i = 0; i < rows.length; i++) {
+                var type = rows[i].getAttribute('data-position');
+                var displayStyle = (selectedOption === "" || type === selectedOption) ? 'table-row' : 'none';
+                rows[i].style.display = displayStyle;
+            }
+        });
+    </script>
