@@ -238,7 +238,7 @@
                     className: 'text-center',
                     targets: [0, 1, 2, 3, 4]
                 }, ],
-                stateSave: true
+                stateSave: false
             });
 
             // Filter the table based on the dropdown values

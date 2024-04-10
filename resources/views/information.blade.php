@@ -15,7 +15,7 @@
                         เลือกปีที่รับสมัคร
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">2/2570</a></li>
+                        <li><a class="dropdown-item" href="#">1/2023</a></li>
                         <li><a class="dropdown-item" href="#">1/2570</a></li>
                         <li><a class="dropdown-item" href="#">2/2568</a></li>
                         <li><a class="dropdown-item" href="#">1/2568</a></li>
@@ -48,20 +48,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($pos_forms as $item)
-                                    <tr>
-                                        <td>{{ $item->form->form_round_count }}</td>
-                                        <td>{{ $item->fp_detail }}</td>
-                                        <td>{{ $item->fp_status }} </td>
-                                        <td>{{ $item->form->form_round_year }}</td>
-                                        <td>
-                                            <a href="{{ $item->Testforms_id }}" class="btn btn-primary"
-                                                style="margin-left: 10%">ตรวจสอบ</a>
-                                            <a href="" class="btn btn-success">เสร็จสิ้น</a>
-                                        </td>
-                                    </tr>
-                                @endforeach --}}
-
+                        @foreach ($pos_forms as $item)
+                            <tr>
+                                <td>{{ $item->form->form_round_count . '/' . $item->form->form_round_year }}
+                                </td>
+                                <td>{{ $item->fp_detail }}</td>
+                                <td>{{ $item->fp_status }} </td>
+                                <td>{{ $item->form->form_round_year }}</td>
+                                <td>
+                                    <a href="{{ $item->Testforms_id }}" class="btn btn-primary"
+                                        style="margin-left: 10%">ตรวจสอบ</a>
+                                    <a href="" class="btn btn-success">เสร็จสิ้น</a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -71,7 +71,6 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> --}}
     <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
 
@@ -96,19 +95,33 @@
                     table.column(columnIndex).search('^' + filterValue + '$', true, false).draw();
                 }
             });
+            $(".dropdown-menu a").click(function() {
+                var selectedYear = $(this).text(); // ปีที่รับสมัครที่ถูกเลือก
+                table.columns(0).search(selectedYear).draw();
+            });
         });
     </script>
-    <script>
-        //ค้นหา//
 
-        $(".dropdown-menu a").click(function() {
-            var selectedYear = $(this).text(); // ปีที่รับสมัครที่ถูกเลือก
-            $("#myTable tr").hide(); // ซ่อนทั้งหมดก่อน
-            $("#myTable tr").each(function() {
-                // ตรวจสอบว่าปีที่รับสมัครของแถวนี้ตรงกับปีที่ถูกเลือกหรือไม่
-                if ($(this).find("td:eq(0)").text().trim() === selectedYear) {
-                    $(this).show(); // แสดงแถวนี้
-                }
+    <script>
+        $(document).ready(function() {
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+
+
+            // เพิ่มการจัดการเหตุการณ์เมื่อเลือกปีที่รับสมัคร
+            $(".dropdown-menu a").click(function() {
+                var selectedYear = $(this).text(); // ปีที่รับสมัครที่ถูกเลือก
+                $("#myTable tr").hide(); // ซ่อนทั้งหมดก่อน
+                $("#myTable tr").each(function() {
+                    // ตรวจสอบว่าปีที่รับสมัครของแถวนี้ตรงกับปีที่ถูกเลือกหรือไม่
+                    if ($(this).find("td:eq(0)").text().trim() === selectedYear) {
+                        $(this).show(); // แสดงแถวนี้
+                    }
+                });
             });
         });
 

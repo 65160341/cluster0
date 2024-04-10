@@ -3,6 +3,7 @@
 use App\Http\Controllers\Authenticate;
 use App\Http\Controllers\Clicknext_page;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\C_Information;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,3 +50,10 @@ Route::get('/dashboard', function () {
 Route::get('/test_sidebar', function () {
     return view('test_sidebar');
 });
+
+Route::get('/information', function () {
+    return view('information');
+});
+
+
+Route::get('/information', [C_Information::class, 'information']);
