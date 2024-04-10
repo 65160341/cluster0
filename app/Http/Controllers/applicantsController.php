@@ -63,6 +63,8 @@ class applicantsController extends Controller
         $applicantsModel -> app_question = $question ;
         $applicantsModel -> app_resume = $resume ;
 
+        //$applicantsModel -> updated_at = $timestamps ;
+
         $applicantsModel -> save();
         return view('main');
         

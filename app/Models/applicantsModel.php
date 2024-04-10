@@ -11,5 +11,5 @@ class applicantsModel extends Model
     Protected $table = 'applicants';
     protected $primaryKey = 'app_id';
     public $incrementing = true;
-    public $timestamps = false;
+    public $timestamps = true;
 }
