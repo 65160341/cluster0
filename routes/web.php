@@ -4,6 +4,7 @@ use App\Http\Controllers\Authenticate;
 use App\Http\Controllers\Clicknext_page;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\C_Information;
+use App\Http\Controllers\FormsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,3 +58,8 @@ Route::get('/information', function () {
 
 
 Route::get('/information', [C_Information::class, 'information']);
+
+Route::get('/forms', [FormsController::class, 'index'])->name('forms.index');
+Route::get('/forms{id}/edit', [FormsController::class, 'edit'])->name('forms.edit');
+Route::post('/forms{id}/update', [FormsController::class, 'update'])->name('forms.update');
+Route::delete('/forms/{id}', [FormsController::class, 'destroy'])->name('forms.destroy');
