@@ -3,6 +3,9 @@
 use App\Http\Controllers\Authenticate;
 use App\Http\Controllers\C_student;
 use App\Http\Controllers\Clicknext_page;
+use App\Http\Controllers\applicantsController;
+use App\Http\Controllers\contactFormController;
+use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\C_Information;
 use App\Http\Controllers\FormsController;
@@ -89,3 +92,23 @@ Route::get('/hidden-data',  [C_student::class, 'showHiddenData'])->name('hidden_
 Route::get('/public-data',  [C_student::class, 'showPublicData'])->name('public_data');
 
 
+Route::get('/form', [applicantsController::class, 'index']);
+Route::post('/form', [applicantsController::class, 'store']);
+Route::resource('form', applicantsController::class);
+
+Route::post('/vertify', [MailController::class, 'submitApplication'])->name('application.submit');
+
+Route::get('/privacy', function () {
+    return view('form.Privacy');
+});
+
+Route::get('/singleForm', function () {
+    return view('single.singleForm');
+});
+
+
+Route::get('/contact', function () {
+    return view('contactForm.contact');
+});
+
+Route::post('/contact/save', [contactFormController::class, 'store']);
