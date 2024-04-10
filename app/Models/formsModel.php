@@ -5,9 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class formsModel extends Model
+class FormsModel extends Model
 {
     use HasFactory;
-    Protected $table = 'forms';
-    protected $primaryKey = 'form_id';
+
+    protected $table ='Testforms';
+    protected $primaryKey = 'Testforms_id';
+
+    // protected $fillable = [
+    //     'form_id',
+    //     'form_round_count',
+    //     'form_round_year',
+    //     'form_date_start',
+    //     'form_date_end'
+    // ];
 }
