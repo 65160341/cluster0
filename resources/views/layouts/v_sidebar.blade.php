@@ -30,7 +30,7 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="{{ url('dashboard') }}" class="sidebar-link">
+                    <a href="{{ url('/dashboard') }}" class="sidebar-link">
                         <i class='bx bxs-dashboard'></i>
                         <span>แดชบอร์ด</span>
                     </a>
@@ -49,7 +49,7 @@
                             </li>
                             <li class="sidebar-item">
 
-                                <a href="{{ url('forms') }}" class="sidebar-link"><i
+                                <a href="{{ url('/forms') }}" class="sidebar-link"><i
                                         class='bx bx-chevron-right'></i>ฟอร์มของฉัน</a>
                             </li>
                         </ul>
